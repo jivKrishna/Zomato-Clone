@@ -1,0 +1,14 @@
+<div class="container-fluid banner">
+  <div class="container" id="user">
+   <div id="verify" class="float-right mt-2">
+      <button type="button" class="btn text-white" data-toggle="modal" data-target="#loginAccountModal">Log In</button>
+      <%= render partial: "login" %>
+
+      <button type="button" class="btn text-white border border-white" data-toggle="modal" data-target="#createAccountModal">Create an Account</button>
+      <%= render template: "users/new" %>
+   </div>
+  </div>
+</div>
+
+
+<i class="fab fa-facebook-square fa-3x"></i>
