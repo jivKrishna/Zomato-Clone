@@ -8,12 +8,12 @@
         </button>
       </div>
       <div class="modal-body">
-        <%= link_to "https://www.facebook.com", class: "facebook" do %>
+        <%= link_to "auth/facebook", class: "facebook" do %>
             <i class="fab fa-facebook-f fa-2x text-white mt-2"></i>
             <span class="text-white align-text-bottom margin-center">Continue with Facebook</span>
         <% end %>
 
-        <%= link_to "https://contacts.google.com", class: "google" do %>
+        <%= link_to "auth/google_oauth2", class: "google" do %>
             <%= image_tag "google_icon.png", class: "icon mt-2" %>
             <span class="text-secondary align-text-bottom margin-center">Continue with Google</span>
         <% end %>
