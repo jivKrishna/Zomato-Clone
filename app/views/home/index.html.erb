@@ -2,23 +2,24 @@
   <div class="container" id="user">
     <div id="verify" class="float-right mt-2">
       <% if current_user %>
-        <button type="button" class="btn text-white" data-toggle="modal" data-target="#loginAccountModal">Log In</button>
-        <%= render partial: "login" %>
-
-        <button type="button" class="btn text-white border border-white" data-toggle="modal" data-target="#createAccountModal">Create an Account</button>
-        <%= render template: "users/new" %>
-      <% else %>
         <div class="dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <% image_tag current_user.image %>
+            <%= image_tag current_user.image, class: "icon rounded-circle" %>
+            <%= current_user.name.split.first.upcase %>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <%= link_to "Sign Out", "sign_out", method: :delete, class: "dropdown-item" %>
+            <%= link_to "Log Out", "sign_out", method: :delete, class: "dropdown-item" %>
             <a class="dropdown-item" href="#">Another action</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">Something else here</a>
           </div>
         </div>
+      <% else %>
+        <button type="button" class="btn text-white" data-toggle="modal" data-target="#loginAccountModal">Log In</button>
+        <%= render partial: "login" %>
+
+        <button type="button" class="btn text-white border border-white" data-toggle="modal" data-target="#createAccountModal">Create an Account</button>
+        <%= render template: "users/new" %>
       <% end %>
     </div>
   </div>
