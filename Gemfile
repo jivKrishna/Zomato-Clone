@@ -59,3 +59,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'omniauth-facebook', '~> 5.0'
 #google-oauth2 gem
 gem 'omniauth-google-oauth2', '~> 0.8.0'
+#github omniauth
+gem 'omniauth-github', '~> 1.3'
