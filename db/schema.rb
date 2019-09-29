@@ -10,9 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_24_142139) do
+ActiveRecord::Schema.define(version: 2019_09_26_112220) do
+
+  create_table "restaurants", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.string "city"
+    t.boolean "owner_flag"
+    t.string "owner_phone_number"
+    t.string "owner_email"
+    t.string "restaurant_type"
+    t.string "phone_number"
+    t.string "secondary_phone_number"
+    t.string "email"
+    t.string "website"
+    t.string "address"
+    t.time "open_time"
+    t.time "close_time"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.boolean "admin", default: false
     t.string "name"
     t.string "email"
     t.text "image"

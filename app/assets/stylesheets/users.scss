@@ -2,4 +2,22 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+body{
+  background-color: #F3F3F3;
+}
 
+.profile{
+  height: 250px;
+  background-color: #fff;
+}
+
+.pics{
+  width: 150px;
+  height: auto;
+}
+
+.nm-text{
+  font-size: 26px;
+  margin-left: 15px;
+  font-weight: bold;
+}

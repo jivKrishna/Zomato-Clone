@@ -22,8 +22,12 @@ $fa-font-path: '@fortawesome/fontawesome-free/webfonts';
 @import '@fortawesome/fontawesome-free/scss/brands';
 
 
+.bg-color{
+  background-color: #efefef;
+}
+
 .container-size{
-  min-width: 1200px;
+  max-width: 1200px;
 }
 
 .facebook{
@@ -45,4 +49,24 @@ $fa-font-path: '@fortawesome/fontawesome-free/webfonts';
 .icon{
   padding: 16px;
   width: 60px;
+}
+
+#more-info{
+  display: none;
+}
+
+.form-group.required .control-label:after {
+  content:"*";
+  color:red;
+}
+
+.bg-white{
+  background-color: #fff;
+}
+
+.link{
+  text-decoration: none;
+}
+.link:hover{
+  background-color: #efefef;
 }

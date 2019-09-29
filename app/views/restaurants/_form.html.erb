@@ -1,0 +1,111 @@
+<%= form_for @restaurant do |form| %>
+  <div class="basic-info">
+    <div class="form-group required">
+      <%= form.label :name, "RESTAURANT NAME", class: "control-label" %>
+      <%= form.text_field :name, placeholder: "Enter Restaurant name", class: "form-control" %>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group required">
+          <%= form.label :city, class: "text-uppercase control-label" %>
+          <%= form.text_field :city, placeholder: "Search city" ,class: "form-control" %>
+        </div>
+      </div>
+    </div>
+    <div class="form-group required">
+      <h6 class="control-label">ARE YOU THE OWNER OR MANAGER OF THIS PLACE?</h6>
+      <%= form.radio_button :owner_flag, "no" , checked: true %> 
+      <%= form.label :owner_flag_no, "I'm not the owner/manager" %>
+
+      <%= form.radio_button :owner_flag, "yes" %> 
+      <%= form.label :owner_flag_yes, "I'm the owner/manager" %>
+    </div>
+
+    <div id="owner">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= form.label :owner_phone_number, class: "control-label text-uppercase" %>
+            <%= form.text_field :owner_phone_number, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= form.label :owner_email, class: "control-label text-uppercase" %>
+            <%= form.text_field :owner_email, class: "form-control" %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= form.label :phone_number %>
+          <%= form.text_field :phone_number, class: "form-control" %>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= form.label :secondary_phone_number %>
+          <%= form.text_field :secondary_phone_number, class: "form-control" %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= form.label :city %>
+          <%= form.text_field :city, placeholder: "Search city", class: "form-control" %>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= form.label :address %>
+          <%= form.text_field :address, class: "form-control" %>
+        </div>
+      </div>
+    </div>
+
+  <button type="button" id="more-less" class="btn btn-secondary form-control"><span class="align-left">+ Add more info(optional)</span></button>
+
+  <div id="more-info">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= form.label :open_time %>
+          <%= form.time_field :open_time, class: "form-control" %>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= form.label :close_time %>
+          <%= form.time_field :close_time, class: "form-control" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= form.label :email, "RESTAURANT EMAIL" %>
+        <%= form.text_field :email, placeholder: "Enter restaurant email", class: "form-control" %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= form.label :website, "RESTAURANT WEBSITE" %>
+        <%= form.text_field :website, placeholder: "Enter restaurant website", class: "form-control" %>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="form-group">
+      <%= form.submit "create", class: "form-control btn btn-success" %>
+    </div>
+  </div>
+
+<% end %>

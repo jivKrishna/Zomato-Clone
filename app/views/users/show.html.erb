@@ -1,0 +1,21 @@
+<div class="container container-size">
+  <div class="profile text-center mt-4">
+    <div class="row">
+      <div class="col-6">
+        <%= image_tag @user.image, class: "pics rounded-circle float-right mt-3" %>
+      </div>
+      <div class="col-6 mt-5">
+        <h3 class="nm-text text-left"><%= @user.name %></h3>
+        <i class="fas fa-map-marker-alt"></i>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3 bg-white">
+      <% if !is_admin? %>
+        <%= link_to "Become admin user", admin_registration_path, class: "link" %>
+      <% end %>
+    </div>  
+  </div>
+</div>

@@ -1,24 +1,33 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!, only: [:show, :admin_registration]
+  before_action :authenticate_admin!, only: :index
 
-  def new
+  def show
+    @user = current_user
+  end
+
+  def index
+  end
+
+  def admin_registration
     @user = User.new
   end
 
   def create
-    @user = User.new(user_params)
-    if @user.save
-      redirect_to root_path
+    @user = current_user
+    
+    if(params[:user][:admin])
+      if(@user.update(admin: true))
+        redirect_to root_path, notice: "You are Admin now!"
+      end
     else
-      render :new
+      @user.errors[:admin].add("Please confirm")
+      redirect_to :new
     end
   end
 
   private
-    def user_params
-      params.require(:user).permit(:name, :email, :image, :provider, :uid)
-    end
-
-    def find_user
-      @user = User.find_by_email(params[:email])
+    def admin_params
+      params.require(:admin).permit(:name, :email, :type)
     end
 end

@@ -2,9 +2,7 @@ class SessionsController < ApplicationController
 
   def create
     auth = request.env["omniauth.auth"]
-
-    p auth
-
+    p auth["info"]["place"]
     session[:omniauth] = auth.except("extra")
     user = User.find_by(provider: auth["provider"], uid: auth["uid"])
     unless user
@@ -17,7 +15,7 @@ class SessionsController < ApplicationController
       )
     end
     session[:user_id] = user.id
-    redirect_to root_url, notice: "Signed In!"
+    redirect_to root_url, notice: "Signed In Viewer!"
   end
 
   def destroy 

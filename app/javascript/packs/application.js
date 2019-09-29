@@ -17,3 +17,22 @@ require("channels")
 // const imagePath = (name) => images(name, true)
 
 require("bootstrap/dist/js/bootstrap")
+
+$(document).ready(function(){
+  let btnText = "- See less fields";
+  $("#more-less").click(function(){
+    btnBeforeText = $("#more-less").text();
+    $(this).text(btnText);
+    btnText = btnBeforeText;
+    $("#more-info").toggle();
+  });
+
+  $("#owner").hide();
+  $("#restaurant_owner_flag_yes").click(function(){
+    $("#owner").show();
+  });
+
+  $("#restaurant_owner_flag_no").click(function(){
+    $("#owner").hide();
+  });
+});
