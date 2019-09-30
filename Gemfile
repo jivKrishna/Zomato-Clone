@@ -23,7 +23,18 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Active Storage variant
-gem 'image_processing', '~> 1.2'
+# gem 'image_processing', '~> 1.2'
+
+#omniauth gems
+gem 'omniauth-oauth2', '~> 1.4'
+#facebook omniauth gem
+gem 'omniauth-facebook', '~> 5.0'
+#google-oauth2 gem
+gem 'omniauth-google-oauth2', '~> 0.8.0'
+#github omniauth
+gem 'omniauth-github', '~> 1.3'
+#for integration google map api
+gem 'geocoder', '~> 1.5', '>= 1.5.1'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
@@ -53,13 +64,3 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
-#omniauth gems
-#facebook omniauth gem
-gem 'omniauth-facebook', '~> 5.0'
-#google-oauth2 gem
-gem 'omniauth-google-oauth2', '~> 0.8.0'
-#github omniauth
-gem 'omniauth-github', '~> 1.3'
-#for integration google map api
-gem 'geocoder', '~> 1.5', '>= 1.5.1'

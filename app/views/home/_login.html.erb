@@ -9,12 +9,12 @@
       </div>
       <div class="modal-body">
 
-        <%= link_to "auth/facebook", class: "facebook" do %>
+        <%= link_to login_path, class: "facebook" do %>
           <i class="fab fa-facebook-f fa-2x text-white mt-2"></i>
           <span class="text-white margin-center">Continue with Facebook</span>
         <% end %>
 
-        <%= link_to "auth/google_oauth2", class: "google" do %>
+        <%= link_to login_path, class: "google" do %>
           <%= image_tag "google_icon.png", class: "icon mt-2" %>
           <span class="text-secondary margin-center">Continue with Google</span>
         <% end %>

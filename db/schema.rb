@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_26_112220) do
+ActiveRecord::Schema.define(version: 2019_09_30_132911) do
+
+  create_table "restaurant_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "restaurants", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
@@ -18,20 +24,20 @@ ActiveRecord::Schema.define(version: 2019_09_26_112220) do
     t.boolean "owner_flag"
     t.string "owner_phone_number"
     t.string "owner_email"
-    t.string "restaurant_type"
     t.string "phone_number"
     t.string "secondary_phone_number"
     t.string "email"
+    t.boolean "serve_alcohal"
     t.string "website"
     t.string "address"
-    t.time "open_time"
-    t.time "close_time"
+    t.bigint "restaurant_category_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["restaurant_category_id"], name: "index_restaurants_on_restaurant_category_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.boolean "admin", default: false
+    t.boolean "admin"
     t.string "name"
     t.string "email"
     t.text "image"

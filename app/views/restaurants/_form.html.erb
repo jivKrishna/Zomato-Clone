@@ -1,24 +1,24 @@
 <%= form_for @restaurant do |form| %>
-  <div class="basic-info">
+  <h2 class="font-weight-bold mt-3">Add a restaurant</h2>
+  <h5 class="font-weight-bold">Basic info</h5>
+  <div class="basic-info bg-white my-4 py-4 px-3 container-border">
+    <% if @restaurant.errors.any? %>
+      <% @restaurant.errors.full_messages.each do |message| %>
+        <p class="text-danger"><%= message %></p>
+      <% end %>
+    <% end %>
     <div class="form-group required">
       <%= form.label :name, "RESTAURANT NAME", class: "control-label" %>
       <%= form.text_field :name, placeholder: "Enter Restaurant name", class: "form-control" %>
     </div>
+
     <div class="row">
       <div class="col-md-6">
         <div class="form-group required">
-          <%= form.label :city, class: "text-uppercase control-label" %>
-          <%= form.text_field :city, placeholder: "Search city" ,class: "form-control" %>
+          <%= form.label :restaurant_category_id, "RESTAURANT CATEGORY", class: "control-label" %>
+          <%= form.select :restaurant_category_id, options_for_select([["select", nil]] + RestaurantCategory.all.pluck(:name, :id)), class: "form-control" %>
         </div>
       </div>
-    </div>
-    <div class="form-group required">
-      <h6 class="control-label">ARE YOU THE OWNER OR MANAGER OF THIS PLACE?</h6>
-      <%= form.radio_button :owner_flag, "no" , checked: true %> 
-      <%= form.label :owner_flag_no, "I'm not the owner/manager" %>
-
-      <%= form.radio_button :owner_flag, "yes" %> 
-      <%= form.label :owner_flag_yes, "I'm the owner/manager" %>
     </div>
 
     <div id="owner">
@@ -29,7 +29,6 @@
             <%= form.text_field :owner_phone_number, class: "form-control" %>
           </div>
         </div>
-
         <div class="col-md-6">
           <div class="form-group">
             <%= form.label :owner_email, class: "control-label text-uppercase" %>
@@ -42,21 +41,22 @@
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
-          <%= form.label :phone_number %>
+          <%= form.label :phone_number, class: "control-label text-uppercase" %>
           <%= form.text_field :phone_number, class: "form-control" %>
         </div>
       </div>
       <div class="col-md-6">
         <div class="form-group">
-          <%= form.label :secondary_phone_number %>
+          <%= form.label :secondary_phone_number, class: "text-uppercase" %>
           <%= form.text_field :secondary_phone_number, class: "form-control" %>
         </div>
       </div>
     </div>
+
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
-          <%= form.label :city %>
+          <%= form.label :city, class: "text-uppercase control-label" %>
           <%= form.text_field :city, placeholder: "Search city", class: "form-control" %>
         </div>
       </div>
@@ -68,44 +68,19 @@
       </div>
     </div>
 
-  <button type="button" id="more-less" class="btn btn-secondary form-control"><span class="align-left">+ Add more info(optional)</span></button>
-
-  <div id="more-info">
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
-          <%= form.label :open_time %>
-          <%= form.time_field :open_time, class: "form-control" %>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="form-group">
-          <%= form.label :close_time %>
-          <%= form.time_field :close_time, class: "form-control" %>
+          <%= form.radio_button :serve_alcohal, "yes", checked: true %> Serves alcohal
+          <%= form.radio_button :serve_alcohal, "no" %> Doesn't serve alcohal
         </div>
       </div>
     </div>
+    
   </div>
 
-  <div class="row">
-    <div class="col-md-6">
-      <div class="form-group">
-        <%= form.label :email, "RESTAURANT EMAIL" %>
-        <%= form.text_field :email, placeholder: "Enter restaurant email", class: "form-control" %>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="form-group">
-        <%= form.label :website, "RESTAURANT WEBSITE" %>
-        <%= form.text_field :website, placeholder: "Enter restaurant website", class: "form-control" %>
-      </div>
-    </div>
-  </div>
-
-  <div>
     <div class="form-group">
       <%= form.submit "create", class: "form-control btn btn-success" %>
     </div>
-  </div>
 
 <% end %>

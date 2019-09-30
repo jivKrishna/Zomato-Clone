@@ -10,9 +10,9 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <%= link_to "Log Out", "sign_out", method: :delete, class: "dropdown-item" %>
             <% unless is_admin? %>
-              <%= link_to "Become Admin", admin_registration_path, class: "btn btn-danger" %>
+              <%= link_to "Become Admin", admin_registration_path, class: "btn btn-danger nav-link" %>
             <% end %>
-            <%= link_to "Profile", profile_path(current_user) %>
+            <%= link_to "Profile", profile_path(current_user), class: "nav-link" %>
             <a class="dropdown-item" href="#">Something else here</a>
           </div>
         </div>

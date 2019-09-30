@@ -21,6 +21,10 @@ $fa-font-path: '@fortawesome/fontawesome-free/webfonts';
 @import '@fortawesome/fontawesome-free/scss/solid';
 @import '@fortawesome/fontawesome-free/scss/brands';
 
+*{
+  margin: 0;
+  padding: 0;
+}
 
 .bg-color{
   background-color: #efefef;
@@ -30,14 +34,15 @@ $fa-font-path: '@fortawesome/fontawesome-free/webfonts';
   max-width: 1200px;
 }
 
+.container-border{
+  border: 0.5px solid #dfdfdf;
+  border-radius: 5px;
+}
+
 .facebook{
   background-color: #304d8a;
   padding: 1em;
   border-radius: 4px;
-}
-
-.google{
-
 }
 
 .margin-center{
@@ -65,8 +70,14 @@ $fa-font-path: '@fortawesome/fontawesome-free/webfonts';
 }
 
 .link{
+  color: #000;
+  margin: 0;
+  padding: 0.15em 1em;
   text-decoration: none;
+  border-bottom: 0.5px solid #dfdfdf;
 }
+
 .link:hover{
+  text-decoration: none;
   background-color: #efefef;
 }
