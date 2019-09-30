@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'foods/new'
   get 'restaurant_categories/new'
   root "home#index"
   resources :restaurants, :users, :restaurant_categories
