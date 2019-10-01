@@ -22,13 +22,18 @@
         <li class="nav-item link mx-n3">
           <a class="nav-link" href="#">Link</a>
         </li>
-        <li class="nav-item dropdown link mx-n3">
-          <% if !is_admin? %>
+        <% if !is_admin? %>
+          <li class="nav-item link mx-n3">
             <%= link_to "Become an admin", admin_registration_path, class: "nav-link" %>
-          <% elsif is_admin? %>
+          </li>
+        <% elsif is_admin? %>
+          <li class="nav-item link mx-n3">
             <%= link_to "Add a restaurant category", new_restaurant_category_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item link mx-n3">
             <%= link_to "Add a restaurant", new_restaurant_path, class: "nav-link" %>
-          <% end %>
+          </li>
+        <% end %>
         </li>
       </ul>
     </div>
