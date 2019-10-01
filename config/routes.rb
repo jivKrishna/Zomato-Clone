@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   get 'foods/new'
   get 'restaurant_categories/new'
   root "home#index"
-  resources :restaurants, :users, :restaurant_categories
+  resources :users, :restaurant_categories
+
+  resources :restaurants do 
+    resources :foods
+  end
   
   get "admin_registration", to: "users#admin_registration"
   get "profile", to: "users#show"
