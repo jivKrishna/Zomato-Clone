@@ -1,4 +1,10 @@
 <%= form_for ([@restaurant, @restaurant.foods.build]), html: { multipart: true } do |form| %>
+
+  <% if @restaurant.errors.any? %>
+    <% @restaurant.errors.full_messages.each do |message| %>
+      <p class="text-danger"><%= message %></p>
+    <% end %>
+  <% end %>
   
   <div class="form-group required">
     <%= form.label :name, class: "control-label" %>
