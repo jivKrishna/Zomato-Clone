@@ -1,13 +1,9 @@
 class User < ApplicationRecord
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
 
-  # has_many :items
-
   before_save { self.email = email.downcase }
 
   validates :email, presence: true, length: { maximum: 105 }, uniqueness: {scope: :provider, case_sensitive: false }, format: { with: VALID_EMAIL_REGEX }
-
-  # scope :order_by_name, -> { order('first_name') }
 
   def full_name
     "#{first_name} #{last_name}".squish
