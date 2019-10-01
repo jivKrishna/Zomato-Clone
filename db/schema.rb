@@ -36,7 +36,10 @@ ActiveRecord::Schema.define(version: 2019_09_30_175609) do
   create_table "restaurants", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "city"
-    t.boolean "owner_flag"
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.bigint "image_file_size"
+    t.datetime "image_updated_at"
     t.string "owner_phone_number"
     t.string "owner_email"
     t.string "phone_number"
