@@ -35,6 +35,8 @@ gem 'omniauth-google-oauth2', '~> 0.8.0'
 gem 'omniauth-github', '~> 1.3'
 #for integration google map api
 gem 'geocoder', '~> 1.5', '>= 1.5.1'
+#for image upload
+gem 'paperclip'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
