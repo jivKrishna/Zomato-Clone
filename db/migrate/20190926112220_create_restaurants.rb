@@ -3,15 +3,15 @@ class CreateRestaurants < ActiveRecord::Migration[6.0]
     create_table :restaurants do |t|
       t.string :name
       t.string :city
-      t.boolean :owner_flag
-      t.string :owner_phone_number
-      t.string :owner_email
-      t.string :phone_number
-      t.string :secondary_phone_number
+      t.attachment :image
       t.string :email
-      t.boolean :serve_alcohal
+      t.string :phone_number
+      t.string :owner_email
+      t.string :owner_phone_number
       t.string :website
       t.string :address
+      t.string :secondary_phone_number
+      t.boolean :serve_alcohal
       t.belongs_to :restaurant_category
       
       t.timestamps

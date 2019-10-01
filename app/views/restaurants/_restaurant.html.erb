@@ -1,5 +1,9 @@
-<div class="p-3">
-  Restaurant Image
-  <h5><%= @restaurant.name %></h5>
-  <p class="small"><%= @restaurant.address %></p>
+<div class="thumbnail mx-n3 container-border bg-white">
+  <%= image_tag @restaurant.image.url, class: "responsive img-large rounded-top" %>
+  <div class="caption px-3">
+    <h2><%= link_to @restaurant.name, @restaurant, class: "text-dark font-weight-bold" %></h2>
+    <p class="small"><%= @restaurant.address %></p>
+  </div>
 </div>
+  
+  
