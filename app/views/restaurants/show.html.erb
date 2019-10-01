@@ -1,2 +1,63 @@
-<h1>Restaurants#show</h1>
-<p>Find me in app/views/restaurants/show.html.erb</p>
+<div class="container container-size">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="bg-white container-border mx-n3 my-4">
+        <%= render "restaurant" %>
+      </div>
+      <div class="row bg-white container-border my-4 py-3">
+        <div class="col-md-4">
+          <h5>Phone Numbers</h5>
+          <strong class="text-weight-bold text-success"> <%= @restaurant.phone_number %> </strong><br/>
+          <strong class="text-weight-bold text-success"> <%= @restaurant.secondary_phone_number %></strong>
+        </div>
+
+        <div class="col-md-4">
+          <h5>Email</h5>
+          <p><%= @restaurant.email %></p>
+        </div>
+
+        <div class="col-md-4">
+          <h5>Restaurant Type</h5>
+          <strong class="font-weight-bold text-warning"><%= @restaurant.restaurant_category.name %></strong>
+        </div>
+
+        <div class="col-md-4">
+          <h5>City</h5>
+          <strong class="font-weight-bold text-warning"><%= @restaurant.city %></strong>
+        </div>
+
+        <div class="col-md-4">
+          <h5>Address</h5>
+          <p><%= @restaurant.address %></p>
+        </div>
+
+        <div class="col-md-4">
+          <h5>More Info</h5>
+          <p><%= @restaurant.website %></p>
+          <% if @restaurant.serve_alcohal %>
+            <p class="text-success">Serve alcohal</p>
+          <% else %>
+            <p class="text-danger">Don't serve alcohal</p>
+          <% end %>
+        </div>
+
+      </div>
+    </div>
+
+    <% if is_admin? %>
+      <div class="col-md-4">
+        <div class="container-border bg-white mx-3 my-4 p-3">
+          <h5>Add a new food</h5>
+          <%= render "foods/form" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+<div class="container container-size">
+  <div class="row">
+
+  </div>
+</div>

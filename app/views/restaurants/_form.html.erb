@@ -16,7 +16,7 @@
       <div class="col-md-6">
         <div class="form-group required">
           <%= form.label :restaurant_category_id, "RESTAURANT CATEGORY", class: "control-label" %>
-          <%= form.select :restaurant_category_id, options_for_select([["select", nil]] + RestaurantCategory.all.pluck(:name, :id)), class: "form-control" %>
+          <%= form.select :restaurant_category_id, options_for_select([["select", nil]] + RestaurantCategory.all.pluck(:name, :id)), {}, class: "form-control" %>
         </div>
       </div>
     </div>
@@ -24,15 +24,15 @@
     <div id="owner">
       <div class="row">
         <div class="col-md-6">
-          <div class="form-group">
+          <div class="form-group required">
             <%= form.label :owner_phone_number, class: "control-label text-uppercase" %>
-            <%= form.text_field :owner_phone_number, class: "form-control" %>
+            <%= form.text_field :owner_phone_number, placeholder: "Owner phone number", class: "form-control" %>
           </div>
         </div>
         <div class="col-md-6">
-          <div class="form-group">
+          <div class="form-group required">
             <%= form.label :owner_email, class: "control-label text-uppercase" %>
-            <%= form.text_field :owner_email, class: "form-control" %>
+            <%= form.text_field :owner_email, placeholder: "Owner email", class: "form-control" %>
           </div>
         </div>
       </div>
@@ -40,30 +40,30 @@
 
     <div class="row">
       <div class="col-md-6">
-        <div class="form-group">
+        <div class="form-group required">
           <%= form.label :phone_number, class: "control-label text-uppercase" %>
-          <%= form.text_field :phone_number, class: "form-control" %>
+          <%= form.text_field :phone_number, placeholder: "Restaurant phone number", class: "form-control" %>
         </div>
       </div>
       <div class="col-md-6">
         <div class="form-group">
           <%= form.label :secondary_phone_number, class: "text-uppercase" %>
-          <%= form.text_field :secondary_phone_number, class: "form-control" %>
+          <%= form.text_field :secondary_phone_number, placeholder: "Restaurant secondary phone number (optional)", class: "form-control" %>
         </div>
       </div>
     </div>
 
     <div class="row">
       <div class="col-md-6">
-        <div class="form-group">
+        <div class="form-group required">
           <%= form.label :city, class: "text-uppercase control-label" %>
           <%= form.text_field :city, placeholder: "Search city", class: "form-control" %>
         </div>
       </div>
       <div class="col-md-6">
-        <div class="form-group">
-          <%= form.label :address %>
-          <%= form.text_field :address, class: "form-control" %>
+        <div class="form-group required">
+          <%= form.label :address, class: "control-label" %>
+          <%= form.text_field :address, placeholder: "Search Restaurant address", class: "form-control" %>
         </div>
       </div>
     </div>
@@ -71,8 +71,8 @@
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
-          <%= form.radio_button :serve_alcohal, "yes", checked: true %> Serves alcohal
-          <%= form.radio_button :serve_alcohal, "no" %> Doesn't serve alcohal
+          <%= form.radio_button :serve_alcohal, false, checked: true %> <%= form.label :serve_alcohal_false, "Don't serve alcohal" %>
+          <%= form.radio_button :serve_alcohal, true %> <%= form.label :serve_alcohal_true, "Serve alcohal" %>
         </div>
       </div>
     </div>

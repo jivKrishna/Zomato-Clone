@@ -1,9 +1,9 @@
 <div class="container container-size">
-  <div class="row">
-    <% flash.each do |key, msg| %>
-      <%= content_tag :div, msg, class: "flash #{key}" %>
-    <% end %>
+  <% flash.each do |key, msg| %>
+    <%= content_tag :div, msg, class: "flash #{key}" %>
+  <% end %>
 
+  <div class="row">
     <div class="col-md-6 bg-white container-border my-4 mx-3">
       <% unless RestaurantCategory.all.nil? %>
         <h5  class="my-3">Available restaurant category</h5>
@@ -22,7 +22,7 @@
       <%= form_for @restaurant_category do |form| %>
         <div class="form-group">
           <%= form.label "CATEGORY NAME", class: "control-label" %>
-          <%= form.text_field :name, class: "form-control" %>
+          <%= form.text_field :name, placeholder: "Enter Category Name", class: "form-control" %>
         </div>
         <%= form.submit "add", class: "form-control btn btn-danger mb-3" %>
       <% end %>
