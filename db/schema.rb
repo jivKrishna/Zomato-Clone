@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_30_175609) do
+ActiveRecord::Schema.define(version: 2019_10_02_104515) do
+
+  create_table "food_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "foods", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
@@ -20,10 +26,12 @@ ActiveRecord::Schema.define(version: 2019_09_30_175609) do
     t.datetime "image_updated_at"
     t.decimal "price", precision: 10
     t.text "description"
-    t.boolean "veg"
+    t.integer "veg"
     t.bigint "restaurant_id", null: false
+    t.bigint "food_category_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["food_category_id"], name: "index_foods_on_food_category_id"
     t.index ["restaurant_id"], name: "index_foods_on_restaurant_id"
   end
 
