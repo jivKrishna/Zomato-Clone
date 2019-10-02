@@ -6,6 +6,9 @@ class RestaurantsController < ApplicationController
   end
 
   def show
+    @reviews = @restaurant.reviews.where(approve: "approved" ).order(created_at: :desc)
+    @reviews_not_approved = @restaurant.reviews.where(approve: 0 ).order(created_at: :desc)
+    @review = @restaurant.reviews.build
   end
 
   def new
@@ -22,9 +25,9 @@ class RestaurantsController < ApplicationController
     end
   end
 
-  def order_food
-    @restaurant = Restaurant.find(params[:id])
-  end
+  # def order_food
+  #   @restaurant = Restaurant.find(params[:id])
+  # end
 
   private
 

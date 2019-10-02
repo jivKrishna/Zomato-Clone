@@ -1,6 +1,7 @@
 class Restaurant < ApplicationRecord
   belongs_to :restaurant_category
   has_many :foods, dependent: :destroy
+  has_many :reviews, dependent: :destroy
 
   validates :name, :city, :address, presence: true, length: { minimum: 3 }
   validates :owner_phone_number, :phone_number, presence: true, length: { minimum: 10 }
