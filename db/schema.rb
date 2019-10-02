@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 2019_10_02_144029) do
     t.string "image_content_type"
     t.bigint "image_file_size"
     t.datetime "image_updated_at"
-    t.decimal "price", precision: 10
+    t.decimal "price", precision: 8, scale: 2
     t.integer "veg"
     t.bigint "restaurant_id", null: false
     t.bigint "food_category_id"
@@ -63,7 +63,8 @@ ActiveRecord::Schema.define(version: 2019_10_02_144029) do
 
   create_table "reviews", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "rating"
-    t.text "comments"
+    t.text "comment"
+    t.integer "approve", default: 0
     t.bigint "user_id", null: false
     t.bigint "restaurant_id", null: false
     t.datetime "created_at", precision: 6, null: false

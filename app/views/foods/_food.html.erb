@@ -1,4 +1,4 @@
 <div class="custom-border bg-white">
   <h5 class="font-weight-bold"><%= food.name %></h5>
-  <p class="text-secondary">₹<%= food.price %></p>
+  <p class="text-secondary">₹<%= number_with_precision( food.price, precision: 2 ) %></p>
 </div>
