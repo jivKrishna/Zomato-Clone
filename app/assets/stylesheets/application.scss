@@ -44,12 +44,10 @@ $fa-font-path: '@fortawesome/fontawesome-free/webfonts';
   max-height: 300px;
 }
 
-
-
-.facebook{
-  background-color: #304d8a;
-  padding: 1em;
-  border-radius: 4px;
+.custom-border{
+  border: 1px, solid #dfdfdf;
+  padding: 2px 5px;
+  padding-bottom: 0px;
 }
 
 .margin-center{

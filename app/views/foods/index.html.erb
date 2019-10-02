@@ -7,13 +7,23 @@
         <p class="text-secondary"><%= @restaurant.address %></p>
       </div>
     </div>
-  </div>
-</div>
 
-<% if is_admin? %>
-  <div class="col-md-4">
-    <div class="container-border bg-white mx-3 my-4 p-3">
-      <%= render "foods/form" %>
+    <% if is_admin? %>
+      <div class="col-md-4">
+        <div class="container-border bg-white mx-3 my-4 p-3">
+          <%= render "foods/form" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8">
+      <%= render @foods %>
     </div>
   </div>
-<% end %>
+  
+</div>
+
+
+
