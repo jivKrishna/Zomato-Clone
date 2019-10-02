@@ -11,7 +11,11 @@ class ApplicationController < ActionController::Base
     end
 
     def is_admin?
-      current_user.admin
+      if current_user != nil
+        current_user.admin
+      else
+        false
+      end
     end
 
     def authenticate_user!
