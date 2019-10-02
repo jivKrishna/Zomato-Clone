@@ -25,7 +25,6 @@ ActiveRecord::Schema.define(version: 2019_10_02_104515) do
     t.bigint "image_file_size"
     t.datetime "image_updated_at"
     t.decimal "price", precision: 10
-    t.text "description"
     t.integer "veg"
     t.bigint "restaurant_id", null: false
     t.bigint "food_category_id"
