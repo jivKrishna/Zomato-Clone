@@ -4,6 +4,10 @@
     <h2><%= link_to @restaurant.name, @restaurant, class: "text-dark font-weight-bold" %></h2>
     <p class="small"><%= @restaurant.address %></p>
   </div>
+
+  <div>
+    <%= link_to "Order Food Online", orderfood_path("?id=@restaurant.id"), class: "btn btn-success" %>
+  </div>
 </div>
   
   

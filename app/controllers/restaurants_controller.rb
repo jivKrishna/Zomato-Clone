@@ -1,5 +1,7 @@
 class RestaurantsController < ApplicationController
-  before_action :find_restaurant, only: :show
+  before_action :authenticate_admin!, only: [:new, :create]
+  before_action :find_restaurant, only: [ :show ]
+
   def index
   end
 
@@ -18,6 +20,10 @@ class RestaurantsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def order_food
+    @restaurant = Restaurant.find(params[:id])
   end
 
   private
