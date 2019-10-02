@@ -29,12 +29,15 @@ $(document).ready(function(){
     $("#more-info").toggle();
   });
 
-  $("#owner").hide();
-  $("#restaurant_owner_flag_yes").click(function(){
-    $("#owner").show();
+  $(".review").click(function(){
+    $(".review").hide();
+    $("#new_review").show();
+    $("#cancel").show();
   });
 
-  $("#restaurant_owner_flag_no").click(function(){
-    $("#owner").hide();
+  $("#cancel").click(function(){
+    $(".review").show();
+    $("#new_review").hide();
+    $(this).hide();
   });
 });
