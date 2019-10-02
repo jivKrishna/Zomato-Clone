@@ -6,6 +6,9 @@ Rails.application.routes.draw do
 
   resources :restaurants, only: [:show, :order_food, :new, :create] do 
     resources :foods
+    resources :reviews, only: [:create,:edit, :update, :destroy, :approve_review]
+
+    get "reviews/:id/approve_review", to: "reviews#approve_review", as:"approve_review"
   end
 
   get "/orderfood", to: "restaurants#order_food", as: "/orderfood"
