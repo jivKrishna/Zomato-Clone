@@ -1,0 +1,19 @@
+<div class="container container-size">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="container-border bg-white my-4 py-2 px-3">
+        <small class="text-uppercase text-secondary">Order food online from</small>
+        <h4 class="font-weight-bold"><%=link_to @restaurant.name, @restaurant, class: "text-dark" %></h4>
+        <p class="text-secondary"><%= @restaurant.address %></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% if is_admin? %>
+  <div class="col-md-4">
+    <div class="container-border bg-white mx-3 my-4 p-3">
+      <%= render "foods/form" %>
+    </div>
+  </div>
+<% end %>
