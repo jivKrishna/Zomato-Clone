@@ -17,6 +17,8 @@ require("channels")
 // const imagePath = (name) => images(name, true)
 
 require("bootstrap/dist/js/bootstrap")
+require("jquery/dist/jquery")
+
 
 $(document).ready(function(){
   let btnText = "- See less fields";
