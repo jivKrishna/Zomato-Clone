@@ -1,0 +1,21 @@
+<%= form_for([@restaurant, @review]) do |f| %>
+  <div class="row">
+    <div class="col-2 text-center">
+      <%= image_tag current_user.image, class: "rounded-circle img-responsive icon" %>
+    </div>
+
+    <div class="col-10">
+      <div class="form-group">
+        <%= f.label :rating, "Your rating", class: "text-uppercase" %>
+        <%= f.number_field :rating, min: 1, max: 5, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :comment %>
+        <%= f.text_area :comment, rows: 5, placeholder: "Help other foodies by sharing your review of Hola! (minimum 100 characters!)", class: "form-control" %>
+      </div>
+
+      <%= f.submit "Publish Review", class: "btn btn-success float-right" %>
+    </div>
+  </div>
+<% end %>
