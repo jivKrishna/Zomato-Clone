@@ -30,9 +30,11 @@
               <%= f.label :name, class: "control-label" %>
               <%= f.text_field :name, placeholder: "Enter Category name: ", class: "form-control category_name" %>
             </div>
-          </div>
-          <div class="modal-footer">
             <%= f.submit "Add", class: "form-control btn btn-danger" %>
+          </div>
+          
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           </div>
         </div>
       </div>

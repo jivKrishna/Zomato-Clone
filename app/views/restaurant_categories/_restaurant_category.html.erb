@@ -9,8 +9,9 @@
       <%= link_to "Delete", restaurant_category, method: :delete, class: "btn btn-danger" %>
     </div>
   </div>
+</div>
 
-
+<div>
   <%= form_for(restaurant_category, method: :put, remote: true) do |f| %>
     <div class="modal fade my-5" id="update_category_<%= restaurant_category.id %>" tabindex="-1" role="dialog" aria-labelledby="newcategoryModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-sm" role="document">
@@ -26,9 +27,11 @@
               <%= f.label :name, class: "control-label" %>
               <%= f.text_field :name, class: "form-control" %>
             </div>
+
+            <%= f.submit "Update", class: "form-control btn btn-danger" %>
           </div>
           <div class="modal-footer">
-            <%= f.submit "Add", class: "form-control btn btn-danger" %>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
