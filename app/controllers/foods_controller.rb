@@ -1,4 +1,5 @@
 class FoodsController < ApplicationController
+  before_action :authenticate_admin!, only: [:create ]
 
   def create
     @restaurant = Restaurant.find(params[:restaurant_id])
@@ -11,7 +12,8 @@ class FoodsController < ApplicationController
     end
   end
 
-  def food_params
-    params.require(:food).permit(:name, :image,:description, :price, :veg)
-  end
+  private
+    def food_params
+      params.require(:food).permit(:name, :image,:description, :price, :veg)
+    end
 end
