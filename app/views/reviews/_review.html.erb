@@ -4,17 +4,17 @@
       <%= image_tag review.user.image, class: "rounded-circle img-responsive icon" %>
     </div>
     <div class="col-10">
-      <h5 class="font-weight-bold"><%= link_to review.user.name, review.user %></h5>
+      <h6 class="font-weight-bold"><%= link_to review.user.name, review.user, class: "text-dark" %></h6>
       <p><span class="font-weight-bold">RATED: <%= review.rating %> </span> 
         <%= review.comment %>
       </p>
       <% if (review.user == current_user) || is_admin? %>
         <div class="float-left">
-          <%= link_to "Edit", edit_restaurant_review_path( review.restaurant, review), class: "btn" %>
-          <%= link_to "Delete", [ review.restaurant, review], method: :delete, data: {confirm: "Are you sure?" }, class: "btn" %>
+          <%= link_to "Edit", edit_restaurant_review_path( review.restaurant, review), class: "btn text-primary" %>
+          <%= link_to "Delete", [ review.restaurant, review], method: :delete, data: {confirm: "Are you sure?" }, class: "btn text-danger" %>
 
           <% if is_admin? && review.not_approved? %>
-            <%= link_to "Approve", restaurant_approve_review_path(@restaurant, review), class: "btn" %>
+            <%= link_to "Approve", restaurant_approve_review_path(@restaurant, review), class: "btn text-primary" %>
           <% end %>
         </div>
       <% end %>
