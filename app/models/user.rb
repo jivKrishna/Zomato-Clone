@@ -1,26 +1,12 @@
 class User < ApplicationRecord
   has_many :reviews, dependent: :destroy
+  has_secure_password
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
-
   before_save { self.email = email.downcase }
 
   validates :email, presence: true, length: { maximum: 105 }, uniqueness: {scope: :provider, case_sensitive: false }, format: { with: VALID_EMAIL_REGEX }
-
-  def full_name
-    "#{first_name} #{last_name}".squish
-  end
-
-  def name_or_email
-    full_name.presence || email
-  end
-
-  def update_from_auth(auth)
-    self.first_name   = auth.info.name.split.first
-    self.last_name    = auth.info.name.split.last
-    self.uid   = auth.uid
-    self.access_token = auth.credentials.token
-
-    self.save!
-  end
+  validates :password, confirmation: { case_sensitive: true }, unless: Proc.new { |a| a.password.blank? }
+  
+  
 end

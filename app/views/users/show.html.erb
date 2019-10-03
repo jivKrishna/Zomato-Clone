@@ -22,11 +22,7 @@
         <li class="nav-item link">
           <a class="nav-link" href="#">Link</a>
         </li>
-        <% if !is_admin? %>
-          <li class="nav-item link">
-            <%= link_to "Become an admin", admin_registration_path, class: "nav-link" %>
-          </li>
-        <% elsif is_admin? %>
+        <% if is_admin? %>
           <li class="nav-item link">
             <%= link_to "Add a restaurant category", restaurant_categories_path, class: "nav-link" %>
           </li>

@@ -1,26 +1,35 @@
-<%= form_for @user do |form| %>
-  <% if @user.errors.any? %>
-    <% user.errors.full_messages.each do |message| %>
-      <p class="text-danger"><%= message %></p>
-    <% end %>
-  <% end %>
+<%= form_for(@user) do |f| %>
+  <div class="modal fade my-5" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="signupModalLabel">Sign Up using email</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          
+          <div class="form-group">
+            <%= f.label :name %>
+            <%= f.text_field :name, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :email %>
+            <%= f.text_field :email, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :password %>
+            <%= f.password_field :password, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :password_confirmation %>
+            <%= f.password_field :password_confirmation, class: "form-control" %>
+          </div>
+          <%= f.submit "Sign Up", class: "btn btn-danger form-control" %>
 
-  <div class="form-group">
-    <%= form.label :name %>
-    <%= form.text_field :name, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :email %>
-    <%= form.text_field :email, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :admin, "Please, confirm to become Admin!" %>
-    <%= form.check_box :admin %>
-  </div>
-
-  <div class="form-group">
-    <%= form.submit "Register", class: "btn btn-default btn-danger form-control" %>
+        </div>
+      </div>
+    </div>
   </div>
 <% end %>
