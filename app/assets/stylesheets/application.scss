@@ -50,20 +50,31 @@ $fa-font-path: '@fortawesome/fontawesome-free/webfonts';
   padding-bottom: 0px;
 }
 
-.margin-center{
-  margin-right: 25%;
-  margin-left: 25%;
-  text-decoration-style: none;
+.imp-link{
+  text-decoration: none !important;
 }
 
 .icon{
   padding: 16px;
-  width: 100px;
+  width: 60px;
+  height: auto;
 }
 
-#more-info{
-  display: none;
+.small-icon{
+  width: 25px;
+  height: auto;
 }
+
+.btn.form-control.facebook{
+  padding: 0 10px;
+  background-color: #3232a8;
+}
+
+.btn.form-control.google{
+  background-color: #eeeeee;
+  shadow: 5px 2px #545544;
+}
+
 
 .form-group.required .control-label:after {
   content:"*";

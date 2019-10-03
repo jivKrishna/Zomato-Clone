@@ -26,5 +26,13 @@ class ApplicationController < ActionController::Base
       redirect_to admin_registration_path unless is_admin? 
     end
 
-    helper_method :current_user, :signed_in?, :authenticate, :is_admin?
+    def redirection_path
+      if is_admin?
+        redirect_to current_user
+      else
+        redirect_to root_path
+      end
+    end
+
+    helper_method :current_user, :signed_in?, :authenticate, :is_admin?, :redirection_path
 end
