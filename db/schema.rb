@@ -13,21 +13,21 @@
 ActiveRecord::Schema.define(version: 2019_10_02_144029) do
 
   create_table "food_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "foods", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.string "image_file_name"
     t.string "image_content_type"
     t.bigint "image_file_size"
     t.datetime "image_updated_at"
-    t.decimal "price", precision: 8, scale: 2
-    t.integer "veg"
+    t.decimal "price", precision: 8, scale: 2, null: false
+    t.integer "veg", null: false
     t.bigint "restaurant_id", null: false
-    t.bigint "food_category_id"
+    t.bigint "food_category_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["food_category_id"], name: "index_foods_on_food_category_id"
@@ -35,36 +35,36 @@ ActiveRecord::Schema.define(version: 2019_10_02_144029) do
   end
 
   create_table "restaurant_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "restaurants", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "name"
-    t.string "city"
+    t.string "name", null: false
+    t.string "city", null: false
     t.string "image_file_name"
     t.string "image_content_type"
     t.bigint "image_file_size"
     t.datetime "image_updated_at"
-    t.string "email"
-    t.string "phone_number"
-    t.string "owner_email"
-    t.string "owner_phone_number"
-    t.string "website"
-    t.string "address"
+    t.string "email", null: false
+    t.string "phone_number", null: false
     t.string "secondary_phone_number"
-    t.boolean "serve_alcohal"
-    t.bigint "restaurant_category_id"
+    t.string "owner_email", null: false
+    t.string "owner_phone_number", null: false
+    t.string "website"
+    t.string "address", null: false
+    t.boolean "serve_alcohal", null: false
+    t.bigint "restaurant_category_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["restaurant_category_id"], name: "index_restaurants_on_restaurant_category_id"
   end
 
   create_table "reviews", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.integer "rating"
-    t.text "comment"
-    t.integer "approve", default: 0
+    t.integer "rating", null: false
+    t.text "comment", null: false
+    t.integer "approve", default: 0, null: false
     t.bigint "user_id", null: false
     t.bigint "restaurant_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -74,11 +74,13 @@ ActiveRecord::Schema.define(version: 2019_10_02_144029) do
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.boolean "admin"
+    t.boolean "admin", default: false
     t.string "name"
     t.string "email"
+    t.string "phone_number"
+    t.string "password_digest"
     t.text "image"
-    t.string "provider"
+    t.string "provider", default: "email"
     t.string "uid"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
