@@ -3,6 +3,8 @@ class Restaurant < ApplicationRecord
   has_many :foods, dependent: :destroy
   has_many :reviews, dependent: :destroy
 
+  scope :order_by_name, ->{ order(:name) }
+
   validates :name, :city, :address, presence: true, length: { minimum: 3 }
   validates :owner_phone_number, :phone_number, presence: true, length: { minimum: 10 }
   validates_format_of :owner_phone_number, :phone_number, with: /\A(\d{10}|\(?\d{3}\)?[-.\s]\d{3}[-.\s]\d{4})\z/, message: "Only positive number without spaces are allowed"

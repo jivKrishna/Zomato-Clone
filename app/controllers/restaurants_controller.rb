@@ -3,20 +3,20 @@ class RestaurantsController < ApplicationController
   before_action :find_restaurant, only: [ :show ]
 
   def index
-    # @restaurant = Restaurant.all.order(rating: )
+    @restaurant = Restaurant.all
   end
 
   def show
     #approved reviews and current user review that not approved yet...
-    @reviews = @restaurant.reviews.where(approve: "approved" ).or(
+    @reviews = @restaurant.reviews.approved.or(
                 @restaurant.reviews.where(user_id: current_user.id)
               ).order(created_at: :desc)
 
     #reviews that not approved yet.. only admin can see that...
-    @reviews_not_approved = @restaurant.reviews.where(approve: 0 ).order(created_at: :desc)
+    @reviews_not_approved = @restaurant.reviews.not_approved.order(created_at: :desc)
 
     #average rating of restaurant based on approved reviews...
-    @avg_rating = @restaurant.reviews.where(approve: 1).average(:rating)
+    @avg_rating = @restaurant.reviews.approved.average(:rating)
 
     #for creating new instance of review...
     @review = @restaurant.reviews.build

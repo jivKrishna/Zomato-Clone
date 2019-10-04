@@ -4,7 +4,7 @@ class Review < ApplicationRecord
 
   enum approve: [:not_approved, :approved]
 
-  validates :rating, presence: true, numericality: { less_than_or_equal_to: 5 }
+  validates :rating,  presence: true, numericality: { less_than_or_equal_to: 5 }
   validates :comment, presence: true, length: { minimum: 100 }
 
 end

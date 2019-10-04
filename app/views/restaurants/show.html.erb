@@ -1,7 +1,29 @@
 <div class="container container-size">
   <div class="row">
     <div class="col-md-8 my-4">
-      <%= render "restaurants/restaurant" %>
+      <div class="thumbnail mx-n3 container-border bg-white">
+        <%= image_tag @restaurant.image.url, class: "responsive img-large rounded-top" %>
+        <div class="caption px-3">
+          <%= link_to @restaurant.name, @restaurant, class: "text-dark font-weight-bold h3" %> <br/>
+          <small class="text-secondary"><%= @restaurant.address %></small>
+
+          <div class=" float-right">
+            <% if @restaurant.reviews.approved.count == 0 %>
+              <span class="bg-secondary text-white rounded-circle p-2 h5">NEW</span>
+            <% else %>
+              <div class="font-weight-bold h5 text-white bg-success rounded-circle p-2" >
+                <%= number_with_precision( @avg_rating, precision: 1 ) %>
+                <span class="font-weight-bold h6">/ 5</span>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="px-3 my-2">
+          <%= link_to "Order Food Online", restaurant_foods_path(@restaurant), class: "btn btn-success" %>
+        </div>
+      </div>
+
       <div class="row bg-white container-border my-4 py-3">
         <div class="col-md-4">
           <h5 class="font-weight-bold">Phone Numbers</h5>
@@ -63,13 +85,17 @@
   <% end %>
   
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-8" id="reviews">
       <% if is_admin? %>
-        <h5 class="my-4 font-weight-bold text-danger">Review not approved yet?</h5>
+        <% if @reviews_not_approved.count != 0 %>
+          <h5 class="my-4 font-weight-bold text-danger">Review not approved yet?</h5>
+         <% end %> 
         <%= render @reviews_not_approved %>
       <% end %>
 
-      <h5 class="my-4 font-weight-bold text-primary">Reviews</h5>
+      <% if @reviews.count != 0 %>
+        <h5 class="my-4 font-weight-bold text-primary">Reviews</h5>
+      <% end %>
       <%= render @reviews %>
     </div>
   </div>

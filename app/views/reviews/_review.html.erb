@@ -1,36 +1,39 @@
-<div class="container-border bg-white my-3 mx-n3 p-3">
+<div class="container-border bg-white mx-n3 my-2 p-3">
   <div class="row">
-    <div class="col-2">
+
+    <div class="col-2 text-center">
       <%= image_tag review.user.image, class: "rounded-circle img-responsive icon" %>
     </div>
-    <div class="col-10">
-      <h6 class="font-weight-bold"><%= link_to review.user.name, review.user, class: "text-dark" %></h6>
-      <div class="form-group">
-        <label class="font-weight-bold">RATED:</label>
-        <span class="review-rating" data-score = "<%= review.rating %>"></span>
-      </div> 
-      <div class="form-group">
-        <label class="font-weight-bold">Commented:</label>
-        <p><%= review.comment %></p>
-      </div>
 
-      <% if (review.user == current_user) || is_admin? %>
-        <div class="float-left">
+    <div class="col-10">
+      <%= link_to review.user.name, review.user, class: "font-weight-bold h6 text-dark" %> <br/>
+      <small class="text-secondary"><%= pluralize(review.user.reviews.count, "Review") %>,</small>
+      <small class="text-secondary">posted this <%= distance_of_time_in_words(Time.now - review.created_at) %> ago</small>
+
+      <% if review.not_approved? %>
+        <small class="text-danger float-right">Not approved yet</small>
+      <% end %>
+    </div>
+
+    <div class="px-3">
+      <h6 class="font-weight-bold text-success">RATED: <span class="review-rating" data-score = "<%= review.rating %>"></span></h6>
+      <p><%= review.comment %></p>
+    </div>
+
+     <% if (review.user == current_user) || is_admin? %>
+        <div class="float-left px-1">
           <%= link_to "Edit", edit_restaurant_review_path( review.restaurant, review), class: "btn text-primary" %>
           <%= link_to "Delete", [ review.restaurant, review], method: :delete, data: {confirm: "Are you sure?" }, class: "btn text-danger" %>
 
           <% if is_admin? && review.not_approved? %>
             <%= link_to "Approve", restaurant_approve_review_path(@restaurant, review), class: "btn text-primary" %>
           <% end %>
+          
         </div>
       <% end %>
 
-      <% if review.not_approved? %>
-        <small class="text-danger float-right">Not approved yet</small>
-        <br/>
-      <% end %>
-
-      <small class="text-secondary float-right"><%= distance_of_time_in_words(Time.now - review.created_at) %></small>
     </div>
-  </div>
 </div>
+
+
+     
