@@ -6,9 +6,12 @@ class RestaurantsController < ApplicationController
   end
 
   def show
-    @reviews = @restaurant.reviews.where(approve: "approved" ).order(created_at: :desc)
+    @reviews = @restaurant.reviews.where(approve: "approved" ).or(
+                @restaurant.reviews.where(user_id: current_user.id)
+              ).order(created_at: :desc)
     @reviews_not_approved = @restaurant.reviews.where(approve: 0 ).order(created_at: :desc)
     @review = @restaurant.reviews.build
+    @avg_rating = @restaurant.reviews.where(approve: 1).average(:rating)
   end
 
   def new

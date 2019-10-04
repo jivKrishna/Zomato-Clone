@@ -1,4 +1,4 @@
-
+`
 <% end %>
 
     <!DOCTYPE html>
@@ -110,3 +110,78 @@ function geolocate() {
   }
 }
     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 60%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+      if(navigator.geolocation){
+        navigator.geolocation.getCurrentPosition(function(position){
+          var point = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+          var map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 15,
+            center: point,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+          });
+
+          var marker = new google.maps.Marker({
+            position: point,
+            map: map,
+            draggable: true
+          });
+
+          google.maps.event.addListener(marker, "dragend", function(){
+            var point = {lat: marker.getPosition().lat(), lng: marker.getPosition().lng()};
+            map.setCenter(point);
+            console.log(point);
+          });
+        });
+      }else{
+        alert("W3C Geolocation API is not available");
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=<%= AUTH_DETAILS['GOOGLE_MAP_API_KEY'] %>&callback=initMap"
+    async defer></script>
+  </body>
+</html>
+
+

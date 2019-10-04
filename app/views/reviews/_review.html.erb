@@ -5,9 +5,15 @@
     </div>
     <div class="col-10">
       <h6 class="font-weight-bold"><%= link_to review.user.name, review.user, class: "text-dark" %></h6>
-      <p><span class="font-weight-bold">RATED: <%= review.rating %> </span> 
-        <%= review.comment %>
-      </p>
+      <div class="form-group">
+        <label class="font-weight-bold">RATED:</label>
+        <span class="review-rating" data-score = "<%= review.rating %>"></span>
+      </div> 
+      <div class="form-group">
+        <label class="font-weight-bold">Commented:</label>
+        <p><%= review.comment %></p>
+      </div>
+
       <% if (review.user == current_user) || is_admin? %>
         <div class="float-left">
           <%= link_to "Edit", edit_restaurant_review_path( review.restaurant, review), class: "btn text-primary" %>
@@ -18,6 +24,12 @@
           <% end %>
         </div>
       <% end %>
+
+      <% if review.not_approved? %>
+        <small class="text-danger float-right">Not approved yet</small>
+        <br/>
+      <% end %>
+
       <small class="text-secondary float-right"><%= distance_of_time_in_words(Time.now - review.created_at) %></small>
     </div>
   </div>
