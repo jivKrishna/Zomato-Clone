@@ -1,3 +1,28 @@
+<div class="col-md-4">
+  <div class="thumbnail container-border bg-white ">
+    <%= link_to restaurant do %>
+      <%= image_tag restaurant.image.url, class: "responsive img-middle rounded-top" %>
+      <div class="caption px-3">
+        <%= link_to restaurant.name, restaurant, class: "text-dark font-weight-bold h3" %> <br/>
+        <small class="text-secondary"><%= restaurant.address %></small>
 
-  
-  
+        <div class=" float-right mt-n3">
+          <% if restaurant.reviews.approved.count == 0 %>
+            <span class="font-weight-bold bg-secondary text-white rounded-circle p-2">NEW</span>
+          <% else %>
+            <span class="font-weight-bold text-white bg-success rounded-circle p-2" >
+              <%= number_with_precision( restaurant.reviews.average(:rating), precision: 1 ) %>
+            </span>
+          <% end %>
+        </div>
+      </div>
+
+      <% if is_admin? %>
+        <div class="float-left px-1">
+          <%= link_to "Edit", edit_restaurant_path( restaurant ), class: "btn text-primary" %>
+          <%= link_to "Delete", restaurant, method: :delete, data: {confirm: "Are you sure?" }, class: "btn text-danger" %>
+        </div>
+      <% end %>
+    <% end %>
+  </div> 
+</div>

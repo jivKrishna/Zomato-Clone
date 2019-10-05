@@ -2,7 +2,9 @@
   <div class="row">
 
     <div class="col-2 text-center">
-      <%= image_tag review.user.image, class: "rounded-circle img-responsive icon" %>
+      <%= link_to review.user do %>
+        <%= image_tag review.user.image, class: "rounded-circle img-responsive icon" %>
+      <% end %>
     </div>
 
     <div class="col-10">
@@ -16,8 +18,8 @@
     </div>
 
     <div class="px-3">
-      <h6 class="font-weight-bold text-success">RATED: <span class="review-rating" data-score = "<%= review.rating %>"></span></h6>
-      <p><%= review.comment %></p>
+      <h6 class="font-weight-bold text-success small">RATED: <span class="review-rating" data-score = "<%= review.rating %>"></span></h6>
+      <p class="small"><%= review.comment %></p>
     </div>
 
      <% if (review.user == current_user) || is_admin? %>

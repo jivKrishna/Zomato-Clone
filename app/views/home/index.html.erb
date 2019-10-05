@@ -4,7 +4,7 @@
       <% if signed_in? %>
         <div class="dropdown">
           <a class="nav-link dropdown-toggle bg-light container-border" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= image_tag current_user.image, class: "small-icon rounded-circle" %>
+            <%= image_tag current_user.image.url, class: "small-icon rounded-circle" %>
             <%= current_user.name.split.first.upcase %>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">

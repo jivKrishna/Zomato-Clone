@@ -17,7 +17,7 @@
       <div class="col-md-6">
         <div class="form-group required">
           <%= form.label :restaurant_category_id, "RESTAURANT CATEGORY", class: "control-label text-uppercase" %>
-          <%= form.select :restaurant_category_id, options_for_select([["select", nil]] + RestaurantCategory.order(:name).pluck(:name, :id)), {}, class: "form-control" %>
+          <%= form.select :restaurant_category_id, options_for_select( @restaurant_category_options ), {}, class: "form-control" %>
         </div>
       </div>
 

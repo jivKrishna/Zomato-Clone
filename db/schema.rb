@@ -79,7 +79,10 @@ ActiveRecord::Schema.define(version: 2019_10_02_144029) do
     t.string "email"
     t.string "phone_number"
     t.string "password_digest"
-    t.text "image"
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.bigint "image_file_size"
+    t.datetime "image_updated_at"
     t.string "provider", default: "email"
     t.string "uid"
     t.datetime "created_at", precision: 6, null: false

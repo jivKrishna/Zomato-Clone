@@ -2,7 +2,7 @@
   <div class="profile text-center mt-4">
     <div class="row">
       <div class="col-6">
-        <%= image_tag @user.image, class: "pics rounded-circle float-right mt-3" %>
+        <%= image_tag @user.image.url, class: "pics rounded-circle float-right mt-3" %>
       </div>
       <div class="col-6 mt-5">
         <h3 class="nm-text text-left"><%= @user.name %></h3>
@@ -16,27 +16,40 @@
   <div class="row">
     <div class="col-md-3">
       <ul class="navbar-nav bg-white container-border px-2 mx-n3">
+
         <li class="nav-item active-link link">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          <%= link_to "Add info", edit_user_path(@user), class: "nav-link" %>
         </li>
-        <li class="nav-item link">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <% if is_admin? %>
+
+        <% unless is_admin? %>
+          <li class="nav-item active-link link">
+            <a class="nav-link" href="#my-reviews">My reviews</a>
+          </li>
+
+        <% else %>
+
           <li class="nav-item link">
             <%= link_to "Add a restaurant category", restaurant_categories_path, class: "nav-link" %>
           </li>
+
           <li class="nav-item link">
             <%= link_to "Add a restaurant", new_restaurant_path, class: "nav-link" %>
           </li>
+          
+          <li class="nav-item link">
+            <%= link_to "Manage restaurants", restaurants_path, class: "nav-link" %>
+          </li>
+
         <% end %>
         </li>
       </ul>
     </div>
 
 
-    <div class="col-md-6 mx-3 my-3">
-      <%= render current_user.reviews %>
+    <div class="col-md-6 mx-3 my-3" id="my-reviews">
+      <% unless is_admin? && current_user.reviews.not_approved.count != 0 %>
+        <%= render @reviews %>
+      <% end %>
     </div>
   </div>
 </div>

@@ -1,12 +1,14 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, only: [:show, :admin_registration]
-  before_action :find_user, only: :create
+  before_action :authenticate_user!, only: [ :show, :edit, :update ]
+  before_action :find_user_by_email, only: :create
+  before_action :find_user, only: [ :edit, :update ]
 
   def index
   end
 
   def show
     @user = current_user
+    @reviews = @user.reviews.order(created_at: :desc)
   end
 
   def new
@@ -19,7 +21,7 @@ class UsersController < ApplicationController
       render root_path
     else
       @user = User.new(user_params)
-      @user.image = "default_img.png" unless @user.image.present?
+      # @user.image = "default_img.png" unless @user.image.present?
 
       if @user.save
         session[:user_id] = @user.id
@@ -29,12 +31,30 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    @user.phone_number = params[:user][:phone_number] if params[:user][:phone_number].present?
+    @user.image = params[:user][:image] if params[:user][:image].present?
+
+    if @user.save
+      redirect_to @user
+    else
+      render :edit
+    end
+  end
+
   private
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
     end
 
-    def find_user
+    def find_user_by_email
       @user = User.find_by( email: params[:email], provider: "email" )
+    end
+
+    def find_user
+      @user = User.find(params[:id])
     end
 end

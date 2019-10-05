@@ -6,7 +6,7 @@ class CreateUsers < ActiveRecord::Migration[6.0]
       t.string :email
       t.string :phone_number
       t.string :password_digest
-      t.text :image
+      t.attachment :image
       t.string :provider, default: "email"
       t.string :uid
       

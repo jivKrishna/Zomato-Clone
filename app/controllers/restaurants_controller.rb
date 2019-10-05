@@ -1,16 +1,18 @@
 class RestaurantsController < ApplicationController
-  before_action :authenticate_admin!, only: [:new, :create]
-  before_action :find_restaurant, only: [ :show ]
+  before_action :authenticate_admin!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :find_restaurant, only: [:show, :edit, :update, :destroy]
+  before_action :restaurant_category_options, only: [:new, :edit]
 
   def index
-    @restaurant = Restaurant.all
+    @restaurants = Restaurant.all
   end
 
   def show
-    #approved reviews and current user review that not approved yet...
-    @reviews = @restaurant.reviews.approved.or(
-                @restaurant.reviews.where(user_id: current_user.id)
-              ).order(created_at: :desc)
+    #approved reviews ...
+    @reviews_approved = @restaurant.reviews.approved.order(created_at: :desc)
+
+    #current user review that not approved yet
+    @current_user_reviews_not_approved = @restaurant.reviews.not_approved.where(user_id: current_user.id).order(created_at: :desc)
 
     #reviews that not approved yet.. only admin can see that...
     @reviews_not_approved = @restaurant.reviews.not_approved.order(created_at: :desc)
@@ -36,6 +38,23 @@ class RestaurantsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @restaurant.update(restaurant_params)
+      redirect_to restaurant_path(@restaurant)
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    if @restaurant.destroy
+      redorect_to restaurants_path
+    end
+  end
+
   private
 
     def restaurant_params
@@ -47,5 +66,9 @@ class RestaurantsController < ApplicationController
 
     def find_restaurant
       @restaurant = Restaurant.find(params[:id])
+    end
+
+    def restaurant_category_options  
+      @restaurant_category_options = [["select", nil]] + RestaurantCategory.order(:name).pluck(:name, :id)
     end
 end

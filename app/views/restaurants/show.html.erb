@@ -24,8 +24,8 @@
         </div>
       </div>
 
-      <div class="row bg-white container-border my-4 py-3">
-        <div class="col-md-4">
+      <div class="row bg-white container-border my-2 py-3">
+        <div class="col-md-4 mb-2">
           <h5 class="font-weight-bold">Phone Numbers</h5>
           <strong class="text-weight-bold text-success"> <%= @restaurant.phone_number %> </strong><br/>
           <strong class="text-weight-bold text-success"> <%= @restaurant.secondary_phone_number %></strong>
@@ -43,7 +43,7 @@
 
         <div class="col-md-4">
           <h5 class="font-weight-bold">City</h5>
-          <strong><%= @restaurant.city %></strong>
+          <p><%= @restaurant.city %></p>
         </div>
 
         <div class="col-md-4">
@@ -86,17 +86,21 @@
   
   <div class="row">
     <div class="col-md-8" id="reviews">
-      <% if is_admin? %>
-        <% if @reviews_not_approved.count != 0 %>
-          <h5 class="my-4 font-weight-bold text-danger">Review not approved yet?</h5>
-         <% end %> 
+
+      <% if is_admin? && @reviews_not_approved.count != 0 %>
+        <h4 class="text-danger mt-3">Reviews not approved yet?</h4>
         <%= render @reviews_not_approved %>
       <% end %>
 
-      <% if @reviews.count != 0 %>
-        <h5 class="my-4 font-weight-bold text-primary">Reviews</h5>
+      <% if @reviews_approved %>
+        <h4 class="text-primary mt-3">Reviews</h4>
+
+        <% if !is_admin? && signed_in? && @current_user_reviews_not_approved.count > 0 %>
+          <%= render @current_user_reviews_not_approved %>
+        <% end %>
+
+        <%= render @reviews_approved %>
       <% end %>
-      <%= render @reviews %>
     </div>
   </div>
 </div>
