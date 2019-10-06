@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :users, :restaurant_categories, :sessions
 
   resources :restaurants, only: [:show, :order_food, :new, :create] do 
-    resources :foods
+    resources :food_items
     resources :reviews, only: [:create, :edit, :update, :destroy, :approve_review]
     resources :tables
     get "reviews/:id/approve_review", to: "reviews#approve_review", as:"approve_review"

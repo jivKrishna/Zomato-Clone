@@ -3,11 +3,11 @@
 one:
   name: MyString
   price: 9.99
-  description: MyText
-  veg: false
+  food_category: one
+  restaurant: one
 
 two:
   name: MyString
   price: 9.99
-  description: MyText
-  veg: false
+  food_category: two
+  restaurant: two

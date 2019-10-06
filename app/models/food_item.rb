@@ -1,4 +1,4 @@
-class Food < ApplicationRecord
+class FoodItem < ApplicationRecord
   belongs_to :food_category
   belongs_to :restaurant
 

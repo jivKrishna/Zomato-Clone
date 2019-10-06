@@ -73,7 +73,7 @@ puts "10 Food Categories created..."
 Restaurant.all.each do |restaurant| 
   FoodCategory.all.each do |food_category|
     rand(3..7).times do 
-      Food.create(
+      FoodItem.create(
         name:                  Faker::Food.dish,
         price:                 Faker::Number.decimal(l_digits: 3, r_digits: 2),
         veg:                   Faker::Number.between(from: 0, to: 2),

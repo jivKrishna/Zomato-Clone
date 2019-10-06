@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_05_201551) do
+ActiveRecord::Schema.define(version: 2019_10_06_190446) do
 
   create_table "food_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -18,20 +18,15 @@ ActiveRecord::Schema.define(version: 2019_10_05_201551) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "foods", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "image_file_name"
-    t.string "image_content_type"
-    t.bigint "image_file_size"
-    t.datetime "image_updated_at"
-    t.decimal "price", precision: 8, scale: 2, null: false
-    t.integer "veg", null: false
-    t.bigint "restaurant_id", null: false
+  create_table "food_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.decimal "price", precision: 10
     t.bigint "food_category_id", null: false
+    t.bigint "restaurant_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["food_category_id"], name: "index_foods_on_food_category_id"
-    t.index ["restaurant_id"], name: "index_foods_on_restaurant_id"
+    t.index ["food_category_id"], name: "index_food_items_on_food_category_id"
+    t.index ["restaurant_id"], name: "index_food_items_on_restaurant_id"
   end
 
   create_table "restaurant_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -105,7 +100,8 @@ ActiveRecord::Schema.define(version: 2019_10_05_201551) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "foods", "restaurants"
+  add_foreign_key "food_items", "food_categories"
+  add_foreign_key "food_items", "restaurants"
   add_foreign_key "reviews", "restaurants"
   add_foreign_key "reviews", "users"
   add_foreign_key "tables", "restaurants"
