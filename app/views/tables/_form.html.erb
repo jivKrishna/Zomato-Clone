@@ -1,0 +1,70 @@
+<%= form_for([ @restaurant, @table ]) do |f| %>
+  <% if @table.errors.any? %>
+    <div class="form-group">
+      <% @table.errors.full_messages.each do |msg| %>
+        <p class="text-danger"><%=  %></p>
+      <% end %>
+    </div>
+  <% end %>
+
+
+  <h4 class="font-weight-bold">Please, select your booking details</h4>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= f.label :book_date, "select a date", class: "text-uppercase" %>
+        <%= f.text_field :book_date, placeholder: "select date", class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= f.label :guest_number, "Number of guest", class: "text-uppercase" %> <br/>
+        <%= f.select :guest_number, options_for_select( (1..20).to_a, 2 ), {}, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= f.label :book_time, "Time", class: "text-uppercase" %>
+        <%= f.text_field :book_time, placeholder: "select time", class: "form-control timepicker" %>
+      </div>
+    </div>
+  </div>
+
+
+  <h4 class="font-weight-bold">Enter Guest details</h4>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= f.label :guest_first_name, "First name", class: "text-uppercase" %>
+        <%= f.text_field :guest_first_name, placeholder: "eg.-Zoe", class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= f.label :guest_last_name, "Last name", class: "text-uppercase" %>
+        <%= f.text_field :guest_last_name, placeholder: "eg.- Smith", class: "form-control" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= f.label :guest_email, "Email" , class: "text-uppercase" %>
+        <%= f.text_field :guest_email, placeholder: "eg.- zoe.smith@zomatoclone.com", class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= f.label :guest_phone_number, "Phone number", class: "text-uppercase" %>
+        <%= f.text_field :guest_phone_number, placeholder: "eg.- 9999999999", class: "form-control" %>
+      </div>
+    </div>
+  </div>
+
+  <%= f.submit "Book", class: "btn btn-primary" %>
+<% end %>

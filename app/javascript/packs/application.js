@@ -58,7 +58,7 @@ $(document).ready(function(){
 
   $('input.timepicker').timepicker({});
 
-  $('#datepicker').datepicker({
+  $('#table_book_date').datepicker({
     format: "D, d MM"
   });
 

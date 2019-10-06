@@ -22,17 +22,22 @@
       <p class="small"><%= review.comment %></p>
     </div>
 
-     <% if (review.user == current_user) || is_admin? %>
-        <div class="float-left px-1">
+     
+      <div class="float-left px-1">
+        
+        <% if review.user == current_user %>
           <%= link_to "Edit", edit_restaurant_review_path( review.restaurant, review), class: "btn text-primary" %>
+        <% end %>
+
+        <% if (review.user == current_user) || is_admin? %>
           <%= link_to "Delete", [ review.restaurant, review], method: :delete, data: {confirm: "Are you sure?" }, class: "btn text-danger" %>
 
           <% if is_admin? && review.not_approved? %>
             <%= link_to "Approve", restaurant_approve_review_path(@restaurant, review), class: "btn text-primary" %>
           <% end %>
-          
-        </div>
-      <% end %>
+        
+        <% end %>
+      </div>
 
     </div>
 </div>

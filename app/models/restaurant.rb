@@ -2,6 +2,7 @@ class Restaurant < ApplicationRecord
   belongs_to :restaurant_category
   has_many :foods, dependent: :destroy
   has_many :reviews, dependent: :destroy
+  has_many :tables, dependent: :destroy
 
   scope :order_by_name, ->{ order(:name) }
 

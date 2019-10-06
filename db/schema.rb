@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_02_144029) do
+ActiveRecord::Schema.define(version: 2019_10_05_201551) do
 
   create_table "food_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -73,6 +73,22 @@ ActiveRecord::Schema.define(version: 2019_10_02_144029) do
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
+  create_table "tables", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "restaurant_id", null: false
+    t.integer "guest_number"
+    t.date "book_date"
+    t.time "book_time"
+    t.string "guest_first_name"
+    t.string "guest_last_name"
+    t.string "guest_email"
+    t.string "guest_phone_number"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["restaurant_id"], name: "index_tables_on_restaurant_id"
+    t.index ["user_id"], name: "index_tables_on_user_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.boolean "admin", default: false
     t.string "name"
@@ -92,4 +108,6 @@ ActiveRecord::Schema.define(version: 2019_10_02_144029) do
   add_foreign_key "foods", "restaurants"
   add_foreign_key "reviews", "restaurants"
   add_foreign_key "reviews", "users"
+  add_foreign_key "tables", "restaurants"
+  add_foreign_key "tables", "users"
 end
