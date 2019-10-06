@@ -17,7 +17,6 @@ Rails.application.routes.draw do
   
   get "profile", to: "users#show"
   get "/signup", to: "users#new"
-  get "/sign_in", to: "users#sign_in"
   match "auth" => "users#auth", via: [:get, :post]
   delete "sign_out", to: "sessions#destroy", as: "sign_out"
 

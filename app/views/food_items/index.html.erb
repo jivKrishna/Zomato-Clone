@@ -19,7 +19,38 @@
 
   <div class="row">
     <div class="col-md-8">
-      <%= render @food_items %>
+      <% FoodCategory.all.each do |food_category| %>
+
+        <% if food_category.food_items.present? %>
+          <h5 class="font-weight-bold text-warning"><%= food_category.name %></h5>
+        <% end %>
+
+        <table class="table">
+          <tbody>
+            <% food_category.food_items.each do |food_item| %>
+              <tr>
+                <td><%= food_item.name %></td>
+
+                <td>
+                  <i class="fas fa-rupee-sign"></i>
+                  <%= food_item.price %>
+                </td>
+
+                <td class="btn-group">
+                  <button class="btn btn-success">
+                    <i class="fas fa-minus"></i>
+                  </button>
+
+                  <button class="btn btn-success">
+                    <i class="fas fa-plus"></i>
+                  </button>
+                </td>
+
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% end %>
     </div>
   </div>
   

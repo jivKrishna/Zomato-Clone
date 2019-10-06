@@ -1,5 +1,5 @@
 class RestaurantsController < ApplicationController
-  before_action :authenticate_admin!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :authenticate_admin!, except: [ :show, :index ]
   before_action :find_restaurant, only: [:show, :edit, :update, :destroy]
   before_action :restaurant_category_options, only: [:new, :edit]
 
@@ -12,7 +12,8 @@ class RestaurantsController < ApplicationController
     @reviews_approved = @restaurant.reviews.approved.order(created_at: :desc)
 
     #current user review that not approved yet
-    @current_user_reviews_not_approved = @restaurant.reviews.not_approved.where(user_id: current_user.id).order(created_at: :desc)
+    @current_user_reviews_not_approved = @restaurant.reviews.not_approved
+    .where(user_id: current_user.id).order(created_at: :desc) if current_user.present?
 
     #reviews that not approved yet.. only admin can see that...
     @reviews_not_approved = @restaurant.reviews.not_approved.order(created_at: :desc)

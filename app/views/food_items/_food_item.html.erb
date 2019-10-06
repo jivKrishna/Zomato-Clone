@@ -1,4 +1,9 @@
 <div class="custom-border bg-white">
   <h5 class="font-weight-bold"><%= food_item.name %></h5>
   <p class="text-secondary">₹<%= number_with_precision( food_item.price, precision: 2 ) %></p>
+  <div class="btn-group">
+    <button class="btn btn-success"><i class="fas fa-minus"></i></button>
+    <p class="form-control">5</p>
+    <button class="btn btn-success"><i class="fas fa-plus"></i></button>
+  </div>
 </div>

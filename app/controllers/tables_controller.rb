@@ -1,5 +1,5 @@
 class TablesController < ApplicationController
-  before_action :authenticate_user!, only: [ :index, :new, :create, :edit, :update, :destroy ]
+  before_action :authenticate_user!
   before_action :find_restaurant,    only: [ :new, :create, :update ]
   before_action :find_table,         only: [ :edit, :update, :destroy ]
 
