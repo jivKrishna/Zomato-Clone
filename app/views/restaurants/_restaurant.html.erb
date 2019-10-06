@@ -15,19 +15,20 @@
             </span>
           <% end %>
         </div>
-      </div>
 
-      <% if is_admin? %>
+        <% if is_admin? %>
         <div class="float-right btn-group">
-          <%= link_to edit_restaurant_path( restaurant ), class: "btn btn-primary" do %>
-            <i class="fas fa-edit"></i>
+          <%= link_to edit_restaurant_path( restaurant ), class: "btn text-primary" do %>
+            <i class="fas fa-edit" title="Edit"></i>
           <% end %>
 
-          <%= link_to restaurant, method: :delete, data: {confirm: "Are you sure?" }, class: "btn btn-danger" do %>
-            <i class="fas fa-trash-alt"></i>
+          <%= link_to restaurant, method: :delete, data: {confirm: "Are you sure?" }, class: "btn text-danger" do %>
+            <i class="fas fa-trash-alt" title="Delete"></i>
           <% end %>
         </div>
       <% end %>
+
+      </div>
     <% end %>
   </div> 
 </div>
