@@ -1,5 +1,5 @@
 class RestaurantCategoriesController < ApplicationController
-  before_action :authenticate_admin!, only: [ :create, :destroy, :update ]
+  before_action :authenticate_admin!
   before_action :find_restaurant_category, only: [:edit, :update, :destroy]
 
   def index

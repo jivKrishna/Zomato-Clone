@@ -8,7 +8,29 @@
   <div class="row">
     <div class="col-md-8">
       <div class="row container-size" id="container_category">
-        <%= render @restaurant_categories %>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Edit/remove</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @restaurant_categories.each do |restaurant_category| %>
+              <tr>
+                <td><%= restaurant_category.name %></td>
+                <td class="btn-group">
+                  <%= render @restaurant_category %>
+
+                  <%= link_to restaurant_category, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" do %>
+                    <i class="fas fa-trash-alt"></i>
+                  <% end %>
+
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
@@ -31,10 +53,6 @@
               <%= f.text_field :name, placeholder: "Enter Category name: ", class: "form-control category_name" %>
             </div>
             <%= f.submit "Add", class: "form-control btn btn-danger" %>
-          </div>
-          
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           </div>
         </div>
       </div>

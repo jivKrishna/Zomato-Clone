@@ -1,15 +1,7 @@
-<div class="col-md-3 text-center" id="restaurant_category_<%= restaurant_category.id %>">
-  <div class="container-border bg-white my-2 p-2">
-    <p><%= restaurant_category.name %></p>
 
-    <div class="btn-group">
-      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#update_category_<%= restaurant_category.id %>">Edit
-      </button> 
-      
-      <%= link_to "Delete", restaurant_category, method: :delete, class: "btn btn-danger" %>
-    </div>
-  </div>
-</div>
+<button type="button" class="btn btn-success" data-toggle="modal" data-target="#update_category_<%= restaurant_category.id %>">
+  <i class="fas fa-edit"></i>
+</button> 
 
 <div>
   <%= form_for(restaurant_category, method: :put ) do |f| %>
@@ -29,9 +21,6 @@
             </div>
 
             <%= f.submit "Update", class: "form-control btn btn-danger" %>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
