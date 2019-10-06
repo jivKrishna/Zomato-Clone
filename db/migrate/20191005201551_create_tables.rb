@@ -4,8 +4,8 @@ class CreateTables < ActiveRecord::Migration[6.0]
       t.references :user, null: false, foreign_key: true
       t.references :restaurant, null: false, foreign_key: true
       t.integer :guest_number
-      t.date :book_date
-      t.time :book_time
+      t.date :booking_date
+      t.time :booking_time
       t.string :guest_first_name
       t.string :guest_last_name
       t.string :guest_email

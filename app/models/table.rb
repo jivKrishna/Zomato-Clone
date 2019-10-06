@@ -7,6 +7,6 @@ class Table < ApplicationRecord
 
   private
     def format_book_time
-      self.book_time = book_time.localtime.strftime("%H%M")
+      self.booking_time = booking_time.strftime("%H:%M")
     end
 end

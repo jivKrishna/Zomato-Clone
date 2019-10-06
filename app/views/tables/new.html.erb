@@ -1,7 +1,22 @@
 <div class="container container-size">
   <div class="row">
-    <div class="col-md-8 bg-white container-border p-3 my-4">
-      <%= render "form" %>
+    <div class="col-md-8">
+      <div class="thumbnail bg-white my-4 mx-n3">
+        <%= link_to @restaurant do %>
+          <%= image_tag @restaurant.image.url, class: "img-responsive img-large rounded-top" %>
+          <div class="caption p-2">
+            <h4 class="font-weight-bold"><%= link_to @restaurant.name, @restaurant, class: "text-dark" %></h4>
+            <small class="text-secondary"><%= @restaurant.address %></small>
+          </div>
+        <% end %>
+      </div>
     </div>
+    <div class="col-md-8 bg-white container-border p-3 my-2">
+      <%= render "form" %>
+      <div class="float-right">
+        <%= link_to "Back", @restaurant, class: "btn btn-secondary" %>
+      </div>
+    </div>
+
   </div>
 </div>

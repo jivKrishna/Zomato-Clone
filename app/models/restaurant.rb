@@ -11,6 +11,7 @@ class Restaurant < ApplicationRecord
   validates_format_of :owner_phone_number, :phone_number, with: /\A(\d{10}|\(?\d{3}\)?[-.\s]\d{3}[-.\s]\d{4})\z/, message: "Only positive number without spaces are allowed"
   validates :email, :owner_email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP, message: "only allows valid emails" }
 
-  has_attached_file :image, styles: { large: "300x760>", medium: "300x600>", thumb: "200x200#" }
+  has_attached_file :image, styles: { large: "300x760>", medium: "300x600>", thumb: "200x200#" },
+                            default_url: "http://www.placehold.it/760x300"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 end

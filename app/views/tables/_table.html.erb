@@ -1,0 +1,53 @@
+<div class="container container-size">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="container-border bg-white p-3 my-3">
+        <h5 class="font-weight-bold">Table booking details:</h5>
+        <div class="row">
+
+          <div class="col-md-6">
+            <h6 class="font-weight-bold">Name of restaurant</h6>
+            <p><%= link_to table.restaurant.name, table.restaurant, class: "text-dark" %></p>
+          </div>
+          <div class="col-md-6">
+            <h6 class="font-weight-bold">Address</h6>
+            <p><%= table.restaurant.address %></p>
+          </div>
+
+          <div class="col-md-4">
+            <h6 class="font-weight-bold">Date of booking</h6>
+            <p><%= table.booking_date %></p>
+          </div>
+          <div class="col-md-4">
+            <h6 class="font-weight-bold">Number of guests</h6>
+            <p><%= table.guest_number %></p>
+          </div>
+          <div class="col-md-4">
+            <h6 class="font-weight-bold">Date of time</h6>
+            <p><%= table.booking_time.strftime("%H:%M") %></p>
+          </div>
+
+
+          <div class="col-md-4">
+            <h6 class="font-weight-bold">Name of guest</h6>
+            <p><%= "#{table.guest_first_name} #{table.guest_last_name}" %></p>
+          </div>
+          <div class="col-md-4">
+            <h6 class="font-weight-bold">Phone number of guest</h6>
+            <p><%= table.guest_phone_number %></p>
+          </div>
+          <div class="col-md-4">
+            <h6 class="font-weight-bold">Phone number of guest</h6>
+            <p><%= table.guest_email %></p>
+          </div>
+        </div>
+        <small class="text-secondary">You have booked on <%= table.created_at.localtime.strftime("%d %B, %Y %H:%M") %></small>
+        <div class="float-right">
+          <%= link_to "Edit", edit_restaurant_table_path( table.restaurant, table ), class: "btn btn-primary" %>
+          <%= link_to "Delete", [ table.restaurant, table ], method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+        </div>
+      </div>
+     
+    </div>
+  </div>
+</div>

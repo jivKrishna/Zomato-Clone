@@ -77,8 +77,8 @@ ActiveRecord::Schema.define(version: 2019_10_05_201551) do
     t.bigint "user_id", null: false
     t.bigint "restaurant_id", null: false
     t.integer "guest_number"
-    t.date "book_date"
-    t.time "book_time"
+    t.date "booking_date"
+    t.time "booking_time"
     t.string "guest_first_name"
     t.string "guest_last_name"
     t.string "guest_email"

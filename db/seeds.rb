@@ -44,7 +44,6 @@ RestaurantCategory.all.each do |restaurant_category|
   rand(2..8).times do
     Restaurant.create(
       name:                   Faker::Restaurant.name,
-      image:                  URI.parse("https://placehold.it/1024x720").open,
       email:                  Faker::Internet.unique.email,
       city:                   Faker::Address.city,
       address:                Faker::Address.full_address,
@@ -76,7 +75,6 @@ Restaurant.all.each do |restaurant|
     rand(3..7).times do 
       Food.create(
         name:                  Faker::Food.dish,
-        image:                 URI.parse("https://placehold.it/480x320").open,
         price:                 Faker::Number.decimal(l_digits: 3, r_digits: 2),
         veg:                   Faker::Number.between(from: 0, to: 2),
         food_category_id:      food_category.id,

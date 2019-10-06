@@ -7,6 +7,7 @@ class Food < ApplicationRecord
   validates :name, presence: true, length: { minimum: 3 }
   validates :price, :veg, presence: true
 
-  has_attached_file :image, styles: { large: "300x760>", medium: "300x600>", thumb: "200x200#" }
+  has_attached_file :image, styles: { large: "300x760>", medium: "300x600>", thumb: "200x200#" },
+                            default_url: "http://www.placehold.it/300x200"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 end

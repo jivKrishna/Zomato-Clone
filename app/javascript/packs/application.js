@@ -56,13 +56,9 @@ $(document).ready(function(){
     path: "/assets/"
   });
 
-
-  let upcoming_time =  new Date();
-  upcoming_time.setMinutes(Math.round(upcoming_time.getMinutes()/30)*30);
-
   $('input.timepicker').timepicker({
     timeFormat: "h:mm p",
-    "minTime": upcoming_time,
+    "minTime": "10:00am",
     "maxTime": "11:30pm"
   });
 
