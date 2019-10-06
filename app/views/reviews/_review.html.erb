@@ -26,14 +26,20 @@
       <div class="float-left px-1">
         
         <% if review.user == current_user %>
-          <%= link_to "Edit", edit_restaurant_review_path( review.restaurant, review), class: "btn text-primary" %>
+          <%= link_to edit_restaurant_review_path( review.restaurant, review), class: "btn text-primary" do %>
+            <i class="fas fa-edit" title="Edit"></i>
+          <% end %>
         <% end %>
 
         <% if (review.user == current_user) || is_admin? %>
-          <%= link_to "Delete", [ review.restaurant, review], method: :delete, data: {confirm: "Are you sure?" }, class: "btn text-danger" %>
+          <%= link_to [ review.restaurant, review], method: :delete, data: {confirm: "Are you sure?" }, class: "btn text-danger" do %>
+            <i class="fas fa-trash-alt" title="Delete"></i>
+          <% end %>
 
           <% if is_admin? && review.not_approved? %>
-            <%= link_to "Approve", restaurant_approve_review_path(@restaurant, review), class: "btn text-primary" %>
+            <%= link_to restaurant_approve_review_path(@restaurant, review), class: "btn text-success" do %>
+              <i class="fas fa-thumbs-up" title="Approve"></i>
+            <% end %>
           <% end %>
         
         <% end %>
