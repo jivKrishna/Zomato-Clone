@@ -18,11 +18,15 @@
       <ul class="navbar-nav bg-white container-border px-2 mx-n3">
 
         <li class="nav-item active-link link">
-          <%= link_to "Add info", edit_user_path(@user), class: "nav-link" %>
+          <%= link_to edit_user_path(@user), class: "nav-link", title: "Add info" do %>
+            <i class="fas fa-user-edit"></i>  Add Info
+          <% end %>
         </li>
 
         <li class="nav-item active-link link">
-          <%= link_to "Your booking", restaurant_tables_path(@user.tables), class: "nav-link" %>
+          <%= link_to restaurant_tables_path(@user.tables), class: "nav-link", title: "Your bookings" do %>
+            <i class="fas fa-person-booth"></i>   Your Bookings
+          <% end %>
         </li>
 
         <% unless is_admin? %>
@@ -33,15 +37,21 @@
         <% else %>
 
           <li class="nav-item link">
-            <%= link_to "Add a restaurant category", restaurant_categories_path, class: "nav-link" %>
+            <%= link_to restaurant_categories_path, class: "nav-link", title: "Manage restaurant category" do %>
+              <i class="fas fa-tasks"></i>  Restaurant Categories
+            <% end %>
           </li>
 
           <li class="nav-item link">
-            <%= link_to "Add a restaurant", new_restaurant_path, class: "nav-link" %>
+            <%= link_to new_restaurant_path, class: "nav-link", title: "Add a restaurant" do %>
+              <i class="fas fa-plus"></i> Restaurant
+            <% end %>
           </li>
           
           <li class="nav-item link">
-            <%= link_to "Manage restaurants", restaurants_path, class: "nav-link" %>
+            <%= link_to restaurants_path, class: "nav-link", title: "Manage restaurants" do %>
+              <i class="fas fa-tasks"></i>  Manage Restaurants
+            <% end %>
           </li>
 
         <% end %>
