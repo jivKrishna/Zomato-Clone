@@ -8,12 +8,12 @@
   <% end %>
 
 
-  <h4 class="font-weight-bold">Please, select your booking details</h4>
+  <h5 class="font-weight-bold my-3">Please, select your booking details:</h5>
   <div class="row">
     <div class="col-md-4">
       <div class="form-group">
         <%= f.label :book_date, "select a date", class: "text-uppercase" %>
-        <%= f.text_field :book_date, placeholder: "select date", class: "form-control" %>
+        <%= f.date_field :book_date, placeholder: "select date", class: "form-control" %>
       </div>
     </div>
 
@@ -27,13 +27,13 @@
     <div class="col-md-4">
       <div class="form-group">
         <%= f.label :book_time, "Time", class: "text-uppercase" %>
-        <%= f.text_field :book_time, placeholder: "select time", class: "form-control timepicker" %>
+        <%= f.text_field :book_time, ignore_date: true, placeholder: "select time", class: "form-control timepicker" %>
       </div>
     </div>
   </div>
 
 
-  <h4 class="font-weight-bold">Enter Guest details</h4>
+  <h5 class="font-weight-bold my-3">Enter Guest details:</h5>
   <div class="row">
     <div class="col-md-6">
       <div class="form-group">
@@ -54,17 +54,17 @@
     <div class="col-md-6">
       <div class="form-group">
         <%= f.label :guest_email, "Email" , class: "text-uppercase" %>
-        <%= f.text_field :guest_email, placeholder: "eg.- zoe.smith@zomatoclone.com", class: "form-control" %>
+        <%= f.email_field :guest_email, placeholder: "eg.- zoe.smith@zomatoclone.com", class: "form-control" %>
       </div>
     </div>
 
     <div class="col-md-6">
       <div class="form-group">
         <%= f.label :guest_phone_number, "Phone number", class: "text-uppercase" %>
-        <%= f.text_field :guest_phone_number, placeholder: "eg.- 9999999999", class: "form-control" %>
+        <%= f.phone_field :guest_phone_number, placeholder: "eg.- 9999999999", class: "form-control" %>
       </div>
     </div>
   </div>
 
-  <%= f.submit "Book", class: "btn btn-primary" %>
+  <%= f.submit "Book", data: {confirmation: true}, class: "btn btn-primary" %>
 <% end %>
