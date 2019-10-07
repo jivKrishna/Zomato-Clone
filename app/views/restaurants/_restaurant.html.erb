@@ -18,12 +18,12 @@
 
         <% if is_admin? %>
         <div class="float-right btn-group">
-          <%= link_to edit_restaurant_path( restaurant ), class: "btn text-primary" do %>
-            <i class="fas fa-edit" title="Edit"></i>
+          <%= link_to edit_restaurant_path( restaurant ), class: "btn text-primary", title: "Edit" do %>
+            <i class="fas fa-edit"></i>
           <% end %>
 
-          <%= link_to restaurant, method: :delete, data: {confirm: "Are you sure?" }, class: "btn text-danger" do %>
-            <i class="fas fa-trash-alt" title="Delete"></i>
+          <%= link_to restaurant, method: :delete, data: {confirm: "Are you sure?" }, class: "btn text-danger",  title: "Delete" do %>
+            <i class="fas fa-trash-alt"></i>
           <% end %>
         </div>
       <% end %>

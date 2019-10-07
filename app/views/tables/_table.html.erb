@@ -43,8 +43,15 @@
         </div>
         <small class="text-secondary">You have booked on <%= table.created_at.localtime.strftime("%d %B, %Y %H:%M") %></small>
         <div class="float-right">
-          <%= link_to "Edit", edit_restaurant_table_path( table.restaurant, table ), class: "btn btn-primary" %>
-          <%= link_to "Delete", [ table.restaurant, table ], method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+
+          <%= link_to edit_restaurant_table_path( table.restaurant, table ), class: "btn btn-primary", title: "Edit" do %>
+            <i class="fas fa-edit"></i>
+          <% end %>
+
+          <%= link_to [ table.restaurant, table ], method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger", title: "Delete" do %>
+            <i class="fas fa-trash-alt"></i>
+          <% end %>
+
         </div>
       </div>
      
