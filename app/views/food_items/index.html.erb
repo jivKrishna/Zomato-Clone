@@ -18,30 +18,22 @@
   </div>
 
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-8 container-border bg-white py-3">
       <% FoodCategory.all.each do |food_category| %>
 
-        <% if food_category.food_items.present? %>
+        <% if food_category.food_items.where(restaurant_id: params[:restaurant_id]).present? %>
           <h5 class="font-weight-bold text-warning"><%= food_category.name %></h5>
           <table class="table">
             <tbody>
               <% food_category.food_items.each do |food_item| %>
                 <tr>
                   <td><%= food_item.name %></td>
-
+                  <td><%= number_to_currency food_item.price %></td>
                   <td>
-                    <i class="fas fa-rupee-sign"></i>
-                    <%= food_item.price %>
-                  </td>
-
-                  <td class="btn-group">
-                    <button class="btn btn-outline-success"  id="food_item_<%= food_item.id %>_remove">
-                      <i class="fas fa-minus"></i>
-                    </button>
-                    <p id="food_item_<%= food_item.id %>_number"></p>
-                    <button class="btn btn-outline-success" id="food_item_<%= food_item.id %>_add">
-                      <i class="fas fa-plus"></i>
-                    </button>
+                    <%= form_for( [ food_item.restaurant, food_item, food_item.order_foods.build ] ) do  |f| %>
+                      <%= f.number_field :quantity, min: 1 %>
+                      <%= f.submit "Add", class: "btn btn-success" %>
+                    <% end %>
                   </td>
                 </tr>
               <% end %>
@@ -50,6 +42,29 @@
         <% end %>
 
       <% end %>
+    </div>
+
+    <div class="col-md-4 container-border bg-white py-3 ml-3 mr-n3">
+      <h5 class="font-weight-bold">Order details:</h5>
+      <table class="table" id="order">
+        <thead>
+          <tr>
+            <th scope="col">Food Item</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @order_foods.each do |order_food| %>
+            <tr>
+              <td><%= order_food.food_item.name %></td>
+              <td><%= order_food.quantity %></td>
+              <td align="right"><%= number_to_currency (order_food.food_item.price)*(order_food.quantity) %></td>
+              <td></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
   </div>
   

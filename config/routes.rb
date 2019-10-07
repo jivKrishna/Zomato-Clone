@@ -3,17 +3,20 @@ Rails.application.routes.draw do
   get 'restaurant_categories/new'
   root "home#index"
   resources :users, :restaurant_categories, :sessions
-
+  # resource :cart, only: [:show]
+  
   resources :restaurants, only: [:show, :order_food, :new, :create] do 
-    resources :food_items
+    resources :food_items do 
+      resources :order_foods
+    end
     resources :reviews, only: [:create, :edit, :update, :destroy, :approve_review]
     resources :tables
+    resources :orders
+
     get "reviews/:id/approve_review", to: "reviews#approve_review", as:"approve_review"
   end
 
   resources :restaurants, only: [:index, :edit, :destroy, :update]
-
-  get "/orderfood", to: "restaurants#order_food", as: "/orderfood"
   
   get "profile", to: "users#show"
   get "/signup", to: "users#new"

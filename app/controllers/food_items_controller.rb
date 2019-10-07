@@ -4,7 +4,8 @@ class FoodItemsController < ApplicationController
 
   def index
     @food_category = FoodCategory.new
-    @food_items = FoodItem.all
+    @food_items = @restaurant.food_items.all
+    @order_foods = current_user.order_foods.all
   end
 
   def create
