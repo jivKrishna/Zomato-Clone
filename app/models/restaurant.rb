@@ -3,7 +3,6 @@ class Restaurant < ApplicationRecord
   has_many :food_items, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :tables, dependent: :destroy
-  has_many :order, dependent: :destroy
 
   scope :order_by_name, ->{ order(:name) }
 

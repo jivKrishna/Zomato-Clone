@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_07_063532) do
+ActiveRecord::Schema.define(version: 2019_10_07_063625) do
 
   create_table "food_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -32,6 +32,16 @@ ActiveRecord::Schema.define(version: 2019_10_07_063532) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["food_category_id"], name: "index_food_items_on_food_category_id"
     t.index ["restaurant_id"], name: "index_food_items_on_restaurant_id"
+  end
+
+  create_table "order_foods", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "quantity", default: 1, null: false
+    t.bigint "food_item_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["food_item_id"], name: "index_order_foods_on_food_item_id"
+    t.index ["user_id"], name: "index_order_foods_on_user_id"
   end
 
   create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -119,6 +129,8 @@ ActiveRecord::Schema.define(version: 2019_10_07_063532) do
 
   add_foreign_key "food_items", "food_categories"
   add_foreign_key "food_items", "restaurants"
+  add_foreign_key "order_foods", "food_items"
+  add_foreign_key "order_foods", "users"
   add_foreign_key "orders", "restaurants"
   add_foreign_key "orders", "users"
   add_foreign_key "reviews", "restaurants"

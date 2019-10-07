@@ -18,20 +18,25 @@
   </div>
 
   <div class="row">
-    <div class="col-md-8 container-border bg-white py-3">
+    <div class="col-md-7 container-border py-3">
       <% FoodCategory.all.each do |food_category| %>
-
         <% if food_category.food_items.where(restaurant_id: params[:restaurant_id]).present? %>
-          <h5 class="font-weight-bold text-warning"><%= food_category.name %></h5>
+          <h5 class="font-weight-bold text-primary"><%= food_category.name %></h5>
           <table class="table">
-            <tbody>
-              <% food_category.food_items.each do |food_item| %>
+            <thead>
+              <th scope="col">Item Name</th>
+              <th scope="col">Price</th>
+              <th align="right">Add</th>
+            </thead>
+            <tbody class="bg-white">
+              <% food_category.food_items.where(restaurant_id: params[:restaurant_id]).each do |food_item| %>
                 <tr>
                   <td><%= food_item.name %></td>
-                  <td><%= number_to_currency food_item.price %></td>
-                  <td>
+                  <td><%= number_to_currency( food_item.price ) %></td>
+                  <td align="right">
                     <%= form_for( [ food_item.restaurant, food_item, food_item.order_foods.build ] ) do  |f| %>
-                      <%= f.number_field :quantity, min: 1 %>
+                      <%= f.hidden_field :user_id, value: current_user.id %>
+                      <%= f.number_field :quantity, min: 1, placeholder: "Enter quantity" %>
                       <%= f.submit "Add", class: "btn btn-success" %>
                     <% end %>
                   </td>
@@ -40,11 +45,10 @@
             </tbody>
           </table>
         <% end %>
-
       <% end %>
     </div>
 
-    <div class="col-md-4 container-border bg-white py-3 ml-3 mr-n3">
+    <div class="col-md-5 container-border bg-white py-3">
       <h5 class="font-weight-bold">Order details:</h5>
       <table class="table" id="order">
         <thead>
@@ -52,6 +56,8 @@
             <th scope="col">Food Item</th>
             <th scope="col">Quantity</th>
             <th scope="col">Price</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Remove</th>
           </tr>
         </thead>
         <tbody>
@@ -60,7 +66,38 @@
               <td><%= order_food.food_item.name %></td>
               <td><%= order_food.quantity %></td>
               <td align="right"><%= number_to_currency (order_food.food_item.price)*(order_food.quantity) %></td>
-              <td></td>
+              <td>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#update_order_food_<%= order_food.id %>">
+                  <i class="fas fa-edit"></i>
+                </button>
+                <%= form_for( [ order_food.food_item.restaurant, order_food.food_item, order_food ] ) do  |f| %>
+                  <div class="modal fade my-5" id="update_order_food_<%= order_food.id %>" tabindex="-1" role="dialog" aria-labelledby="newcategoryModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-sm" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title font-weight-bold" id="newcategoryModalLabel">Add Category</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <div class="form-group required">
+                            <%= f.hidden_field :user_id, value: current_user.id %>
+                            <%= f.number_field :quantity, min: 1 %>
+                          </div>
+
+                          <%= f.submit "Update", class: "btn btn-danger" %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to [ order_food.food_item.restaurant, order_food.food_item, order_food ], method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger", title: "Remove Item" do %>
+                  <i class="fas fa-trash-alt"></i>
+                <% end %>
+              </td>
             </tr>
           <% end %>
         </tbody>
@@ -69,6 +106,3 @@
   </div>
   
 </div>
-
-
-

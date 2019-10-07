@@ -4,7 +4,7 @@ class CreateOrders < ActiveRecord::Migration[6.0]
       t.decimal :total_price
       t.integer :status
       t.integer :payment_type
-      t.references :restaurant, null: false, foreign_key: true
+      t.references :food_item, null: false, foreign_key: true
       t.references :user, null: false, foreign_key: true
 
       t.timestamps
