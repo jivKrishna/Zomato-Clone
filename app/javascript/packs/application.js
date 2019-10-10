@@ -21,7 +21,6 @@ require("bootstrap-datepicker/dist/js/bootstrap-datepicker.min")
 require("bootstrap/dist/js/bootstrap")
 require("jquery/dist/jquery")
 
-
 $(document).ready(function(){
   let btnText = "- See less fields";
   $("#more-less").click(function(){

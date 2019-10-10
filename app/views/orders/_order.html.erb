@@ -1,0 +1,51 @@
+<div class="container-border bg-white p-3 my-3">
+  <h4 class="font-weight-bold text-center">Order-Id : ORDER-<%= order.id %></h4>
+  <%= link_to order.restaurant, class: "text-dark" do %>
+    <h5 class="font-weight-bold"><%= order.restaurant.name %></h5>
+    <p class="small text-secondary"><%= order.restaurant.address %></p>
+  <% end %>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Item name</th>
+        <th class="text-right">Price/item</th>
+        <th class="text-right">Quantity</th>
+        <th class="text-right">Sub-total price</th>
+      </tr>
+    </thead>
+    <tbody>   
+      <% order.order_items.each do |order_item| %>
+        <tr>
+          <td>
+            <%= link_to restaurant_food_item_path(order_item.food_item.restaurant, order_item.food_item), class: "text-dark" do %>
+              <% if order_item.food_item.veg? %>
+                <%= image_tag "veg-icon.png", class: "veg-icon" %>
+              <% else %>
+                <%= image_tag "nonveg-icon.png", class: "nonveg-icon" %>
+              <% end %>
+              <%= order_item.food_item.name %> 
+            <% end %>
+          </td>
+          <td align="right"><%= number_to_currency order_item.food_item.price %></td>
+          <td align="right"><%= order_item.quantity %></td>
+          <td align="right"><%= number_to_currency order_item.sub_total %></td>
+        </tr>
+      <% end %>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td class="font-weight-bold">Total Price</td>
+        <td colspan="2" class="text-success font-weight-bold"><%= order.status %></td>
+        <td class="font-weight-bold" align="right"><%= number_to_currency order.total_price %></td>
+      </tr>
+    </tfoot>
+  </table>
+  <p class="small text-secondary">Order placed on : <%= order.placed_at.localtime.strftime(" %d %B, %Y %H:%M") %></p>
+
+  <div class="text-right">
+    <% if !order.delivered? %>
+      <%= link_to "Cancel", restaurant_order_path(order.restaurant, order), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+    <% end %>
+  </div>
+</div>

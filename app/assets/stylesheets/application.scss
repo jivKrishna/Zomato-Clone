@@ -17,11 +17,7 @@
  *= require bootstrap-datepicker/dist/css/bootstrap-datepicker.min
  */
 
-$fa-font-path: '@fortawesome/fontawesome-free/webfonts'; 
-@import '@fortawesome/fontawesome-free/scss/fontawesome';
-@import '@fortawesome/fontawesome-free/scss/regular';
-@import '@fortawesome/fontawesome-free/scss/solid';
-@import '@fortawesome/fontawesome-free/scss/brands';
+
 
 *{
   margin: 0;
@@ -39,6 +35,14 @@ $fa-font-path: '@fortawesome/fontawesome-free/webfonts';
 .container-border{
   border: 0.5px solid #dfdfdf;
   border-radius: 5px;
+}
+
+.cart-height{
+  max-height: 400px;
+}
+
+.table-height{
+  max-height: 200px;
 }
 
 .img-large{
@@ -72,6 +76,17 @@ $fa-font-path: '@fortawesome/fontawesome-free/webfonts';
   height: auto;
 }
 
+.veg-icon{
+  max-width: 20px;
+  height: auto;
+}
+
+.nonveg-icon{
+  max-width: 14px;
+  height: auto;
+  padding-left: -25px;
+}
+
 .btn.form-control.facebook{
   padding: 0 10px;
   background-color: #3232a8;
@@ -94,6 +109,12 @@ $fa-font-path: '@fortawesome/fontawesome-free/webfonts';
 
 .bg-red{
   background-color: #d22929;;
+}
+
+.quantity-input{
+  padding: 7px;
+  margin-right: 10px;
+  max-width: 80px;
 }
 
 .link{

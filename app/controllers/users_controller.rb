@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: :create
   before_action :find_user_by_email, only: :create
   before_action :find_user, only: [ :edit, :update ]
 
@@ -20,13 +20,10 @@ class UsersController < ApplicationController
       @user.errors[:base] << "User already available!"
       render root_path
     else
-      @user = User.new(user_params)
-      # @user.image = "default_img.png" unless @user.image.present?
-
+      @user = User.create(user_params)
       if @user.save
-        session[:user_id] = @user.id
-        
-        redirection_path
+        session[:user_id] = @user.id        
+        redirect_to root_path
       end
     end
   end

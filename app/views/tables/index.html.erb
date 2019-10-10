@@ -1,7 +1,12 @@
 <div class="container container-size">
+  <%= link_to "Go and Book", restaurants_path, class: "btn btn-success my-4" %>
   <div class="row">
     <div class="col-md-8">
-      <%= render @tables %>
+      <% if @tables.count == 0 %>
+        <p class="text-danger">You haven't book any restaurant till now!</p>
+      <% else %>
+        <%= render @tables %>
+      <% end %>
     </div>
   </div>
 </div>

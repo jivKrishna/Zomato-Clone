@@ -1,0 +1,87 @@
+<div class="container container-size my-4">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="container-border bg-white p-3 ml-3">
+        <%= image_tag @food_item.image.url, class: "img-responsive" %>
+        <h5 class="font-weight-bold">
+          <% if @food_item.veg? %>
+            <%= image_tag "veg-icon.png", class: "veg-icon" %>
+          <% else %>
+            <%= image_tag "nonveg-icon.png", class: "nonveg-icon" %>
+          <% end %>
+          <%= @food_item.name %>
+        </h5>
+
+        <p class="small text-secondary"><%= @food_item.food_category.name %></p>
+        <h5 class="text-dark">Price: <%= number_to_currency( @food_item.price, precision: 2 ) %></h5>
+        <% if is_admin? %>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#food_item_<%= @food_item.id %>">
+            <i class="fas fa-edit"></i>
+          </button>
+          
+          <%= link_to restaurant_food_item_path(@food_item), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" do %>
+            <i class="fas fa-trash-alt"></i>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<%= form_for( [ @food_item.restaurant, @food_item ] ) do  |f| %>
+  <div class="modal fade my-5" id="food_item_<%= @food_item.id %>" tabindex="-1" role="dialog" aria-labelledby="newcategoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title font-weight-bold" id="newcategoryModalLabel">Make changes!</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <% if @food_item.errors.any? %>
+            <% @food_item.errors.full_messages.each do |message| %>
+              <p class="text-danger"><%= message %></p>
+            <% end %>
+          <% end %>
+  
+          <div class="form-group required">
+            <%= f.label :name, class: "control-label" %>
+            <%= f.text_field :name, placeholder: "Enter name of food", class: "form-control" %>
+          </div>
+
+          <div class="form-group required">
+            <%= f.label :image, class: "control-label" %>
+            <%= f.file_field :image, placeholder: "Upload an image", class: "form-control-file" %>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group required">
+                <%= f.label :price, class: "control-label" %>
+                <%= f.text_field :price, placeholder: "Enter the price", class: "form-control" %>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group required">
+                <%= f.label :food_category_id, class: "control-label" %>
+                <%= f.select :food_category_id, options_for_select([["select", nil]] + FoodCategory.order(:name).pluck(:name, :id)), {}, class: "form-control" %>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group required">
+            <%= f.radio_button :veg, "veg", checked: true %> <%= f.label :veg_veg, "Veg" %>
+            <%= f.radio_button :veg, "egg" %> <%= f.label :veg_egg, "Egg" %>
+            <%= f.radio_button :veg, "non_veg" %> <%= f.label :veg_non_veg, "Non-veg" %>
+          </div>
+
+          <div class="form-group">
+            <%= f.submit "Add Food Item", class: "form-control btn btn-danger" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

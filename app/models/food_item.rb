@@ -1,7 +1,7 @@
 class FoodItem < ApplicationRecord
   belongs_to :food_category
   belongs_to :restaurant
-  has_many :order_foods
+  has_many :order_items, dependent: :destroy
 
   enum veg: [:veg, :egg, :non_veg]
 

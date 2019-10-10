@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-
+  before_action :authenticate_user!, only: :destroy
   def new
   end
 
@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       user = User.create(
         name: auth["info"]["name"],
         email: auth["info"]["email"],
-        image: auth["info"]["image"],
+        image: URI.parse(auth["info"]["image"]).open,
         provider: auth["provider"],
         uid: auth["uid"]
       )
@@ -35,8 +35,5 @@ class SessionsController < ApplicationController
     session.clear
     redirect_to root_url, notice: "Signed Out!"
   end
-
-  private
-    
 
 end

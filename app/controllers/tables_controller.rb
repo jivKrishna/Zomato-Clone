@@ -7,9 +7,6 @@ class TablesController < ApplicationController
     @tables = current_user.tables.all.order(created_at: :desc)
   end
 
-  # def show
-  # end
-
   def new
     @table = @restaurant.tables.build
   end
