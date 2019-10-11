@@ -44,7 +44,7 @@ RestaurantCategory.all.each do |restaurant_category|
   rand(2..8).times do
     restaurant_category.restaurants.create(
       name:                   Faker::Restaurant.name,
-      image:                  Faker::Placeholdit.image,
+      # image:                  URI.parse(Faker::Placeholdit.image).open,
       email:                  Faker::Internet.unique.email,
       city:                   Faker::Address.city,
       address:                Faker::Address.full_address,
@@ -75,7 +75,7 @@ Restaurant.all.each do |restaurant|
     rand(3..7).times do 
       FoodItem.create(
         name:                  Faker::Food.dish,
-        image:                 Faker::Placeholdit.image,
+        # image:                 URI.parse(Faker::Placeholdit.image).open,
         price:                 Faker::Number.decimal(l_digits: 3, r_digits: 2),
         veg:                   Faker::Number.between(from: 0, to: 2),
         food_category_id:      food_category.id,
@@ -93,7 +93,7 @@ User.all.each do |user|
       Review.create(
         rating:                 Faker::Number.between(from: 1, to: 5),
         comment:                Faker::Food.description,
-        # image:                  Faker::Placeholdit.image,
+        # image:                  URI.parse(Faker::Placeholdit.image).open,
         approve:                Faker::Number.between(from: 0, to: 1),
         user_id:                user.id,
         restaurant_id:          restaurant.id

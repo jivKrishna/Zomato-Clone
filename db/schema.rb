@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_08_145759) do
+ActiveRecord::Schema.define(version: 2019_10_11_095722) do
 
   create_table "food_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -32,6 +32,17 @@ ActiveRecord::Schema.define(version: 2019_10_08_145759) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["food_category_id"], name: "index_food_items_on_food_category_id"
     t.index ["restaurant_id"], name: "index_food_items_on_restaurant_id"
+  end
+
+  create_table "menu_cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "restaurant_id", null: false
+    t.string "image_file_name", null: false
+    t.string "image_content_type", null: false
+    t.bigint "image_file_size", null: false
+    t.datetime "image_updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["restaurant_id"], name: "index_menu_cards_on_restaurant_id"
   end
 
   create_table "order_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -89,6 +100,10 @@ ActiveRecord::Schema.define(version: 2019_10_08_145759) do
   create_table "reviews", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "rating", null: false
     t.text "comment", null: false
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.bigint "image_file_size"
+    t.datetime "image_updated_at"
     t.integer "approve", default: 0, null: false
     t.bigint "user_id", null: false
     t.bigint "restaurant_id", null: false
@@ -132,6 +147,7 @@ ActiveRecord::Schema.define(version: 2019_10_08_145759) do
 
   add_foreign_key "food_items", "food_categories"
   add_foreign_key "food_items", "restaurants"
+  add_foreign_key "menu_cards", "restaurants"
   add_foreign_key "order_items", "food_items"
   add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "restaurants"

@@ -14,7 +14,10 @@
         <%= f.text_area :comment, rows: 5, placeholder: "Help other foodies by sharing your review of Hola! (minimum 100 characters!)", class: "form-control" %>
       </div>
 
-      
+      <div class="form-group">
+        <%= f.label :image %>
+        <%= f.file_field :image, class: "form-control-file" %>
+      </div>
 
       <%= f.submit "Publish Review", class: "btn btn-success float-right" %>
     </div>

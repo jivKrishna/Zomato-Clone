@@ -1,0 +1,2 @@
+class MenuCardsController < ApplicationController
+end
