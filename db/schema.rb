@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 2019_10_11_095722) do
     t.string "image_content_type", null: false
     t.bigint "image_file_size", null: false
     t.datetime "image_updated_at", null: false
+    t.text "description", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["restaurant_id"], name: "index_menu_cards_on_restaurant_id"
