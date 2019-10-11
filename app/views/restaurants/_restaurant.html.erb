@@ -1,10 +1,12 @@
 <div class="col-md-4">
   <div class="thumbnail container-border bg-white ">
-    <%= link_to restaurant do %>
+    <%= link_to restaurant, class: "nav-link" do %>
       <%= image_tag restaurant.image.url, class: "responsive img-middle rounded-top" %>
       <div class="caption px-3">
-        <%= link_to restaurant.name, restaurant, class: "text-dark font-weight-bold h3" %> <br/>
-        <small class="text-secondary"><%= restaurant.address %></small>
+        <%= link_to restaurant, class: "nav-link" do %>
+          <h3 class="text-dark font-weight-bold"><%= restaurant.name %></h3>
+          <small class="text-secondary"><%= restaurant.address %></small>
+        <% end %>
 
         <div class=" float-right mt-n3">
           <% if restaurant.reviews.approved.count == 0 %>

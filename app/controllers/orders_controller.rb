@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
   before_action :find_restaurant, only: [ :place_order, :delivered ]
 
   def index
-    @placed_orders = current_user.orders.in_progress.order(placed_at: :desc)
+    @placed_orders = current_user.orders.in_progress.paginate(page: params[:page], per_page: 2).order(placed_at: :desc)
   end
 
   def destroy

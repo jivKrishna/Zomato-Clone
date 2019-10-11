@@ -37,6 +37,9 @@ gem 'omniauth-github', '~> 1.3'
 gem 'geocoder', '~> 1.5', '>= 1.5.1'
 #for image upload
 gem 'paperclip'
+#for pagination
+gem 'will_paginate', '~> 3.2'
+gem 'will_paginate-bootstrap4'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false

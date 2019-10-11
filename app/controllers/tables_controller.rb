@@ -4,7 +4,7 @@ class TablesController < ApplicationController
   before_action :find_table,         only: [ :edit, :update, :destroy ]
 
   def index
-    @tables = current_user.tables.all.order(created_at: :desc)
+    @tables = current_user.tables.paginate(page: params[:page], per_page: 2).order(created_at: :desc)
   end
 
   def new

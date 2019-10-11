@@ -4,7 +4,7 @@
       <div class="thumbnail mx-n3 container-border bg-white">
         <%= image_tag @restaurant.image.url, class: "responsive img-large rounded-top" %>
         <div class="caption px-3">
-          <%= link_to @restaurant.name, @restaurant, class: "text-dark font-weight-bold h3" %> <br/>
+          <%= link_to @restaurant.name, @restaurant, class: "text-dark font-weight-bold h3 nav-link" %> <br/>
           <small class="text-secondary"><%= @restaurant.address %></small>
 
           <div class=" float-right">
@@ -91,17 +91,15 @@
       <% if is_admin? && @reviews_not_approved.count != 0 %>
         <h4 class="text-danger mt-3">Reviews not approved yet?</h4>
         <%= render @reviews_not_approved %>
+         <%= will_paginate @reviews_not_approved %>
       <% end %>
 
       <% if @reviews_approved %>
         <h4 class="text-primary mt-3">Reviews</h4>
-
-        <% if !is_admin? && signed_in? && @current_user_reviews_not_approved.count > 0 %>
-          <%= render @current_user_reviews_not_approved %>
-        <% end %>
-
         <%= render @reviews_approved %>
       <% end %>
+
+      <%= will_paginate @reviews_approved %>
     </div>
   </div>
 </div>

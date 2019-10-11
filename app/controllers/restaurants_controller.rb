@@ -4,19 +4,16 @@ class RestaurantsController < ApplicationController
   before_action :restaurant_category_options, only: [:new, :edit]
 
   def index
-    @restaurants = Restaurant.all
+    @restaurants = Restaurant.paginate(page: params[:page], per_page: 6).order(created_at: :desc)
   end
 
   def show
-    #approved reviews ...
-    @reviews_approved = @restaurant.reviews.approved.order(created_at: :desc)
-
-    #current user review that not approved yet
-    @current_user_reviews_not_approved = @restaurant.reviews.not_approved
-    .where(user_id: current_user.id).order(created_at: :desc) if current_user.present?
+    #approved reviews or current_user not approved reviews.
+    @reviews_approved = @restaurant.reviews.approved.or( @restaurant.reviews.not_approved
+    .where(user_id: current_user.id) ).paginate(page: params[:page], per_page: 3).order(created_at: :desc) if current_user.present?
 
     #reviews that not approved yet.. only admin can see that...
-    @reviews_not_approved = @restaurant.reviews.not_approved.order(created_at: :desc)
+    @reviews_not_approved = @restaurant.reviews.not_approved.paginate(page: params[:page], per_page: 3).order(created_at: :desc)
 
     #average rating of restaurant based on approved reviews...
     @avg_rating = @restaurant.reviews.approved.average(:rating)

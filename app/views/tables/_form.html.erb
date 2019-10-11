@@ -66,5 +66,8 @@
     </div>
   </div>
 
-  <%= f.submit "Book", class: "btn btn-primary" %>
+  <%= link_to "Back", @restaurant, class: "btn btn-secondary" %>
+  <div class="float-right">
+    <%= f.submit "Book", class: "btn btn-primary" %>
+  </div>
 <% end %>

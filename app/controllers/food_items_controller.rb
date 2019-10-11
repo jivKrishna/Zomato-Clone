@@ -4,7 +4,7 @@ class FoodItemsController < ApplicationController
   before_action :find_food_item, only: [ :show, :edit, :update, :destroy ]
 
   def index
-    @food_categories = FoodCategory.includes(:food_items).all
+    @food_categories = FoodCategory.paginate(page: params[:page], per_page: 1)
     @food_items = @restaurant.food_items.all
 
     @order_items = current_order.order_items.includes(food_item: :restaurant)

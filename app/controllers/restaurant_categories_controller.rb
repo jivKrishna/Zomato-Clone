@@ -4,7 +4,7 @@ class RestaurantCategoriesController < ApplicationController
 
   def index
     @restaurant_category = RestaurantCategory.new
-    @restaurant_categories = RestaurantCategory.all.order(updated_at: :desc)
+    @restaurant_categories = RestaurantCategory.paginate(page: params[:page], per_page: 6).all.order(updated_at: :desc)
   end
 
   def create

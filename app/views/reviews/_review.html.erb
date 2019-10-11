@@ -37,7 +37,7 @@
           <% end %>
 
           <% if is_admin? && review.not_approved? %>
-            <%= link_to restaurant_approve_review_path(@restaurant, review), class: "btn text-success", title: "Approve" do %>
+            <%= link_to restaurant_approve_review_path(review.restaurant, review), class: "btn text-success", title: "Approve" do %>
               <i class="fas fa-flag"></i>
             <% end %>
           <% end %>
