@@ -1,8 +1,10 @@
-<div class="container-border bg-white">
-  <%= link_to restaurant_menu_cards_path(menu_card), class: "nav-link" do %>
-    <%= image_tag menu_card.image.url, class: "responsive img-middle rounded-top" %>
-    <div class="caption">
-      <p class="text-secondary"><%= menu_card.description %></p>
-    </div>
-  <% end %>
+<div class="col-md-4">
+  <div class="container-border bg-white">
+    <%= link_to restaurant_menu_card_path(menu_card.restaurant, menu_card), class: "nav-link" do %>
+      <%= image_tag menu_card.image.url, class: "responsive img-middle rounded-top" %>
+      <div class="caption">
+        <p class="text-secondary"><%= menu_card.description %></p>
+      </div>
+    <% end %>
+  </div>
 </div>
