@@ -1,4 +1,4 @@
-<%= form_for([@restaurant, @review]) do |f| %>
+<%= form_for([@restaurant, @review], html: { multipart: true }) do |f| %>
   <div class="row">
     <div class="col-2 text-center">
       <%= image_tag current_user.image.url, class: "rounded-circle img-responsive icon" %>

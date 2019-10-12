@@ -1,0 +1,58 @@
+<div class="container container-size my-4">
+  <div class="col-md-8 container-border bg-white">
+    <%= link_to @restaurant, class: "nav-link" do %>
+      <div class="caption">
+        <small class="text-secondary"><%= @restaurant.restaurant_category.name %></small>
+        <h3 class="text-dark font-weight-bold"><%= @restaurant.name %></h3>
+        <small class="text-secondary"><%= @restaurant.address %></small>
+      </div>
+    <% end %>
+  </div>
+
+  <h5 class="font-weight-bold mt-4">Restaurant Images</h5>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="row">
+        <div class="col-md-4">
+          <a href="<%= @restaurant.image.url %>" data-lightbox="roadtrip" data-title="<%= @restaurant.name %>">
+            <%= image_tag @restaurant.image.url, class: "img-fluid" %>
+          </a>
+        </div> 
+      </div>
+    </div>
+  </div>
+
+  <h5 class="font-weight-bold mt-4">Food Items Images</h5>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="row">
+        <% @food_items.each do |food_item| %>
+          <div class="col-md-4">
+            <% unless food_item.image.blank? %>
+              <a href="<%= food_item.image.url %>" data-lightbox="roadtrip" data-title="<%= food_item.name %>">
+                <%= image_tag food_item.image.url, class: "img-fluid" %>
+              </a>
+            <% end %>
+          </div>
+        <% end %> 
+      </div>
+    </div>
+  </div>
+
+  <h5 class="font-weight-bold mt-4">Reviewers Image</h5>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="row">
+        <% @reviews.each do |review| %>
+          <div class="col-md-4">
+            <% unless review.image.blank? %>
+              <a href="<%= review.image.url %>" data-lightbox="roadtrip" data-title="<%= review.comment %>">
+                <%= image_tag review.image.url, class: "img-fluid" %>
+              </a>
+            <% end %>
+          </div>
+        <% end %> 
+      </div>
+    </div>
+  </div>
+</div>

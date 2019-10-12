@@ -7,22 +7,24 @@
           <%= link_to @restaurant.name, @restaurant, class: "text-dark font-weight-bold h3 nav-link" %> <br/>
           <small class="text-secondary"><%= @restaurant.address %></small>
 
-          <div class=" float-right">
+          <span class=" float-right">
             <% if @restaurant.reviews.approved.count == 0 %>
               <span class="bg-secondary text-white rounded-circle p-2 h5">NEW</span>
             <% else %>
-              <div class="font-weight-bold h5 text-white bg-success rounded-circle p-2" >
+              <span class="font-weight-bold h5 text-white bg-success rounded-circle p-2" >
                 <%= number_with_precision( @avg_rating, precision: 1 ) %>
                 <span class="font-weight-bold h6">/ 5</span>
-              </div>
+              </span>
             <% end %>
-          </div>
+          </span>
         </div>
 
         <div class="px-3 my-2">
-          <%= link_to "Order Food Online", restaurant_food_items_path(@restaurant), class: "btn btn-success" %>
-          <%= link_to "Book Table", new_restaurant_table_path(@restaurant), class: "btn btn-primary" %>
-          <%= link_to "Menu Card", restaurant_menu_cards_path(@restaurant), class: "btn btn-secondary" %>
+          <%= link_to "Order Food Online", restaurant_food_items_path(@restaurant), class: "btn btn-success mt-2 mt-md-0" %>
+          <%= link_to "Book Table", new_restaurant_table_path(@restaurant), class: "btn btn-primary mt-2 mt-md-0" %>
+          <%= link_to "Menu Card", restaurant_menu_cards_path(@restaurant), class: "btn btn-secondary mt-2 mt-md-0" %>
+
+          <%= link_to "Photos", restaurant_photos_path(@restaurant), class: "btn btn-warning mt-2 mt-md-0" %>
         </div>
       </div>
 
@@ -63,6 +65,19 @@
           <% end %>
         </div>
 
+        <% if is_admin? %>
+          <div class="col-md-8">
+            <h5 class="font-weight-bold">Owner Contact Details</h5>
+            <div class="row">
+              <div class="col-md-6">
+                <p class="text-dark font-weight-bold">Phone Number:<br/><span class="text-success"> <%= @restaurant.owner_phone_number %></span></p>
+              </div>
+              <div class="col-md-6">
+                <p class="text-dark font-weight-bold">Email: <span class="text-success"> <%= @restaurant.owner_email %></span></p>
+              </div>
+            </div>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>

@@ -1,12 +1,9 @@
 class MenuCardsController < ApplicationController
-  before_action :find_restaurant, only: [ :index, :create, :update, :destroy ]
-  before_action :find_menu_card,  only: [ :show, :update, :destroy ] 
+  before_action :find_restaurant, only: [ :index, :create, :edit, :update, :destroy ]
+  before_action :find_menu_card,  only: [ :edit, :update, :destroy ] 
 
   def index
-    @menu_cards = MenuCard.paginate(page: params[:page], per_page: 6)
-  end
-
-  def show
+    @menu_cards = MenuCard.all
   end
 
   def create
@@ -21,7 +18,9 @@ class MenuCardsController < ApplicationController
   end
 
   def update
-
+    if @menu_card.update(menu_card_params)
+      redirect_to restaurant_menu_cards_path(@menu_card.restaurant)
+    end
   end
 
   def destroy

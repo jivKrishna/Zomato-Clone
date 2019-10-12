@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :tables
     resources :orders
     resources :menu_cards
+    resources :photos
     get "/place_order", to: "orders#place_order"
     put "/delivered/:id",   to: "orders#delivered"
     get "reviews/:id/approve_review", to: "reviews#approve_review", as:"approve_review"

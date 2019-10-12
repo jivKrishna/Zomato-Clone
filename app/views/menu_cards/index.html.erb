@@ -1,19 +1,38 @@
-<div class="container container-size">
+<div class="container container-size my-4">
   <div class="row">
-    <div class="col-md-8">
-      <div class="container-border bg-white my-4 py-2 px-3">
-        <small class="text-uppercase text-secondary">View Food Menu cards</small>
-        <h4 class="font-weight-bold"><%=link_to @restaurant.name, @restaurant, class: "text-dark" %></h4>
-        <p class="text-secondary"><%= @restaurant.address %></p>
-      </div>
+    <div class="col-md-8 bg-white container-border">
+      <%= link_to @restaurant, class: "nav-link" do %>
+        <div class="caption">
+          <small class="text-secondary"><%= @restaurant.restaurant_category.name %></small>
+          <h3 class="text-dark font-weight-bold"><%= @restaurant.name %></h3>
+          <small class="text-secondary"><%= @restaurant.address %></small>
+        </div>
+      <% end %>
     </div>
 
     <div class="col-md-4 my-4">
       <%= render "form" %>
     </div>
   </div>
-  <div class="row">
-    <%= render @menu_cards %>
+  <div class="row text-center">
+    <% @menu_cards.each do |menu_card| %>
+      <div class="col-md-3 bg-white container-border">
+        <a href="<%= menu_card.image.url %>" data-lightbox="roadtrip" data-title="<%= menu_card.description %>">
+          <%= image_tag menu_card.image.url, class: "img-fluid" %>
+        </a>
+
+        <div class="btn-group">
+          <% if is_admin? %>
+            <%= link_to edit_restaurant_menu_card_path(menu_card.restaurant, menu_card), title: "Edit", class: "btn btn-primary" do %>
+              <i class="fas fa-edit"></i>
+            <% end %>
+            
+            <%= link_to [menu_card.restaurant, menu_card], method: :delete, data: { confirm: "Are you sure?" }, title: "Delete", class: "btn btn-danger" do %>
+              <i class="fas fa-trash-alt"></i>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
   </div>
-  <%= will_paginate @menu_cards %>
 </div>
