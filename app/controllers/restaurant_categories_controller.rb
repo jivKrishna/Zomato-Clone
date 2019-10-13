@@ -11,20 +11,17 @@ class RestaurantCategoriesController < ApplicationController
     @restaurant_category = RestaurantCategory.create(restaurant_category_params)
 
     if @restaurant_category.save
-      redirect_to restaurant_categories_path, flash: { success: "A restaurant category deleted!" }
+      redirect_to restaurant_categories_path, flash: { success: "A restaurant category created!" }
     else
-      render :new
+      redirect_to restaurant_categories_path, flash: { warning: "Something doing wrong!" }
     end
-  end
-
-  def edit 
   end
 
   def update
     if @restaurant_category.update(restaurant_category_params)
-      redirect_to restaurant_categories_path, flash: { success: "A restaurant category deleted!" }
+      redirect_to restaurant_categories_path, flash: { success: "A restaurant category updated!" }
     else
-      render :new
+      redirect_to restaurant_categories_path, flash: { warning: "Something doing wrong!" }
     end
   end
 
@@ -32,7 +29,7 @@ class RestaurantCategoriesController < ApplicationController
     if @restaurant_category.destroy
       redirect_to restaurant_categories_path, flash: { success: "A restaurant category deleted!" }
     else
-      render :new
+      redirect_to restaurant_categories_path, flash: { warning: "Something doing wrong!" }
     end
   end
 

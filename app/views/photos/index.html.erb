@@ -14,9 +14,11 @@
     <div class="col-md-8">
       <div class="row">
         <div class="col-md-4">
-          <a href="<%= @restaurant.image.url %>" data-lightbox="roadtrip" data-title="<%= @restaurant.name %>">
-            <%= image_tag @restaurant.image.url, class: "img-fluid" %>
-          </a>
+          <% unless @restaurant.image.blank? %>
+            <a href="<%= @restaurant.image.url %>" data-lightbox="roadtrip" data-title="<%= @restaurant.name %>">
+              <%= image_tag @restaurant.image.url, class: "img-fluid" %>
+            </a>
+          <% end %>
         </div> 
       </div>
     </div>

@@ -4,15 +4,14 @@ class ReviewsController < ApplicationController
   before_action :find_restaurant, only: [:create, :edit, :update, :destroy, :approve_review]
   before_action :find_review, only: [:edit, :update, :destroy, :approve_review]
 
-  def new
-  end
-
   def create
     @review = @restaurant.reviews.build(review_params)
     @review.user_id = current_user.id
 
     if @review.save
       redirect_to @restaurant
+    else
+      redirect_to @restaurant, flash: { danger: "Something you have missed" }
     end
   end
 
@@ -21,21 +20,26 @@ class ReviewsController < ApplicationController
 
   def update
     if @review.update(review_params)
-      redirect_to @restaurant
+      redirect_to @restaurant, flash: { success: "successfully updated review!" }
     else
+      flash[:danger] = "Something you have missed" 
       render :edit
     end
   end
 
   def destroy
     if @review.destroy
-      redirect_to @restaurant
+      redirect_to @restaurant, flash: { success: "Successfully deleted!" }
+    else
+      redirect_to @restaurant, flash: { danger: "Something gonna wrong!" }
     end
   end
 
   def approve_review
     if @review.update(approve: "approved")
-      redirect_to @restaurant
+      redirect_to @restaurant, flash: { success: "Successfully approved!" }
+    else
+      redirect_to @restaurant, flash: { danger: "Something gonna wrong!" }
     end
   end
 

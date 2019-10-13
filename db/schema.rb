@@ -19,9 +19,9 @@ ActiveRecord::Schema.define(version: 2019_10_11_095722) do
   end
 
   create_table "food_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "name"
-    t.decimal "price", precision: 10
-    t.integer "veg"
+    t.string "name", null: false
+    t.decimal "price", precision: 10, default: "0", null: false
+    t.integer "veg", default: 0, null: false
     t.string "image_file_name"
     t.string "image_content_type"
     t.bigint "image_file_size"
@@ -47,10 +47,10 @@ ActiveRecord::Schema.define(version: 2019_10_11_095722) do
   end
 
   create_table "order_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.integer "quantity", default: 1
-    t.decimal "sub_total", precision: 10, default: "0"
-    t.bigint "food_item_id"
-    t.bigint "order_id"
+    t.integer "quantity", default: 1, null: false
+    t.decimal "sub_total", precision: 10, default: "0", null: false
+    t.bigint "food_item_id", null: false
+    t.bigint "order_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["food_item_id"], name: "index_order_items_on_food_item_id"
@@ -58,10 +58,10 @@ ActiveRecord::Schema.define(version: 2019_10_11_095722) do
   end
 
   create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "restaurant_id"
-    t.float "total_price", default: 0.0
-    t.integer "status", default: 0
+    t.bigint "user_id", null: false
+    t.bigint "restaurant_id", null: false
+    t.float "total_price", default: 0.0, null: false
+    t.integer "status", default: 0, null: false
     t.datetime "placed_at"
     t.float "latitude"
     t.float "longitude"
@@ -93,6 +93,8 @@ ActiveRecord::Schema.define(version: 2019_10_11_095722) do
     t.string "address", null: false
     t.boolean "serve_alcohal", null: false
     t.bigint "restaurant_category_id", null: false
+    t.float "latitude"
+    t.float "longitude"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["restaurant_category_id"], name: "index_restaurants_on_restaurant_category_id"
@@ -117,13 +119,13 @@ ActiveRecord::Schema.define(version: 2019_10_11_095722) do
   create_table "tables", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "restaurant_id", null: false
-    t.integer "guest_number"
-    t.date "booking_date"
-    t.time "booking_time"
-    t.string "guest_first_name"
-    t.string "guest_last_name"
-    t.string "guest_email"
-    t.string "guest_phone_number"
+    t.integer "guest_number", null: false
+    t.date "booking_date", null: false
+    t.time "booking_time", null: false
+    t.string "guest_first_name", null: false
+    t.string "guest_last_name", null: false
+    t.string "guest_email", null: false
+    t.string "guest_phone_number", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["restaurant_id"], name: "index_tables_on_restaurant_id"
@@ -132,8 +134,8 @@ ActiveRecord::Schema.define(version: 2019_10_11_095722) do
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.boolean "admin", default: false
-    t.string "name"
-    t.string "email"
+    t.string "name", null: false
+    t.string "email", null: false
     t.string "phone_number"
     t.string "password_digest"
     t.string "image_file_name"

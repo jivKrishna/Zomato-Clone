@@ -1,29 +1,30 @@
 Rails.application.routes.draw do
-  get 'foods/new'
-  get 'restaurant_categories/new'
   root "home#index"
-  resources :users, :restaurant_categories, :sessions
 
-  resources :restaurants, only: [:show, :order_food, :new, :create] do 
-    resources :food_items do 
-      resources :order_items
+  resources :users, only: [ :create, :edit, :update ] 
+  resources :restaurant_categories, only: [ :index, :create, :update, :destroy ]
+
+  resources :restaurants, only: [ :show, :new ] do 
+    resources :food_items, only: :index do 
+      resources :order_items, only: [ :create, :update, :destroy ]
     end
-    resources :reviews, only: [:create, :edit, :update, :destroy, :approve_review]
-    resources :tables
-    resources :orders
-    resources :menu_cards
-    resources :photos
+
+    resources :food_items, only: [ :show,   :create,  :edit,      :update, :destroy ]
+    resources :reviews,    only: [ :create, :edit,    :update,    :destroy ]
+    resources :orders,     only: [ :index,  :show,  :destroy, :place_order, :delivered ]
+    resources :tables,     only: [ :index,  :new,     :create,    :edit,   :update, :destroy ]
+    resources :menu_cards, only: [ :index,  :create,  :edit,      :update, :destroy ]
+    resources :photos,     only: :index
+
     get "/place_order", to: "orders#place_order"
-    put "/delivered/:id",   to: "orders#delivered"
     get "reviews/:id/approve_review", to: "reviews#approve_review", as:"approve_review"
   end
 
-  resources :restaurants, only: [:index, :edit, :destroy, :update]
+  resources :restaurants, only: [ :index, :create, :edit, :update, :destroy ]
   
   get "profile", to: "users#show"
   get "/signup", to: "users#new"
-  match "auth" => "users#auth", via: [:get, :post]
   delete "sign_out", to: "sessions#destroy", as: "sign_out"
-
+  post "sign_in", to: "sessions#create", as: "sign_in"
   get "auth/:provider/callback", to: "sessions#create_from_socialmedia"
 end

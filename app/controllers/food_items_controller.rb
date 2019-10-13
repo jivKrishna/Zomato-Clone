@@ -1,7 +1,7 @@
 class FoodItemsController < ApplicationController
-  before_action :authenticate_admin!, only: [:create ]
+  before_action :authenticate_admin!, only: :create
   before_action :find_restaurant, only: [:create, :index]
-  before_action :find_food_item, only: [ :show, :edit, :update, :destroy ]
+  before_action :find_food_item,  only: [ :show, :edit, :update, :destroy ]
 
   def index
     @food_categories = FoodCategory.paginate(page: params[:page], per_page: 1)

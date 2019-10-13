@@ -3,11 +3,17 @@
   <div class="row">
     <div class="col-md-8">
       <% if @placed_orders.count == 0 %>
-        <p class="text-danger">You haven't placed any order till now!</p>
+        <p class="text-danger">You haven't placed any order now!</p>
       <% else %>
+        <h5 class="font-weight-bold text-success">Orders in progress</h5>
         <%= render @placed_orders %>
+        <%= will_paginate @placed_orders %>
       <% end %>
-      <%= will_paginate @placed_orders %>
+
+      <% if @delivered_orders %>
+        <h5 class="font-weight-bold text-primary">Last two delivered orders</h5>
+        <%= render @delivered_orders %>
+      <% end %>
     </div>
   </div>
 </div>

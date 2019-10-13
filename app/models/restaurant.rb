@@ -9,12 +9,21 @@ class Restaurant < ApplicationRecord
 
   scope :order_by_name, ->{ order(:name) }
 
-  validates :name, :city, :address, presence: true, length: { minimum: 3 }
-  validates :owner_phone_number, :phone_number, presence: true, length: { minimum: 10 }
-  validates_format_of :owner_phone_number, :phone_number, with: /\A(\d{10}|\(?\d{3}\)?[-.\s]\d{3}[-.\s]\d{4})\z/, message: "Only positive number without spaces are allowed"
-  validates :email, :owner_email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP, message: "only allows valid emails" }
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
+  before_save { self.email = email.downcase }
+  before_save { self.owner_email = owner_email.downcase }
 
-  has_attached_file :image, styles: { large: "300x760>", medium: "300x600>", thumb: "200x200#" },
+  validates :name,     :city,    :address,        presence: true, length: { minimum: 3 }
+  validates :owner_phone_number, :phone_number,   presence: true, length: { minimum: 10 }
+  
+  validates :email, :owner_email,                 presence: true, format: { with: VALID_EMAIL_REGEX,
+            message: "only allows valid emails" }
+
+  validates_format_of :owner_phone_number, :phone_number, with: /\A(\d{10}|\(?\d{3}\)?[-.\s]\d{3}[-.\s]\d{4})\z/,
+                      message: "Only positive number without spaces are allowed"
+
+  has_attached_file :image, styles: { large: "300x760>",  medium: "300x600>", thumb: "200x200#" },
                     default_url: "https://placehold.it/300.png/09f/fff?text=Restaurant"
+
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 end

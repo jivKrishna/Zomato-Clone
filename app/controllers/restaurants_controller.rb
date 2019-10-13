@@ -1,7 +1,7 @@
 class RestaurantsController < ApplicationController
   before_action :authenticate_admin!, except: [ :show, :index ]
-  before_action :find_restaurant, only: [:show, :edit, :update, :destroy]
-  before_action :restaurant_category_options, only: [:new, :edit]
+  before_action :find_restaurant, only: [ :show, :edit, :update, :destroy ]
+  before_action :restaurant_category_options, only: [ :new, :create, :update, :edit ]
 
   def index
     @restaurants = Restaurant.paginate(page: params[:page], per_page: 6).order(created_at: :desc)
@@ -30,8 +30,9 @@ class RestaurantsController < ApplicationController
     @restaurant = Restaurant.create(restaurant_params)
 
     if @restaurant.save
-      redirect_to restaurant_path(@restaurant)
+      redirect_to restaurant_path(@restaurant), flash: { success: "Successfully created restaurant info!" }
     else
+      flash[:danger] = "Something missed!"
       render :new
     end
   end
@@ -41,15 +42,16 @@ class RestaurantsController < ApplicationController
 
   def update
     if @restaurant.update(restaurant_params)
-      redirect_to restaurant_path(@restaurant)
+      redirect_to restaurant_path(@restaurant), flash: { success: "Successfully updated restaurant info!" }
     else
+      flash[:danger] = "Something missed!"
       render :edit
     end
   end
 
   def destroy
     if @restaurant.destroy
-      redorect_to restaurants_path
+      redirect_to restaurants_path, flash: { success: "Successfully deleted restaurant info!" }
     end
   end
 

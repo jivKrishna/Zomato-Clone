@@ -44,8 +44,12 @@
   <p class="small text-secondary">Order placed on : <%= order.placed_at.localtime.strftime(" %d %B, %Y %H:%M") %></p>
 
   <div class="text-right">
-    <% if !order.delivered? %>
+    <% unless order.delivered? %>
       <%= link_to "Cancel", restaurant_order_path(order.restaurant, order), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+
+      <% if is_admin? %>
+        <%= link_to "Delivered", restaurant_order_path(order.restaurant, order), class: "btn btn-success" %>
+      <% end %>
     <% end %>
   </div>
 </div>

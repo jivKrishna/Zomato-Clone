@@ -11,7 +11,7 @@ require("jquery.raty")
 require("jquery-timepicker/jquery.timepicker")
 require("bootstrap-datepicker/dist/js/bootstrap-datepicker.min")
 require("lightbox2/dist/js/lightbox.min.js")
-require("lightbox2/dist/js/lightbox-plus-jquery.min.js")
+require("autocomplete_location")
 
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
@@ -63,12 +63,34 @@ $(document).ready(function(){
     "maxTime": "11:30pm"
   });
 
-  $("#chngName").click(function(){
-    $("#changeContainer").show();
-    $("#name").show();
-    $("#image").hide();
-    $("#phone_number").hide();
-    $("#password").hide();
-  });
+  // $("#changePassword").click(function(){
+  //   $("#changeConatiner").show();
+  //   $("#password").show();
+ 
+  // });
+
+  // $("#changeImage").click(function(){
+  //   $("#changeConatiner").show();
+  //   $("#password").hide();
+  //   $("#name").hide();
+  //   $("#phone").hide();
+  //   $("#image").show();
+  // });
+
+  // $("#changeName").click(function(){
+  //   $("#changeConatiner").show();
+  //   $("#password").hide();
+  //   $("#name").show();
+  //   $("#phone").hide();
+  //   $("#image").hide();
+  // });
+
+  // $("#changePhone").click(function(){
+  //   $("#changeConatiner").show();
+  //   $("#password").hide();
+  //   $("#name").hide();
+  //   $("#phone").show();
+  //   $("#image").hide();
+  // });
 
 });

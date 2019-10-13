@@ -3,9 +3,6 @@ class UsersController < ApplicationController
   before_action :find_user_by_email, only: :create
   before_action :find_user, only: [ :edit, :update ]
 
-  def index
-  end
-
   def show
     @user = current_user
     @reviews = @user.reviews.paginate(page: params[:page], per_page: 3).order(created_at: :desc)
@@ -16,14 +13,14 @@ class UsersController < ApplicationController
   end
 
   def create
-    if @user
-      @user.errors[:base] << "User already available!"
-      render root_path
+    @user = User.find_by(email: params[:user][:email], provider: "email")
+    unless @user.nil?
+      redirect_to root_path, flash: { warning: "You have successfully sign up!" }
     else
       @user = User.create(user_params)
       if @user.save
         session[:user_id] = @user.id        
-        redirect_to root_path
+        redirect_to root_path, flash: { success: "You have successfully sign up!" }
       end
     end
   end
@@ -32,13 +29,14 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user.phone_number = params[:user][:phone_number] if params[:user][:phone_number].present?
-    @user.image = params[:user][:image] if params[:user][:image].present?
+    @user.update(name: params[:user][:name]) if params[:user][:name].present?
+    @user.update(image: params[:user][:image]) if params[:user][:image].present?
+    @user.update(phone_number: params[:user][:phone_number]) if params[:user][:phone_number].present?
 
-    if @user.save
-      redirect_to @user
+    if @user.update(user_password_params) && @user.save
+      redirect_to @user, flash: { success: "You have successfully updated info!" }
     else
-      render :edit
+      render :edit, flash: { success: "Something wrong!" }
     end
   end
 
@@ -52,6 +50,10 @@ class UsersController < ApplicationController
     end
 
     def find_user
-      @user = User.find(params[:id])
+      @user = current_user
+    end
+
+    def user_password_params
+      params.require(:user).permit(:password, :password_confirmation)
     end
 end
