@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :authenticate_admin!, only: :approve_review
-  before_action :authenticate_user!, except: :show
+  before_action :authenticate_user!
   before_action :find_restaurant, only: [:create, :edit, :update, :destroy, :approve_review]
   before_action :find_review, only: [:edit, :update, :destroy, :approve_review]
 

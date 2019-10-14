@@ -1,5 +1,6 @@
 class FoodItemsController < ApplicationController
   before_action :authenticate_admin!, only: :create
+  before_action :authenticate_user!
   before_action :find_restaurant, only: [:create, :index]
   before_action :find_food_item,  only: [ :show, :edit, :update, :destroy ]
 
@@ -7,7 +8,7 @@ class FoodItemsController < ApplicationController
     @food_categories = FoodCategory.paginate(page: params[:page], per_page: 1)
     @food_items = @restaurant.food_items.all
 
-    @order_items = current_order.order_items.includes(food_item: :restaurant)
+    @order_items = current_order.order_items.includes(food_item: :restaurant) if current_order.present?
   end
 
   def show

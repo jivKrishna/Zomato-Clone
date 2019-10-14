@@ -19,11 +19,11 @@ class ApplicationController < ActionController::Base
     end
 
     def authenticate_user!
-      redirect_to root_path("#loginAccountModal") unless signed_in?
+      redirection_path unless signed_in?
     end
 
     def authenticate_admin!
-      redirect_to admin_registration_path unless is_admin? 
+      redirection_path unless is_admin? 
     end
 
     def redirection_path
@@ -49,7 +49,7 @@ class ApplicationController < ActionController::Base
           session[:order_id] = @current_order.id
         end
         return @current_order
-      elsif session[:order_id].nil?
+      elsif session[:order_id].nil? && current_user
         @current_order = current_user.orders.create(restaurant_id: params[:restaurant_id])
         session[:order_id] = @current_order.id
         return @current_order

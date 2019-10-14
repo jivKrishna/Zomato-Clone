@@ -40,6 +40,9 @@ gem 'paperclip'
 #for pagination
 gem 'will_paginate', '~> 3.2'
 gem 'will_paginate-bootstrap4'
+#for elasticsearch
+gem "elasticsearch-model"
+gem "elasticsearch-rails"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false

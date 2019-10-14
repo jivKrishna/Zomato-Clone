@@ -1,4 +1,5 @@
 class MenuCardsController < ApplicationController
+  before_action :authenticate_admin!, only: [ :create, :edit, :update, :destroy ]
   before_action :find_restaurant, only: [ :index, :create, :edit, :update, :destroy ]
   before_action :find_menu_card,  only: [ :edit, :update, :destroy ] 
 

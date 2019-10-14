@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root "home#index"
 
-  resources :users, only: [ :create, :edit, :update ] 
+  resources :users, only: [ :show, :create, :edit, :update ] 
   resources :restaurant_categories, only: [ :index, :create, :update, :destroy ]
 
   resources :restaurants, only: [ :show, :new ] do 
@@ -22,7 +22,7 @@ Rails.application.routes.draw do
 
   resources :restaurants, only: [ :index, :create, :edit, :update, :destroy ]
   
-  get "profile", to: "users#show"
+  get "/profile/:id", to: "users#show"
   get "/signup", to: "users#new"
   delete "sign_out", to: "sessions#destroy", as: "sign_out"
   post "sign_in", to: "sessions#create", as: "sign_in"

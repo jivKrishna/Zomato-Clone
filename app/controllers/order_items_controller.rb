@@ -1,4 +1,5 @@
 class OrderItemsController < ApplicationController
+  before_action :authenticate_user!
   before_action :find_food_item, only: [ :create, :update, :destroy ]
   before_action :find_order_item, only: [:update, :destroy]
 

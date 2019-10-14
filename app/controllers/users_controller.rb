@@ -1,10 +1,9 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, except: :create
   before_action :find_user_by_email, only: :create
-  before_action :find_user, only: [ :edit, :update ]
+  before_action :find_user, only: [ :show, :edit, :update ]
 
   def show
-    @user = current_user
     @reviews = @user.reviews.paginate(page: params[:page], per_page: 3).order(created_at: :desc)
   end
 
@@ -50,7 +49,7 @@ class UsersController < ApplicationController
     end
 
     def find_user
-      @user = current_user
+      @user = User.find(params[:id])
     end
 
     def user_password_params

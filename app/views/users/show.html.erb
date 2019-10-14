@@ -17,29 +17,31 @@
     <div class="col-md-3">
       <ul class="navbar-nav bg-white container-border px-2 mx-n3">
 
-        <li class="nav-item active-link link">
-          <%= link_to edit_user_path(@user), class: "nav-link", title: "Add info" do %>
-            <i class="fas fa-user-edit"></i>  Add Info
-          <% end %>
-        </li>
+        <% if current_user.id == @user.id %>
+          <li class="nav-item active-link link">
+            <%= link_to edit_user_path(@user), class: "nav-link", title: "Add info" do %>
+              <i class="fas fa-user-edit"></i>  Add Info
+            <% end %>
+          </li>
 
-        <li class="nav-item active-link link">
-          <%= link_to restaurant_orders_path(@user.orders), class: "nav-link", title: "My bookings" do %>
-            <i class="fas fa-shopping-cart text-primary"></i> My Orders
-          <% end %>
-        </li>
+          <li class="nav-item active-link link">
+            <%= link_to restaurant_orders_path(@user.orders), class: "nav-link", title: "My bookings" do %>
+              <i class="fas fa-shopping-cart text-primary"></i> My Orders
+            <% end %>
+          </li>
 
-        <li class="nav-item active-link link">
-          <%= link_to restaurant_tables_path(@user.tables), class: "nav-link", title: "My bookings" do %>
-            <i class="fas fa-person-booth"></i>   My Bookings
-          <% end %>
-        </li>
-
-        <li class="nav-item active-link link">
-          <a class="nav-link" href="#my-reviews">
-            <i class="fas fa-edit"></i>My review
-          </a>
-        </li>
+          <li class="nav-item active-link link">
+            <%= link_to restaurant_tables_path(@user.tables), class: "nav-link", title: "My bookings" do %>
+              <i class="fas fa-person-booth"></i>   My Bookings
+            <% end %>
+          </li>
+        <% end %>
+          <li class="nav-item active-link link">
+            <a class="nav-link" href="#my-reviews">
+              <i class="fas fa-edit"></i> Review
+            </a>
+          </li>
+        
 
         <% if is_admin? %>
           <li class="nav-item link">
@@ -67,10 +69,8 @@
 
 
     <div class="col-md-6 mx-3 my-3" id="my-reviews">
-      <% if current_user.reviews.not_approved.count != 0 %>
-        <%= render @reviews %>
-        <%= will_paginate @reviews %>
-      <% end %>
+      <%= render @reviews %>
+      <%= will_paginate @reviews %>
     </div>
   </div>
 </div>

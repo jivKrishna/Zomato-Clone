@@ -9,9 +9,12 @@ class RestaurantsController < ApplicationController
 
   def show
     #approved reviews or current_user not approved reviews.
-    @reviews_approved = @restaurant.reviews.approved.or( @restaurant.reviews.not_approved
-    .where(user_id: current_user.id) ).paginate(page: params[:page], per_page: 3).order(created_at: :desc) if current_user.present?
-
+    if current_user.present?
+       @reviews_approved = @restaurant.reviews.approved.or( @restaurant.reviews.not_approved
+    .where(user_id: current_user.id) ).paginate(page: params[:page], per_page: 3).order(created_at: :desc) 
+    else
+      @reviews_approved = @restaurant.reviews.approved.paginate(page: params[:page], per_page: 3).order(created_at: :desc) 
+    end
     #reviews that not approved yet.. only admin can see that...
     @reviews_not_approved = @restaurant.reviews.not_approved.paginate(page: params[:page], per_page: 3).order(created_at: :desc)
 

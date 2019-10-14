@@ -113,9 +113,9 @@
       <% if @reviews_approved %>
         <h4 class="text-primary mt-3">Reviews</h4>
         <%= render @reviews_approved %>
+        <%= will_paginate @reviews_approved %>
       <% end %>
-
-      <%= will_paginate @reviews_approved %>
+      
     </div>
   </div>
 </div>

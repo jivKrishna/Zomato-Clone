@@ -8,7 +8,7 @@
             <%= current_user.name.split.first.upcase %>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <%= link_to "Profile", profile_path(current_user), class: "dropdown-item" %>
+            <%= link_to "Profile", user_path(current_user), class: "dropdown-item" %>
             <%= link_to "Log Out", "sign_out", method: :delete, class: "dropdown-item" %>
           </div>
         </div>
@@ -16,6 +16,23 @@
         <button type="button" class="btn text-white border-light" data-toggle="modal" data-target="#AccountModal">Sign In or Create Account</button>
       <% end %>
     </div>
+  </div>
+</div>
+
+<div class="container container-size">
+  <div class="container">
+    <%= form_tag root_path, class: "navbar-form navbar-left", role: "search", method: :get do |f| %>
+      <div class="form-group">
+        <%= text_field_tag :q, params[:q], class: "form-control" %>
+      </div>
+      <%= button_tag "search", class: "btn btn-default", name: nil %>
+    <% end %>
+  </div>
+
+  <div class="row">
+    <% if @restaurants %>
+      <%= render @restaurants %>
+    <% end %>
   </div>
 </div>
 
@@ -56,4 +73,4 @@
   </div>
 </div>
 
-<%= render "x.html" %> 
+  

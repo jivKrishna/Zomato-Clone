@@ -3,6 +3,7 @@ class HomeController < ApplicationController
 
   def index
     @user = User.new
+    @restaurants = Restaurant.search(( params[:q].present? ? params[:q] : "*" )).records
   end
 
   private
