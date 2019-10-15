@@ -9,22 +9,22 @@ Rails.application.routes.draw do
       resources :order_items, only: [ :create, :update, :destroy ]
     end
 
-    resources :food_items, only: [ :show,   :create,  :edit,      :update, :destroy ]
-    resources :reviews,    only: [ :create, :edit,    :update,    :destroy ]
+    resources :food_items, except: :index
+    resources :reviews,    except: [ :show, :index ]
     resources :orders,     only: [ :index,  :show,  :destroy, :place_order, :delivered ]
-    resources :tables,     only: [ :index,  :new,     :create,    :edit,   :update, :destroy ]
-    resources :menu_cards, only: [ :index,  :create,  :edit,      :update, :destroy ]
+    resources :tables,     except: :show
+    resources :menu_cards, except: :show
     resources :photos,     only: :index
 
     get "/place_order", to: "orders#place_order"
     get "reviews/:id/approve_review", to: "reviews#approve_review", as:"approve_review"
   end
 
-  resources :restaurants, only: [ :index, :create, :edit, :update, :destroy ]
+  resources :restaurants, except: :show
   
   get "/profile/:id", to: "users#show"
   get "/signup", to: "users#new"
-  delete "sign_out", to: "sessions#destroy", as: "sign_out"
-  post "sign_in", to: "sessions#create", as: "sign_in"
+  delete "*/signout", to: "sessions#destroy", as: "/signout"
+  post "/sign_in", to: "sessions#create", as: "/sign_in"
   get "auth/:provider/callback", to: "sessions#create_from_socialmedia"
 end

@@ -1,7 +1,7 @@
 class FoodItemsController < ApplicationController
   before_action :authenticate_admin!, only: :create
   before_action :authenticate_user!
-  before_action :find_restaurant, only: [:create, :index]
+  before_action :find_restaurant, only: [ :create, :index ]
   before_action :find_food_item,  only: [ :show, :edit, :update, :destroy ]
 
   def index
@@ -27,7 +27,9 @@ class FoodItemsController < ApplicationController
 
   def update
     if @food_item.update(food_item_params)
-      redirect_to restaurant_food_item_path(@food_item)
+      redirect_to restaurant_food_item_path(@food_item), flash: { success: "#{@food_item.name} is updated successfully!" }
+    else
+      redirect_to restaurant_food_item_path(@food_item), flash: { danger: "Something missed!" }
     end
   end
 

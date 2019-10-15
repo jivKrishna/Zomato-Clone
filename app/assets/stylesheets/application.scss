@@ -62,6 +62,10 @@
   padding-bottom: 0px;
 }
 
+.margin-0{
+  margin: 0 -15px;
+}
+
 .imp-link{
   text-decoration: none !important;
 }
@@ -73,8 +77,8 @@
 }
 
 .small-icon{
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
 }
 
 .veg-icon{
@@ -131,3 +135,14 @@
   background-color: #efefef;
 }
 
+@media screen and (max-width: 768px){
+  .form-size{
+    width: auto;
+  }
+}
+
+@media screen and (min-width: 768.5px){
+  .form-size{
+    width: 600px;
+  }
+}

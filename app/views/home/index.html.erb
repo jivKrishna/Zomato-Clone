@@ -1,3 +1,5 @@
+<% @page_title = "Zomato Clone" %>
+
 <div class="container-fluid banner">
   <div class="container" id="user">
     <div id="verify" class="float-right mt-2">
@@ -5,11 +7,14 @@
         <div class="dropdown">
           <a class="nav-link dropdown-toggle bg-light container-border" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <%= image_tag current_user.image.url, class: "small-icon rounded-circle" %>
-            <%= current_user.name.split.first.upcase %>
+            <%= current_user.name.split.first %>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <%= link_to "Profile", user_path(current_user), class: "dropdown-item" %>
-            <%= link_to "Log Out", "sign_out", method: :delete, class: "dropdown-item" %>
+            <%= link_to "Add Info", edit_user_path(current_user), class: "dropdown-item" %> 
+            <%= link_to "My bookings", restaurant_orders_path(current_user.orders), class: "dropdown-item" %>                  
+            <%= link_to "My bookings", restaurant_tables_path(current_user.tables), class: "dropdown-item" %>
+            <%= link_to "Log Out", signout_path, method: :delete, class: "dropdown-item" %>
           </div>
         </div>
       <% else %>
@@ -22,10 +27,15 @@
 <div class="container container-size">
   <div class="container">
     <%= form_tag root_path, class: "navbar-form navbar-left", role: "search", method: :get do |f| %>
-      <div class="form-group">
-        <%= text_field_tag :q, params[:q], class: "form-control" %>
+      <div class="form-group my-4">
+        <div class="d-flex">
+            <%= text_field_tag :q, params[:q], placeholder: "Search here", class: "form-control" %> 
+          </span>
+          <span class="col-2">
+            <%= button_tag "search", class: "btn btn-danger", name: nil %>
+          </span>
+        </div>
       </div>
-      <%= button_tag "search", class: "btn btn-default", name: nil %>
     <% end %>
   </div>
 

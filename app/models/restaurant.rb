@@ -6,8 +6,13 @@ class Restaurant < ApplicationRecord
   has_many :orders,     dependent: :destroy
   has_many :menu_cards, dependent: :destroy
 
+#for implementing elastic serach
   include Elasticsearch::Model
-  include Elasticsearch::Model::Callbacks 
+  include Elasticsearch::Model::Callbacks
+
+  # index_name Rails.application.class.parent_name.underscore
+  # document_type self.name.downcase
+#---------------------------------
 
   scope :order_by_name, ->{ order(:name) }
 

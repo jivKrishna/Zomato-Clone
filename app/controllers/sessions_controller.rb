@@ -24,7 +24,12 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:session][:email], provider: "email")
     if user && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
-      redirect_to root_path, flash: { success: "Signed In successfully!" }
+
+      if is_admin?
+        redirect_to user_path(current_user), flash: { success: "Signed In as Admin!" }
+      else
+        redirect_to root_path, flash: { success: "Signed In successfully!" }
+      end
     else
       redirect_to root_path, flash: { warning: "Invalid email/password" }
     end

@@ -1,3 +1,5 @@
+<% @page_title = "#{'Admin ' if is_admin?}Profile" %>
+
 <div class="container container-size container-border my-4 bg-white">
   <div class="profile text-center mt-4">
     <div class="row">
@@ -15,8 +17,8 @@
 <div class="container container-size my-4">
   <div class="row">
     <div class="col-md-3">
+      <h6 class="font-weight-bold text-center">Activity!</h6>
       <ul class="navbar-nav bg-white container-border px-2 mx-n3">
-
         <% if current_user.id == @user.id %>
           <li class="nav-item active-link link">
             <%= link_to edit_user_path(@user), class: "nav-link", title: "Add info" do %>
@@ -36,19 +38,27 @@
             <% end %>
           </li>
         <% end %>
-          <li class="nav-item active-link link">
+
+        <li class="nav-item active-link link">
             <a class="nav-link" href="#my-reviews">
               <i class="fas fa-edit"></i> Review
             </a>
-          </li>
-        
+        </li>
+      </ul>
+    </div>
 
-        <% if is_admin? %>
-          <li class="nav-item link">
-            <%= link_to restaurant_categories_path, class: "nav-link", title: "Manage restaurant category" do %>
-              <i class="fas fa-tasks"></i>  Restaurant Categories
-            <% end %>
-          </li>
+
+    <div class="col-md-5 my-3 m-auto" id="my-reviews">
+      <%= render @reviews %>
+      <%= will_paginate @reviews %>
+    </div>
+
+    <div class="col-md-3 ml-auto">
+      <% if is_admin? && current_user.id == @user.id %>
+        <h6 class="font-weight-bold text-center">Admin!</h6>
+      <% end %>
+      <ul class="navbar-nav bg-white container-border px-2 mx-n3">
+       <% if is_admin? && current_user.id == @user.id %>
 
           <li class="nav-item link">
             <%= link_to new_restaurant_path, class: "nav-link", title: "Add a restaurant" do %>
@@ -62,15 +72,15 @@
             <% end %>
           </li>
 
+          <li class="nav-item link">
+            <%= link_to restaurant_categories_path, class: "nav-link", title: "Manage restaurant category" do %>
+              <i class="fas fa-tasks"></i>  Restaurant Categories
+            <% end %>
+          </li>
+
         <% end %>
         </li>
       </ul>
-    </div>
-
-
-    <div class="col-md-6 mx-3 my-3" id="my-reviews">
-      <%= render @reviews %>
-      <%= will_paginate @reviews %>
     </div>
   </div>
 </div>

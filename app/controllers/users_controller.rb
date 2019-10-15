@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, except: :create
+
   before_action :find_user_by_email, only: :create
   before_action :find_user, only: [ :show, :edit, :update ]
 
@@ -25,6 +26,11 @@ class UsersController < ApplicationController
   end
 
   def edit
+    if current_user.id == @user.id
+      render :edit
+    else
+      redirect_to user_path(current_user)
+    end
   end
 
   def update

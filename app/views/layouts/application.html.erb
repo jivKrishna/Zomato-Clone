@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ZomatoClone</title>
+    <link rel="shortcut icon" type="image/x-icon" href="assets/icon.png">
+    <title><%= @page_title %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -12,19 +13,33 @@
 
   <body class="bg-color">
     <header class="container-fluid">
-      <nav class="navbar navbar-expand-lg navbar-light bg-red">
+      <nav class="navbar navbar-expand-lg navbar-light bg-red margin-0">
         <div class="container">
-          <%= link_to "Zomato Clone", root_path, class: "font-weight-bold h4 text-white mx-3" %>
-
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Toggler" aria-controls="Toggler" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-
-          <div class="collapse navbar-collapse" id="Toggler">
-            <ul class="navbar-nav mr-auto">
-            </ul>
-          </div>
+          <%= link_to "Zomato Clone", root_path, class: "font-weight-bold h4 text-white" %>
         </div>
+
+        <% if signed_in? && @page_title != "Zomato Clone" %>
+          <%= form_tag root_path, class: "navbar-form d-flex form-size", role: "search", method: :get do |f| %>
+            <%= text_field_tag :q, params[:q], placeholder: "Search here", class: "form-size" %>
+
+            <%= button_tag "search", class: "btn btn-danger border-white" , name: nil %>
+          <% end %>
+
+          <div class="nav-item dropdown ml-4 my-2 ">
+            <a class="nav-link dropdown-toggle container-border my-n1" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <%= image_tag current_user.image.url, class: "small-icon rounded-circle" %>
+              <%= current_user.name.split.first %>
+            </a>
+
+            <span class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <%= link_to "Profile", user_path(current_user), class: "dropdown-item nav-link" %>
+              <%= link_to "Add Info", edit_user_path(current_user), class: "dropdown-item" %> 
+              <%= link_to "My bookings", restaurant_orders_path(current_user.orders), class: "dropdown-item" %>                  
+              <%= link_to "My bookings", restaurant_tables_path(current_user.tables), class: "dropdown-item" %>
+              <%= link_to "Log Out", signout_path, method: :delete, class: "dropdown-item" %>
+            </span>
+          </div>
+        <% end %>
       </nav>
     </header>
 

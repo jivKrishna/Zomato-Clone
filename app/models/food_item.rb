@@ -2,6 +2,14 @@ class FoodItem < ApplicationRecord
   belongs_to :food_category
   belongs_to :restaurant
   has_many :order_items, dependent: :destroy
+  
+  #for implementing elastic serach
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+
+  index_name Rails.application.class.parent_name.underscore
+  document_type self.name.downcase
+  #---------------------------------
 
   enum         veg: [ :veg, :egg, :non_veg ]
 
