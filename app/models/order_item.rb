@@ -3,12 +3,12 @@ class OrderItem < ApplicationRecord
   belongs_to :order
 
   #for implementing elastic serach
-  include Elasticsearch::Model
-  include Elasticsearch::Model::Callbacks
+  # include Elasticsearch::Model
+  # include Elasticsearch::Model::Callbacks
 
-  index_name Rails.application.class.parent_name.underscore
-  document_type self.name.downcase
-#---------------------------------
+  # index_name Rails.application.class.parent_name.underscore
+  # document_type self.name.downcase
+  #---------------------------------
 
   before_save :do_subtotal
 

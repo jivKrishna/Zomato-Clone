@@ -7,7 +7,7 @@ require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
-require("jquery.raty")
+require("raty-js/lib/jquery.raty")
 require("jquery-timepicker/jquery.timepicker")
 require("bootstrap-datepicker/dist/js/bootstrap-datepicker.min")
 require("lightbox2/dist/js/lightbox.min.js")
@@ -45,7 +45,7 @@ $(document).ready(function(){
   });
 
   $("#rating_form").raty({
-    path: "/assets/",
+    starType: 'i',
     scoreName: "review[rating]"
   });
 
@@ -54,7 +54,7 @@ $(document).ready(function(){
     score: function() {
     return $(this).attr("data-score");
     },
-    path: "/assets/"
+    starType: 'i'
   });
 
   $('input.timepicker').timepicker({
@@ -63,34 +63,6 @@ $(document).ready(function(){
     "maxTime": "11:30pm"
   });
 
-  // $("#changePassword").click(function(){
-  //   $("#changeConatiner").show();
-  //   $("#password").show();
- 
-  // });
-
-  // $("#changeImage").click(function(){
-  //   $("#changeConatiner").show();
-  //   $("#password").hide();
-  //   $("#name").hide();
-  //   $("#phone").hide();
-  //   $("#image").show();
-  // });
-
-  // $("#changeName").click(function(){
-  //   $("#changeConatiner").show();
-  //   $("#password").hide();
-  //   $("#name").show();
-  //   $("#phone").hide();
-  //   $("#image").hide();
-  // });
-
-  // $("#changePhone").click(function(){
-  //   $("#changeConatiner").show();
-  //   $("#password").hide();
-  //   $("#name").hide();
-  //   $("#phone").show();
-  //   $("#image").hide();
-  // });
+  
 
 });

@@ -4,18 +4,21 @@ class SessionsController < ApplicationController
   def create_from_socialmedia
     auth = request.env["omniauth.auth"]
     session[:omniauth] = auth.except("extra")
-    user = User.find_by(provider: auth["provider"], uid: auth["uid"])
+    @user = User.find_by(provider: auth["provider"], uid: auth["uid"])
 
-    if user.nil?
-      user = User.create(
+    if @user.nil?
+      @user = User.create(
         name: auth["info"]["name"],
         email: auth["info"]["email"],
+        image: URI.parse(auth["info"]["image"]).open,
         provider: auth["provider"],
-        uid: auth["uid"]
+        uid: auth["uid"],
+        password: "",
+        password_confirmation: ""
       )
     end
     
-    session[:user_id] = user.id
+    session[:user_id] = @user.id
     redirect_to root_url, flash: { success: "Signed In successfully!" }
   end
 

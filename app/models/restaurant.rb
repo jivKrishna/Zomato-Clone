@@ -10,8 +10,15 @@ class Restaurant < ApplicationRecord
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
 
-  # index_name Rails.application.class.parent_name.underscore
-  # document_type self.name.downcase
+  def as_indexed_json(options={})
+    self.as_json( 
+      include: {
+        restaurant_category: { only: :name },
+        food_items: { only: [ :name, :veg, :price] },
+        menu_cards: { only: :description }
+      }
+    )
+  end
 #---------------------------------
 
   scope :order_by_name, ->{ order(:name) }
