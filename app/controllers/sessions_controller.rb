@@ -3,6 +3,9 @@ class SessionsController < ApplicationController
 
   def create_from_socialmedia
     auth = request.env["omniauth.auth"]
+
+        p auth
+
     session[:omniauth] = auth.except("extra")
     @user = User.find_by(provider: auth["provider"], uid: auth["uid"])
 
@@ -10,11 +13,11 @@ class SessionsController < ApplicationController
       @user = User.create(
         name: auth["info"]["name"],
         email: auth["info"]["email"],
-        image: URI.parse(auth["info"]["image"]).open,
         provider: auth["provider"],
+        image: URI.parse(auth["info"]["image"]).open,
         uid: auth["uid"],
-        password: "",
-        password_confirmation: ""
+        password: auth["uid"],
+        password_confirmation: auth["uid"]
       )
     end
     

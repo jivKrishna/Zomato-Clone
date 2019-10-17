@@ -1,12 +1,10 @@
-<div class="col-md-4">
+<div class="col-md-4 my-2">
   <div class="thumbnail container-border bg-white ">
     <%= link_to restaurant, class: "nav-link" do %>
       <%= image_tag restaurant.image.url, class: "responsive img-middle rounded-top" %>
       <div class="caption">
-        <small class="text-secondary"><%= restaurant.restaurant_category.name %></small>
-        <h3 class="text-dark font-weight-bold"><%= restaurant.name %></h3>
-        <small class="text-secondary"><%= restaurant.address %></small>
-
+        <p class="text-secondary small"><%= restaurant.restaurant_category.name %></p>
+        
         <div class=" float-right mt-n3">
           <% if restaurant.reviews.approved.count == 0 %>
             <span class="font-weight-bold bg-secondary text-white rounded-circle p-2">NEW</span>
@@ -16,6 +14,8 @@
             </span>
           <% end %>
         </div>
+        <h3 class="text-dark font-weight-bold"><%= restaurant.name %></h3>
+        <small class="text-secondary"><%= restaurant.address %></small>
 
         <% if is_admin? %>
         <div class="float-right btn-group">

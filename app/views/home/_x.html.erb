@@ -69,11 +69,6 @@
              type="text"/>
     </div>
 
-    <!-- Note: The address components in this sample are typical. You might need to adjust them for
-               the locations relevant to your app. For more information, see
-         https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform
-    -->
-
     <table id="address">
       <tr>
         <td class="label">Street address</td>
@@ -166,6 +161,71 @@ function geolocate() {
     });
   }
 }
+</script>
     
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJPhWNqd4qpyvyH_VnXqINMhFxPPRyf8Q&callback=initMap"
+    async defer></script>
   </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="col-md-8">
+      <%= form_tag restaurant_food_items_path(@restaurant, @restaurant.food_items), role: "search", method: :get do |f| %>
+        <div class="form-group my-4">
+          <div class="d-flex">
+              <%= text_field_tag :q, params[:q], placeholder: "Search here", class: "form-control" %> 
+            </span>
+            <span class="col-2">
+              <%= button_tag "search", class: "btn btn-danger", name: nil %>
+            </span>
+          </div>
+        </div>
+      <% end %>
+
+      <table class="table">
+        <tbody>
+          <% @food_items.each do |food_item| %>
+            <tr>
+              <td>
+                <%= link_to restaurant_food_item_path(food_item.restaurant ,food_item), class: "text-dark" do %>
+                  <% if food_item.veg? %>
+                              <%= image_tag "veg-icon.png", class: "veg-icon" %>
+                  <% else %>
+                              <%= image_tag "nonveg-icon.png", class: "nonveg-icon" %>
+                  <% end %>
+                           
+                  <%= food_item.name %>
+                <% end %>
+              </td>
+              <td><%= number_to_currency( food_item.price ) %></td>
+              <td align="right">
+                <%= form_for( [ food_item.restaurant, food_item, current_order.order_items.build ] ) do  |f| %>
+                  <%= f.number_field :quantity, min: 1, placeholder: "Enter quantity", class: "quantity-input" %>
+                  <%= f.submit "Add to Cart", class: "btn btn-success" %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  

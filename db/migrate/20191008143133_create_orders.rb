@@ -6,6 +6,7 @@ class CreateOrders < ActiveRecord::Migration[6.0]
       t.float       :total_price,  null: false,   default: 0
       t.integer     :status,       null: false,   default: 0
       t.datetime    :placed_at
+      t.string      :address
       t.float       :latitude
       t.float       :longitude
 

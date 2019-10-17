@@ -56,8 +56,81 @@ RestaurantCategory.all.each do |restaurant_category|
       serve_alcohal:          Faker::Boolean.boolean
     )
   end
+
+    restaurant_category.restaurant.create(
+      name:                   Faker::Restaurant.name,
+      # image:                  URI.parse(Faker::Placeholdit.image).open,
+      email:                  Faker::Internet.unique.email,
+      city:                   "Serampore",
+      address:                "Serampore, 712201",
+      phone_number:           Faker::PhoneNumber.cell_phone,
+      secondary_phone_number: Faker::PhoneNumber.cell_phone,
+      owner_email:            Faker::Internet.unique.email,
+      owner_phone_number:     Faker::PhoneNumber.cell_phone,
+      website:                Faker::Internet.domain_name,
+      serve_alcohal:          Faker::Boolean.boolean
+    )
+
+
+    restaurant_category.restaurant.create(
+      name:                   Faker::Restaurant.name,
+      # image:                  URI.parse(Faker::Placeholdit.image).open,
+      email:                  Faker::Internet.unique.email,
+      city:                   "Kolkata",
+      address:                "Kolkata, Newtown",
+      phone_number:           Faker::PhoneNumber.cell_phone,
+      secondary_phone_number: Faker::PhoneNumber.cell_phone,
+      owner_email:            Faker::Internet.unique.email,
+      owner_phone_number:     Faker::PhoneNumber.cell_phone,
+      website:                Faker::Internet.domain_name,
+      serve_alcohal:          Faker::Boolean.boolean
+    )
+
+    restaurant_category.restaurant.create(
+      name:                   Faker::Restaurant.name,
+      # image:                  URI.parse(Faker::Placeholdit.image).open,
+      email:                  Faker::Internet.unique.email,
+      city:                   "Kolkata",
+      address:                "Kolkata, Newtown",
+      phone_number:           Faker::PhoneNumber.cell_phone,
+      secondary_phone_number: Faker::PhoneNumber.cell_phone,
+      owner_email:            Faker::Internet.unique.email,
+      owner_phone_number:     Faker::PhoneNumber.cell_phone,
+      website:                Faker::Internet.domain_name,
+      serve_alcohal:          Faker::Boolean.boolean
+    )
+
+    restaurant_category.restaurant.create(
+      name:                   Faker::Restaurant.name,
+      # image:                  URI.parse(Faker::Placeholdit.image).open,
+      email:                  Faker::Internet.unique.email,
+      city:                   "Kolkata",
+      address:                "Kolkata, Rajarhat",
+      phone_number:           Faker::PhoneNumber.cell_phone,
+      secondary_phone_number: Faker::PhoneNumber.cell_phone,
+      owner_email:            Faker::Internet.unique.email,
+      owner_phone_number:     Faker::PhoneNumber.cell_phone,
+      website:                Faker::Internet.domain_name,
+      serve_alcohal:          Faker::Boolean.boolean
+    )
+
+    restaurant_category.restaurant.create(
+      name:                   Faker::Restaurant.name,
+      # image:                  URI.parse(Faker::Placeholdit.image).open,
+      email:                  Faker::Internet.unique.email,
+      city:                   "Howrah",
+      address:                "Howrah, Liluah",
+      phone_number:           Faker::PhoneNumber.cell_phone,
+      secondary_phone_number: Faker::PhoneNumber.cell_phone,
+      owner_email:            Faker::Internet.unique.email,
+      owner_phone_number:     Faker::PhoneNumber.cell_phone,
+      website:                Faker::Internet.domain_name,
+      serve_alcohal:          Faker::Boolean.boolean
+    )
 end
 puts "for each restaurant category 2 to 8 restaurants created..."
+puts "Near by Kolkata 5 restaurants created..."
+
 
 #Food Category
 i = 1
@@ -102,3 +175,5 @@ User.all.each do |user|
   end
 end
 puts "For each user and for each restaurant 1 to 9 reviews created..."
+
+Restaurant.import

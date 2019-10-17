@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 2019_10_11_095722) do
     t.float "total_price", default: 0.0, null: false
     t.integer "status", default: 0, null: false
     t.datetime "placed_at"
+    t.string "address"
     t.float "latitude"
     t.float "longitude"
     t.datetime "created_at", precision: 6, null: false

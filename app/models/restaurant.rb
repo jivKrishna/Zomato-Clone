@@ -6,6 +6,9 @@ class Restaurant < ApplicationRecord
   has_many :orders,     dependent: :destroy
   has_many :menu_cards, dependent: :destroy
 
+  geocoded_by :address
+  after_validation :geocode
+
 #for implementing elastic serach
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
@@ -26,6 +29,7 @@ class Restaurant < ApplicationRecord
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   before_save { self.email = email.downcase }
   before_save { self.owner_email = owner_email.downcase }
+  # before_validation ->{ self.city = Geocoder.search(self.address).first.city }
 
   validates :name,     :city,    :address,        presence: true, length: { minimum: 3 }
   validates :owner_phone_number, :phone_number,   presence: true, length: { minimum: 10 }
