@@ -11,9 +11,9 @@ class MenuCardsController < ApplicationController
     @menu_card = @restaurant.menu_cards.create(menu_card_params)
 
     if @menu_card.save
-      redirect_to restaurant_menu_cards_path(@restaurant), flash: { success: "Menu added successfully!" }
+      redirect_back fallback_location: restaurant_menu_cards_path(@restaurant), flash: { success: "Menu added successfully!" }
     else
-      redirect_to restaurant_menu_cards_path(@restaurant), flash: { danger: "Something missed!" }     
+      redirect_back fallback_location: restaurant_menu_cards_path(@restaurant), flash: { danger: "Something missed!" }     
     end
   end
 
@@ -24,7 +24,7 @@ class MenuCardsController < ApplicationController
     if @menu_card.update(menu_card_params)
       redirect_to restaurant_menu_cards_path(@menu_card.restaurant), flash: { success: "Menu updated successfully!" }
     else
-      redirect_to restaurant_menu_cards_path(@restaurant), flash: { danger: "Something missed!" }
+      redirect_back fallback_location: restaurant_menu_cards_path(@restaurant), flash: { danger: "Something missed!" }
     end
   end
 
@@ -32,7 +32,7 @@ class MenuCardsController < ApplicationController
     if @menu_card.destroy
       redirect_to restaurant_menu_cards_path(@restaurant), flash: { success: "Menu deleted successfully!" }
     else
-      redirect_to restaurant_menu_cards_path(@restaurant), flash: { danger: "Something missed!" }
+      redirect_back fallback_location: restaurant_menu_cards_path(@restaurant), flash: { danger: "Something missed!" }
     end
   end
 

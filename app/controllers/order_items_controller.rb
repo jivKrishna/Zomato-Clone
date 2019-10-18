@@ -9,21 +9,21 @@ class OrderItemsController < ApplicationController
 
     if @order_item.save
       current_order.save
-      redirect_to restaurant_food_items_path( @food_item.restaurant, @food_item )
+      redirect_back fallback_location: restaurant_food_items_path( @food_item.restaurant, @food_item )
     end  
   end
 
   def update
     if @order_item.update(quantity: params[:order_item][:quantity])
       current_order.save
-      redirect_to restaurant_food_items_path( @food_item.restaurant, @food_item )
+      redirect_back fallback_location: restaurant_food_items_path( @food_item.restaurant, @food_item )
     end
   end
 
   def destroy
     if @order_item.destroy
       current_order.save
-      redirect_to restaurant_food_items_path( @food_item.restaurant, @food_item )
+      redirect_back fallback_location: restaurant_food_items_path( @food_item.restaurant, @food_item )
     end
   end
 

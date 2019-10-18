@@ -15,7 +15,7 @@ class OrdersController < ApplicationController
     if @order.update(status: 2)
       redirect_to restaurant_orders_path, flash: { success: "Your order is successfully delivered!" }
     else
-      redirect_to restaurant_orders_path, flash: { danger: "Something went wrong!" }
+      redirect_back fallback_location: restaurant_orders_path, flash: { danger: "Something went wrong!" }
     end
   end
 
@@ -24,16 +24,16 @@ class OrdersController < ApplicationController
     if @order.destroy
       redirect_to restaurant_orders_path, flash: { success: "Your order have been canceled successfully!" }
     else
-      redirect_to restaurant_orders_path, flash: { danger: "Something went wrong!" }
+      redirect_back fallback_location: restaurant_orders_path, flash: { danger: "Something went wrong!" }
     end
   end
 
   def place_order
     if current_order.update(status: 1, placed_at: Time.now)
       session[:order_id] = nil
-      redirect_to restaurant_orders_path, flash: { success: "Successfully placed order!" }
+      redirect_back fallback_location: restaurant_orders_path, flash: { success: "Successfully placed order!" }
     else
-      redirect_to restaurant_orders_path, flash: { danger: "Something went wrong!" }
+      redirect_back fallback_location: restaurant_orders_path, flash: { danger: "Something went wrong!" }
     end
   end
 

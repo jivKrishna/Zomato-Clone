@@ -28,7 +28,7 @@ class TablesController < ApplicationController
 
   def update
     if @table.update(table_params)
-      redirect_to restaurant_tables_path
+      redirect_back fallback_location: restaurant_tables_path
     else
       render :new
     end

@@ -45,7 +45,7 @@ class RestaurantsController < ApplicationController
 
   def update
     if @restaurant.update(restaurant_params)
-      redirect_to restaurant_path(@restaurant), flash: { success: "Successfully updated restaurant info!" }
+      redirect_back fallback_location: restaurant_path(@restaurant), flash: { success: "Successfully updated restaurant info!" }
     else
       flash[:danger] = "Something missed!"
       render :edit
@@ -54,7 +54,9 @@ class RestaurantsController < ApplicationController
 
   def destroy
     if @restaurant.destroy
-      redirect_to restaurants_path, flash: { success: "Successfully deleted restaurant info!" }
+      redirect_back fallback_location: restaurants_path, flash: { success: "Successfully deleted restaurant info!" }
+    else
+      redirect_back fallback_location: restaurant_path, flash: { danger: "Something missed!" }
     end
   end
 

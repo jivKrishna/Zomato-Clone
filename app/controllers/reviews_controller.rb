@@ -9,9 +9,9 @@ class ReviewsController < ApplicationController
     @review.user_id = current_user.id
 
     if @review.save
-      redirect_to @restaurant
+      redirect_to @restaurant, flash: { success: "You have commented!" }
     else
-      redirect_to @restaurant, flash: { danger: "Something you have missed" }
+      redirect_back fallback_location: @restaurant, flash: { danger: "Something you have missed" }
     end
   end
 
@@ -29,17 +29,17 @@ class ReviewsController < ApplicationController
 
   def destroy
     if @review.destroy
-      redirect_to @restaurant, flash: { success: "Successfully deleted!" }
+      redirect_back fallback_location: @restaurant, flash: { success: "Successfully deleted!" }
     else
-      redirect_to @restaurant, flash: { danger: "Something gonna wrong!" }
+      redirect_back fallback_location: @restaurant, flash: { danger: "Something gonna wrong!" }
     end
   end
 
   def approve_review
     if @review.update(approve: "approved")
-      redirect_to @restaurant, flash: { success: "Successfully approved!" }
+      redirect_back fallback_location: @restaurant, flash: { success: "Successfully approved!" }
     else
-      redirect_to @restaurant, flash: { danger: "Something gonna wrong!" }
+      redirect_back fallback_location: @restaurant, flash: { danger: "Something gonna wrong!" }
     end
   end
 

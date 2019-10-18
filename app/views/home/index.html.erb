@@ -12,8 +12,8 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <%= link_to "Profile", user_path(current_user), class: "dropdown-item" %>
             <%= link_to "Add Info", edit_user_path(current_user), class: "dropdown-item" %> 
-            <%= link_to "My bookings", restaurant_orders_path(current_user.orders), class: "dropdown-item" %>                  
-            <%= link_to "My bookings", restaurant_tables_path(current_user.tables), class: "dropdown-item" %>
+            <%= link_to "My Orders", restaurant_orders_path(current_user.orders), class: "dropdown-item" %>                  
+            <%= link_to "My Bookings", restaurant_tables_path(current_user.tables), class: "dropdown-item" %>
             <%= link_to "Log Out", signout_path, method: :delete, class: "dropdown-item" %>
           </div>
         </div>

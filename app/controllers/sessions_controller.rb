@@ -22,7 +22,7 @@ class SessionsController < ApplicationController
     end
     
     session[:user_id] = @user.id
-    redirect_to root_url, flash: { success: "Signed In successfully!" }
+    redirect_back fallback_location: root_url, flash: { success: "Signed In successfully!" }
   end
 
 
@@ -34,10 +34,10 @@ class SessionsController < ApplicationController
       if is_admin?
         redirect_to user_path(current_user), flash: { success: "Signed In as Admin!" }
       else
-        redirect_to root_path, flash: { success: "Signed In successfully!" }
+        redirect_back fallback_location: root_path, flash: { success: "Signed In successfully!" }
       end
     else
-      redirect_to root_path, flash: { warning: "Invalid email/password" }
+      redirect_back fallback_location: root_path, flash: { warning: "Invalid email/password" }
     end
   end
 
