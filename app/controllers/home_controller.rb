@@ -3,13 +3,12 @@ class HomeController < ApplicationController
 
   def index
     @user = User.new
-    @cities = Restaurant.distinct.pluck([:city])
 
     #search restaurant using elastic search
     @restaurants = Restaurant.search(( params[:q].present? ? params[:q] : "*" )).records
 
-    #search restaurant nearby place
-    @restaurant_nearby = Restaurant.near(params[:city]) if params[:city].present?
+    #search restaurant near by place within 25km circle.
+    @restaurant_nearby = Restaurant.near(params[:near], 25).order(distance: :asc, name: :asc) if params[:near].present?
   end
 
   private

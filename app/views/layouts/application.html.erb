@@ -8,7 +8,7 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'load' %>
   </head>
 
   <body class="bg-color">
@@ -20,18 +20,18 @@
 
         <% if signed_in? && @page_title != "Zomato Clone" %>
           <%= form_tag root_path, class: "navbar-form d-flex form-size", role: "search", method: :get do |f| %>
-            <%= text_field_tag :q, params[:q], placeholder: "Search here", class: "form-size" %>
+            <%= text_field_tag :q, params[:q], placeholder: "Search Restaurant by Category, food, city etc.", class: "form-size" %>
 
             <%= button_tag "search", class: "btn btn-danger border-white" , name: nil %>
           <% end %>
 
           <div class="nav-item dropdown ml-4 my-2 ">
-            <a class="nav-link dropdown-toggle container-border my-n1" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle container-border my-n1 text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <%= image_tag current_user.image.url, class: "small-icon rounded-circle" %>
               <%= current_user.name.split.first %>
             </a>
 
-            <span class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <span class="dropdown-menu my-3 ml-n3" aria-labelledby="navbarDropdown">
               <%= link_to "Profile", user_path(current_user), class: "dropdown-item" %>
               <%= link_to "Add Info", edit_user_path(current_user), class: "dropdown-item" %> 
               <%= link_to "My bookings", restaurant_orders_path(current_user.orders), class: "dropdown-item" %>                  

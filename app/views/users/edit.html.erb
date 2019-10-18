@@ -16,7 +16,7 @@
 
 <div class="container container-size my-4">
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-2">
       
     </div>
 
@@ -57,19 +57,38 @@
             <h5 class="font-weight-bold">Change password</h5>
             <div class="form-group">
               <%= f.label :password %>
-              <%= f.password_field :password, class: "form-control" %>
+              <%= f.password_field :password, placeholder: "For change password", class: "form-control" %>
             </div>
             <div class="form-group">
               <%= f.label :password_confirmation %>
-              <%= f.password_field :password_confirmation, class: "form-control" %>
+              <%= f.password_field :password_confirmation, placeholder: "password confirmation for change password", class: "form-control" %>
             </div>
           </div>
 
           <div id="btn">
-            <%= f.submit "Update", class: "btn btn-danger" %>
+            <%= f.submit "Save changes", class: "btn btn-primary" %>
             <%= link_to "Back", user_path(@user), class: "btn btn-secondary" %>
           </div>
         <% end %>
+      </div>
+    </div>
+
+    <div class="col-md-3 ml-auto">
+      <div class="container-border bg-white px-4 py-3">
+        <h5 class="font-weight-bold">How it works</h5>
+        <ul>
+          <li class="small my-2">If you want to change only <strong class="text-danger">profile name</strong>, then fill only <strong class="text-danger">change profile name</strong> field.</li>
+
+          <li class="small my-2">If you want to change / add only <strong class="text-danger">profile pics</strong>, then fill only <strong class="text-danger">change profile image</strong> field.</li>
+
+          <li class="small my-2">If you want to change / add only <strong class="text-danger">phone number</strong>, then fill only <strong class="text-danger">change Phone number</strong> field.</li>
+
+          <li class="small my-2">If you want to change only <strong class="text-danger">password</strong> then fill only <strong class="text-danger">change password</strong> fields and that will work only sign up using <strong class="text-danger">Facebook or Google</strong>.</li>
+
+          <li class="small my-2">If you want to cahnge <strong class="text-primary">multiple fields</strong>, then fill <strong class="text-danger">multiple fields</strong>.</li>
+
+          <li class="small my-2">At last press <strong class="text-primary">Save changes</strong> button to save changes.</li>
+        </ul>
       </div>
     </div>
   </div>

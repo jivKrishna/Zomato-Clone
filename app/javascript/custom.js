@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).on('turbolinks:load', function(){
   let btnText = "- See less fields";
   $("#more-less").click(function(){
     btnBeforeText = $("#more-less").text();

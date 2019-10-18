@@ -57,7 +57,7 @@ RestaurantCategory.all.each do |restaurant_category|
     )
   end
 
-    restaurant_category.restaurant.create(
+    restaurant_category.restaurants.create(
       name:                   Faker::Restaurant.name,
       # image:                  URI.parse(Faker::Placeholdit.image).open,
       email:                  Faker::Internet.unique.email,
@@ -72,7 +72,7 @@ RestaurantCategory.all.each do |restaurant_category|
     )
 
 
-    restaurant_category.restaurant.create(
+    restaurant_category.restaurants.create(
       name:                   Faker::Restaurant.name,
       # image:                  URI.parse(Faker::Placeholdit.image).open,
       email:                  Faker::Internet.unique.email,
@@ -86,7 +86,7 @@ RestaurantCategory.all.each do |restaurant_category|
       serve_alcohal:          Faker::Boolean.boolean
     )
 
-    restaurant_category.restaurant.create(
+    restaurant_category.restaurants.create(
       name:                   Faker::Restaurant.name,
       # image:                  URI.parse(Faker::Placeholdit.image).open,
       email:                  Faker::Internet.unique.email,
@@ -100,7 +100,7 @@ RestaurantCategory.all.each do |restaurant_category|
       serve_alcohal:          Faker::Boolean.boolean
     )
 
-    restaurant_category.restaurant.create(
+    restaurant_category.restaurants.create(
       name:                   Faker::Restaurant.name,
       # image:                  URI.parse(Faker::Placeholdit.image).open,
       email:                  Faker::Internet.unique.email,
@@ -114,7 +114,7 @@ RestaurantCategory.all.each do |restaurant_category|
       serve_alcohal:          Faker::Boolean.boolean
     )
 
-    restaurant_category.restaurant.create(
+    restaurant_category.restaurants.create(
       name:                   Faker::Restaurant.name,
       # image:                  URI.parse(Faker::Placeholdit.image).open,
       email:                  Faker::Internet.unique.email,
