@@ -15,8 +15,8 @@
 </div>
 
 <div class="container container-size my-4">
-  <div class="row">
-    <div class="col-md-3">
+  <div class="d-md-flex justify-content-between">
+    <div class="col-md-3 ml-n3">
       <h6 class="font-weight-bold text-center">Activity!</h6>
       <ul class="navbar-nav bg-white container-border px-2 mx-n3">
         <% if current_user.id == @user.id %>
@@ -48,12 +48,12 @@
     </div>
 
 
-    <div class="col-md-5 my-3 m-auto" id="my-reviews">
+    <div class="col-md-6 my-3" id="my-reviews">
       <%= render @reviews %>
       <%= will_paginate @reviews %>
     </div>
 
-    <div class="col-md-3 ml-auto">
+    <div class="col-md-3 mr-n3">
       <% if is_admin? && current_user.id == @user.id %>
         <h6 class="font-weight-bold text-center">Admin!</h6>
       <% end %>
@@ -75,6 +75,12 @@
           <li class="nav-item link">
             <%= link_to restaurant_categories_path, class: "nav-link", title: "Manage restaurant category" do %>
               <i class="fas fa-tasks"></i>  Restaurant Categories
+            <% end %>
+          </li>
+
+          <li class="nav-item link">
+            <%= link_to food_categories_path, class: "nav-link", title: "Manage food category" do %>
+              <i class="fas fa-tasks"></i>  Food Categories
             <% end %>
           </li>
 

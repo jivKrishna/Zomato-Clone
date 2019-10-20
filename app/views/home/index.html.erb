@@ -26,23 +26,14 @@
 
 <div class="container container-size">
   <div class="container row">
-    <div class="col-md-7">
+    <div class="col-md-10">
       <%= form_tag root_path, role: "search", method: :get do |f| %>
         <div class="form-group my-4">
-          <div class="d-flex">
-            <%= text_field_tag :q, params[:q], placeholder: "Search Restaurant by Category, food, city etc.", class: "form-control" %> 
-            <%= button_tag "search", class: "btn btn-danger", name: nil %>
-          </div>
-        </div>
-      <% end %>
-    </div>
-
-    <div class="col-md-5 ml-auto">
-      <%= form_tag root_path, role: "search", method: :get do |f| %>
-        <div class="form-group my-4">
-          <div class="d-flex">
-            <%= text_field_tag :near, params[:near], placeholder: "Search near by restaurant", class: "form-control" %> 
-            <%= button_tag "find", class: "btn btn-secondary", name: nil %>
+          <div class="d-flex justify-space-between">
+            <%= hidden_field_tag :location, params[:location] %>
+            <%= text_field_tag :near, params[:near], placeholder: "Enter location if needed", class: "form-control" %>
+            <%= text_field_tag :q, params[:q], placeholder: "Search Restaurant by Category, food, city etc.", class: "form-control" %>
+            <%= button_tag "search", class: "btn btn-danger", id: "search" %>
           </div>
         </div>
       <% end %>
@@ -50,28 +41,38 @@
   </div>
 
 
-  <% if @restaurant_nearby.present? && params[:near].present? %>
-    <h6 class="font-weight-bold my-3 text-success">Restaurant near by "<%= params[:near] %>"</h6>
-  <% elsif @restaurant_nearby.blank? && params[:near].present? %>
-    <h6 class="font-weight-bold my-3 text-danger">Not Found any restaurant near by "<%= params[:near] %>"</h6>
-  <% end %>
-
-  <% if @restaurants.present? && params[:q].present? %>
-    <h6 class="font-weight-bold my-3 text-success">Found restaurants for keyword "<%= params[:q] %>"</h6>
-  <% elsif @restaurants.blank? && params[:q].present? %>
-    <h6 class="font-weight-bold my-3 text-danger">Not Found any restaurant for keyword "<%= params[:q] %>"</h6>
+  <% if @restaurant_nearby.present? && params[:near].present? && params[:q].blank? %>
+    <h6 class="font-weight-bold my-3 text-success">
+      Restaurant near by 
+      <span class="text-danger"><%= params[:near] %></span>
+    </h6>
+  <% elsif @restaurant_nearby.present? && params[:near].present? && params[:q].present? %>
+    <h6 class="font-weight-bold my-3 text-success">
+      Restaurant near by 
+      <span class="text-danger"><%= params[:near] %></span> 
+      contains keyword 
+      <span class="text-danger"><%= params[:q] %></span>.
+    </h6>
+  <% elsif @restaurant_nearby.present? && params[:near].blank? && params[:q].present? %>
+    <h6 class="font-weight-bold my-3 text-success">
+      Restaurant near by contains keyword 
+      <span class="text-danger"><%= params[:q] %></span>.
+    </h6>
+  <% elsif @restaurant_nearby.blank? %>
+    <h6 class="font-weight-bold my-3 text-danger">
+      Not found restaurant near by 
+      <span class="text-success"><%= params[:near] %></span> 
+      contains keyword 
+      <span class="text-success"><%= params[:q] %></span>.
+    </h6>
   <% end %>
 
   <div class="row">
-
     <% if @restaurant_nearby.present? %>
       <%= render @restaurant_nearby %>
     <% end %>
-
-    <% if @restaurants %>
-      <%= render @restaurants %>
-    <% end %>
   </div>
+  <%= will_paginate @restaurant_nearby %>
 </div>
 
 <div class="modal fade my-5" id="AccountModal" tabindex="-1" role="dialog" aria-labelledby="AccountModalLabel" aria-hidden="true">

@@ -37,4 +37,10 @@ $(document).on('turbolinks:load', function(){
     "minTime": "10:00am",
     "maxTime": "11:30pm"
   });
+
+  if(navigator.geolocation){
+    navigator.geolocation.getCurrentPosition(function(position){
+      $("#location").val([ position.coords.latitude, position.coords.longitude ]);
+    });
+  }
 });

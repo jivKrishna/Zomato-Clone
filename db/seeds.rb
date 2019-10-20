@@ -32,16 +32,16 @@ end
 puts "10 Users created..."
 
 #10 restaurants category
-10.times do 
+rand(5..8).times do 
   RestaurantCategory.create(
     name:                     Faker::Restaurant.type
   )
 end
-puts "10 restaurant categories created..."
+puts "5 to 8 restaurant categories created..."
 
 #For each restaurant categories 10 restaurants 
 RestaurantCategory.all.each do |restaurant_category|
-  rand(2..8).times do
+  rand(4..8).times do
     restaurant_category.restaurants.create(
       name:                   Faker::Restaurant.name,
       # image:                  URI.parse(Faker::Placeholdit.image).open,
@@ -128,19 +128,44 @@ RestaurantCategory.all.each do |restaurant_category|
       serve_alcohal:          Faker::Boolean.boolean
     )
 end
-puts "for each restaurant category 2 to 8 restaurants created..."
+puts "for each restaurant category 4 to 8 restaurants created..."
 puts "Near by Kolkata 5 restaurants created..."
 
 
 #Food Category
-i = 1
-10.times do 
-  FoodCategory.create(
-    name:                     "Food-category-#{i}"
-  )
-  i += 1
-end
-puts "10 Food Categories created..."
+FoodCategory.create(
+  name:                     "Snacks"
+)
+
+FoodCategory.create(
+  name:                     "Cafe"
+)
+
+FoodCategory.create(
+  name:                     "Vegitables"
+)
+
+FoodCategory.create(
+  name:                     "Ice Cream"
+)
+
+FoodCategory.create(
+  name:                     "Ice Cream"
+)
+
+FoodCategory.create(
+  name:                     "Spicy"
+)
+
+FoodCategory.create(
+  name:                     "Fast food"
+)
+
+FoodCategory.create(
+  name:                     "Sweets"
+)
+
+puts "7 Food Categories created..."
 
 #food items
 Restaurant.all.each do |restaurant| 

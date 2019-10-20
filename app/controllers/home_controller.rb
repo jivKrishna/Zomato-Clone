@@ -4,11 +4,13 @@ class HomeController < ApplicationController
   def index
     @user = User.new
 
-    #search restaurant using elastic search
-    @restaurants = Restaurant.search(( params[:q].present? ? params[:q] : "*" )).records
+    #search restaurant using elastic search nearest or given location
+    restaurants = Restaurant.search(( params[:q].present? ? params[:q] : "*" ), size: 1000)
+                  .records.near(( params[:near].present? ? params[:near] : params[:location] ), 25)
+    # @restaurants = Restaurant.
+    @restaurant_nearby = restaurants.paginate(page: params[:page], per_page: 6)
 
-    #search restaurant near by place within 25km circle.
-    @restaurant_nearby = Restaurant.near(params[:near], 25).order(distance: :asc, name: :asc) if params[:near].present?
+    # @restaurant_nearby = Restaurant.search(params[:q], size: 100).records.near("Rishra").order(distance: :asc, name: :asc).paginate(page:params[:page], per_page: 12 )
   end
 
   private

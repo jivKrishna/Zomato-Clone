@@ -1,0 +1,63 @@
+<% @page_title = "Food Category" %>
+
+<div class="container">
+  <div class="row container-size my-4">
+    <div class="col-md-8 container-border bg-white">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Edit/remove</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @food_categories.each do |food_category| %>
+              <tr>
+                <td><%= food_category.name %></td>
+                <td class="btn-group">
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#update_category_<%= food_category.id %>">
+                    <i class="fas fa-edit"></i>
+                  </button>
+
+                  <div>
+                    <%= form_for(food_category) do |f| %>
+                      <div class="modal fade my-5" id="update_category_<%= food_category.id %>" tabindex="-1" role="dialog" aria-labelledby="newcategoryModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-sm" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title font-weight-bold" id="newcategoryModalLabel">Change Category Name</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <div class="form-group required">
+                                <%= f.label :name, class: "control-label" %>
+                                <%= f.text_field :name, class: "form-control" %>
+                              </div>
+
+                              <%= f.submit "Update", class: "form-control btn btn-danger" %>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    <% end %>
+                  </div>
+
+                  <%= link_to food_category, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" do %>
+                    <i class="fas fa-trash-alt"></i>
+                  <% end %>
+
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <%= will_paginate @food_categories %>
+    </div>
+
+    <div class="col-md-4 text-center">
+      <%= render "form" %>
+    </div>
+  </div>
+</div>

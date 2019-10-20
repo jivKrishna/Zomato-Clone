@@ -1,40 +1,40 @@
 <% @page_title = "Restaurant Category" %>
 
-<div class="container container-size">
-  <div class="text-center my-4 mx-3">
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newcategory">
-      Add New Category
-    </button>
-  </div>
-
+<div class="container container-size my-4">
   <div class="row">
-    <div class="col-md-8">
-      <div class="row container-size" id="container_category">
-        <table class="table">
-          <thead>
+    <div class="col-md-8 container-border bg-white">
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Edit/remove</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @restaurant_categories.each do |restaurant_category| %>
             <tr>
-              <th scope="col">Name</th>
-              <th scope="col">Edit/remove</th>
+              <td><%= restaurant_category.name %></td>
+              <td class="btn-group">
+                <%= render restaurant_category %>
+
+                <%= link_to restaurant_category, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" do %>
+                  <i class="fas fa-trash-alt"></i>
+                <% end %>
+
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            <% @restaurant_categories.each do |restaurant_category| %>
-              <tr>
-                <td><%= restaurant_category.name %></td>
-                <td class="btn-group">
-                  <%= render @restaurant_category %>
-
-                  <%= link_to restaurant_category, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" do %>
-                    <i class="fas fa-trash-alt"></i>
-                  <% end %>
-
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
+          <% end %>
+        </tbody>
+      </table>
+      
       <%= will_paginate @restaurant_categories %>
+    </div>
+
+    <div class="col-md-4 text-center">
+      <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#newcategory">
+        Add Restaurant Category
+      </button>
     </div>
   </div>
 </div>

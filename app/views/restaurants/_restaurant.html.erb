@@ -19,7 +19,15 @@
         
         <% if params[:near].present? %>
           <% if @restaurant_nearby.present? %>
-            <p class="font-weight-bold"><%= number_with_precision( restaurant.distance, precision: 1 ) %> km, away from <%= params[:near] %></p>
+            <p class="font-weight-bold">
+              <%= number_with_precision( restaurant.distance, precision: 1 ) %> km, away from <%= params[:near] %>
+            </p>
+          <% end %>
+        <% else %>
+          <% if @restaurant_nearby.present? %>
+            <p class="font-weight-bold">
+              <%= number_with_precision( restaurant.distance, precision: 1 ) %> km, away from current location
+            </p>
           <% end %>
         <% end %>
 
