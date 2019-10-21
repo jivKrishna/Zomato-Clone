@@ -137,8 +137,16 @@
   background-color: #efefef;
 }
 
-.form-size{
-  min-width: 550px;
+#near{
+  max-width: 150px;
+}
+
+#search{
+  padding: -15px;
+}
+
+#track{
+  padding: 12px;
 }
 
 @media screen and (max-width: 768px){

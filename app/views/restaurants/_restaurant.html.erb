@@ -33,7 +33,7 @@
 
         <% if @kolkata_restaurants.present? && @restaurant_nearby.blank? %>
           <p class="font-weight-bold">
-            <%= number_with_precision( restaurant.distance, precision: 1 ) %> km away
+            <%= number_with_precision( restaurant.distance, precision: 1 ) %> km away from Kolkata
           </p>
         <% end %>
 

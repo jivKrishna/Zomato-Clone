@@ -26,7 +26,9 @@
           <%= link_to "Book Table", new_restaurant_table_path(@restaurant), class: "btn btn-primary mt-2 mt-md-0" %>
           <%= link_to "Menu Card", restaurant_menu_cards_path(@restaurant), class: "btn btn-secondary mt-2 mt-md-0" %>
           <%= link_to "Photos", restaurant_photos_path(@restaurant), class: "btn btn-warning mt-2 mt-md-0" %>
-          <%= link_to "Edit", edit_restaurant_path(@restaurant), class: "btn btn-primary mt-2 mt-md-0" %>
+          <% if is_admin? %>
+            <%= link_to "Edit", edit_restaurant_path(@restaurant), class: "btn btn-primary mt-2 mt-md-0" %>
+          <% end %>
         </div>
       </div>
 
