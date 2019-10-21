@@ -45,7 +45,7 @@ class RestaurantsController < ApplicationController
 
   def update
     if @restaurant.update(restaurant_params)
-      redirect_back fallback_location: restaurant_path(@restaurant), flash: { success: "Successfully updated restaurant info!" }
+      redirect_to restaurant_path(@restaurant), flash: { success: "Successfully updated restaurant info!" }
     else
       flash[:danger] = "Something missed!"
       render :edit
