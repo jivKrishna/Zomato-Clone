@@ -137,6 +137,10 @@
   background-color: #efefef;
 }
 
+.form-size{
+  min-width: 550px;
+}
+
 @media screen and (max-width: 768px){
   .form-size{
     width: auto;

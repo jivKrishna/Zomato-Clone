@@ -31,6 +31,12 @@
           <% end %>
         <% end %>
 
+        <% if @kolkata_restaurants.present? && @restaurant_nearby.blank? %>
+          <p class="font-weight-bold">
+            <%= number_with_precision( restaurant.distance, precision: 1 ) %> km away
+          </p>
+        <% end %>
+
         <% if is_admin? %>
         <div class="float-right btn-group">
           <%= link_to edit_restaurant_path( restaurant ), class: "btn text-primary", title: "Edit" do %>

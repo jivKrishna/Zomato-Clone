@@ -3,18 +3,114 @@
 <div class="container container-size">
   <div class="row">
     <div class="col-md-9 my-4">
-      <%= render "form" %>
-    </div>
+      <%= form_for @restaurant, html: { multipart: true } do |form| %>
+        <h2 class="font-weight-bold mt-3">Add a restaurant</h2>
+        <h5 class="font-weight-bold">Basic info</h5>
+        <div class="basic-info bg-white my-4 py-4 px-3 container-border">
+          <% if @restaurant.errors.any? %>
+            <% @restaurant.errors.full_messages.each do |message| %>
+              <p class="text-danger"><%= message %></p>
+            <% end %>
+          <% end %>
 
-    <div class="col-md-3 my-md-5 my-2">
-      <div class="container-border bg-white my-md-5 my-0 py-2 px-4 container-border">
-        <h5 class="font-weight-bold">How it works</h5>
-        <ul>
-          <li class="small my-2">If you are the owner of a restaurant, or if you are a user who's discovered a place not listed on Zomato Clone., let us know using this form.</li>
-          <li class="small my-2">Once you send the information to us, our awesome content team will verify it. To help speed up the process, please provide a contact number or email address.</li>
-          <li class="small my-2">That's it! Once verified the listing will start appearing on Zomato Clone.</li>
-        </ul>
-      </div>
+          <div class="form-group required">
+            <%= form.label :name, "RESTAURANT NAME", class: "control-label text-uppercase" %>
+            <%= form.text_field :name, placeholder: "Enter Restaurant name", class: "form-control" %>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group required">
+                <%= form.label :restaurant_category_id, "RESTAURANT CATEGORY", class: "control-label text-uppercase" %>
+                <%= form.select :restaurant_category_id, options_for_select( @restaurant_category_options ), {}, class: "form-control" %>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group required">
+                <%= form.label :image, "Upload image", class: "control-label text-uppercase" %>
+                <%= form.file_field :image, class: "form-control-file" %>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group required">
+                <%= form.label :email, class: "text-uppercase control-label" %>
+                <%= form.text_field :email, placeholder: "Enter restaurant email", class: "form-control" %>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group required">
+                <%= form.label :phone_number, class: "control-label text-uppercase" %>
+                <%= form.text_field :phone_number, placeholder: "Restaurant phone number", class: "form-control" %>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= form.label :secondary_phone_number, class: "text-uppercase" %>
+                <%= form.text_field :secondary_phone_number, placeholder: "Restaurant secondary phone number (optional)", class: "form-control" %>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group required">
+                <%= form.label :city, class: "control-label text-uppercase" %>
+                <%= form.text_field :city, placeholder: "Enter City", class: "form-control" %>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group required">
+                <%= form.label :address, class: "control-label text-uppercase" %>
+                <%= form.text_field :address, placeholder: "Search Restaurant address", class: "form-control", id: "autocomplete" %>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= form.radio_button :serve_alcohal, false, checked: true %> <%= form.label :serve_alcohal_false, "Don't serve alcohal" %>
+                <%= form.radio_button :serve_alcohal, true %> <%= form.label :serve_alcohal_true, "Serve alcohal" %>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= form.label :website %>
+                <%= form.text_field :website, placeholder: "Enter website address", class: "form-control" %>
+              </div>
+            </div>
+          </div> 
+        </div>
+
+        <h5 class="font-weight-bold my-4">Owner information: </h5>
+        <div class="basic-info bg-white my-4 py-4 px-3 container-border">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group required">
+                <%= form.label :owner_phone_number, class: "control-label text-uppercase" %>
+                <%= form.text_field :owner_phone_number, placeholder: "Owner phone number", class: "form-control" %>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group required">
+                <%= form.label :owner_email, class: "control-label text-uppercase" %>
+                <%= form.text_field :owner_email, placeholder: "Owner email", class: "form-control" %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= form.submit "Update restaurant", class: "btn btn-success" %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

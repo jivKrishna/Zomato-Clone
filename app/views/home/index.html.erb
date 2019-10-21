@@ -27,11 +27,15 @@
 <div class="container container-size">
   <div class="container row">
     <div class="col-md-10">
+    <p class="small text-secondary mt-3 mb-0">For using current loction, don't need to fill address field, it automatically takes the current location after submit search button or location tracking icon.</p>
       <%= form_tag root_path, role: "search", method: :get do |f| %>
         <div class="form-group my-4">
           <div class="d-flex justify-space-between">
+            <%= button_tag name: nil, class: "btn-primary rounded-circle mx-1 p-1" do %>
+              <i class="fas fa-location-arrow"></i>
+            <% end %>
             <%= hidden_field_tag :location, params[:location] %>
-            <%= text_field_tag :near, params[:near], placeholder: "Enter location if needed", class: "form-control" %>
+            <%= text_field_tag :near, params[:near], placeholder: "Enter location", class: "form-control" %>
             <%= text_field_tag :q, params[:q], placeholder: "Search Restaurant by Category, food, city etc.", class: "form-control" %>
             <%= button_tag "search", class: "btn btn-danger", id: "search" %>
           </div>
@@ -58,7 +62,7 @@
       Restaurant near by contains keyword 
       <span class="text-danger"><%= params[:q] %></span>.
     </h6>
-  <% elsif @restaurant_nearby.blank? %>
+  <% elsif @restaurant_nearby.blank? && params[:location].present? %>
     <h6 class="font-weight-bold my-3 text-danger">
       Not found restaurant near by 
       <span class="text-success"><%= params[:near] %></span> 
@@ -73,6 +77,14 @@
     <% end %>
   </div>
   <%= will_paginate @restaurant_nearby %>
+
+  <%if @restaurant_nearby.blank? %>
+    <h5 class="text-secondary font-weight-bold">Restaurants in kolkata</h5>
+    <div class="row">
+      <%= render @kolkata_restaurants %> 
+    </div>
+    <%= will_paginate @kolkata_restaurants %>
+  <% end %>
 </div>
 
 <div class="modal fade my-5" id="AccountModal" tabindex="-1" role="dialog" aria-labelledby="AccountModalLabel" aria-hidden="true">

@@ -30,5 +30,5 @@
 yarn-debug.log*
 .yarn-integrity
 /.env
-/config/authentication_details.yml
+#/config/authentication_details.yml
 /public/system

@@ -75,11 +75,13 @@
           <%= form.radio_button :serve_alcohal, true %> <%= form.label :serve_alcohal_true, "Serve alcohal" %>
         </div>
       </div>
-
-      <div class="col-md-5">
-        <div id="map_address"></div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= form.label :website %>
+          <%= form.text_field :website, placeholder: "Enter website address", class: "form-control" %>
+        </div>
       </div>
-    </div>
+    </div> 
   </div>
 
   <h5 class="font-weight-bold my-4">Owner information: </h5>
@@ -101,18 +103,6 @@
   </div>
 
   <div class="form-group">
-    <%= form.submit "create", class: "form-control btn btn-success" %>
+    <%= form.submit "Create restaurant", class: "btn btn-success" %>
   </div>
-
 <% end %>
-    <script>
-      var map;
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map_address'), {
-          center: {lat: -34.397, lng: 150.644},
-          zoom: 8
-        });
-      }
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_uuBAaXqk1_3KTSznMHudGWpjPyWjiOc&callback=initMap"
-    async defer></script>

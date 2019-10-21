@@ -20,9 +20,12 @@
         <% if signed_in? && @page_title != "Zomato Clone" %>
           <%= form_tag root_path, class: "navbar-form d-flex form-size", role: "search", method: :get do |f| %>
             
-            <div class="d-flex justify-space-between" style="max-width: 700px">
+            <div class="d-flex justify-space-between col-12 form-size">
+              <%= button_tag name: nil, class: "btn-primary rounded-circle mx-1 p-1" do %>
+                <i class="fas fa-location-arrow"></i>
+              <% end %>
               <%= hidden_field_tag :location, params[:location] %>
-              <%= text_field_tag :near, params[:near], placeholder: "Enter location if needed", class: "form-control col-3" %>
+              <%= text_field_tag :near, params[:near], placeholder: "Enter location", class: "form-control col-3" %>
               <%= text_field_tag :q, params[:q], placeholder: "Search Restaurant by Category, food, city etc.", class: "form-control col-6" %>
               <%= button_tag "search", class: "btn btn-danger border col-3", name: nil %>
             </div>
