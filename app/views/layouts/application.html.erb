@@ -21,25 +21,25 @@
           <% if @page_title != "Zomato Clone" %>
             <%= form_tag root_path, class: "navbar-form d-flex form-size", role: "search", method: :get do |f| %>
               <div class="d-flex justify-space-between">
-                <%= button_tag name: nil, class: "btn btn-danger rounded-circle mx-1 px-3 border" do %>
+                <%= button_tag name: nil, class: "btn btn-danger rounded-circle mx-1 px-2 border" do %>
                   <i class="fas fa-location-arrow"></i>
                 <% end %>
                 <%= hidden_field_tag :location, params[:location] %>
-                <%= text_field_tag :near, params[:near], placeholder: "Enter location", class: "mx-1 form-control col-3 mt-1" %>
-                <%= text_field_tag :q, params[:q], placeholder: "Search Restaurant by Category, food, city etc.", class: "mx-1 form-control col-6 mt-1" %>
-                <%= submit_tag "search", class: "btn btn-danger border form-control mt-1", id: "search" %>
+                <%= text_field_tag :near, params[:near], placeholder: "Enter location", class: "mx-1 form-control col-3" %>
+                <%= text_field_tag :q, params[:q], placeholder: "Search Restaurant by Category, food, city etc.", class: "mx-1 form-control col-6" %>
+                <%= submit_tag "search", class: "btn btn-danger border form-control mx-1", id: "search" %>
               </div>
             <% end %>
           <% end %>
 
           <% if signed_in? && @page_title != "Zomato Clone" %>
             <div class="nav-item dropdown ml-4 my-2 ">
-              <a class="nav-link dropdown-toggle container-border my-n1 text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle container-border my-n2 form-control text-primary" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <%= image_tag current_user.image.url, class: "small-icon rounded-circle" %>
                 <%= current_user.name.split.first %>
               </a>
 
-              <span class="dropdown-menu my-3 ml-n5" aria-labelledby="navbarDropdown">
+              <span class="dropdown-menu my-3 ml-n3" aria-labelledby="navbarDropdown">
                 <%= link_to "Profile", user_path(current_user), class: "dropdown-item" %>
                 <%= link_to "Add Info", edit_user_path(current_user), class: "dropdown-item" %> 
                 <%= link_to "My Orders", restaurant_orders_path(current_user.orders), class: "dropdown-item" %>                  
