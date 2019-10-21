@@ -174,7 +174,7 @@ Restaurant.all.each do |restaurant|
       FoodItem.create(
         name:                  Faker::Food.dish,
         # image:                 URI.parse(Faker::Placeholdit.image).open,
-        price:                 Faker::Number.decimal(l_digits: 3, r_digits: 2),
+        price:                 Faker::Number.decimal(l_digits: 1, r_digits: 2),
         veg:                   Faker::Number.between(from: 0, to: 2),
         food_category_id:      food_category.id,
         restaurant_id:         restaurant.id
