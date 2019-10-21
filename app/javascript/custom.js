@@ -20,16 +20,22 @@ $(document).on('turbolinks:load', function(){
   });
 
   $("#rating_form").raty({
-    starType: 'i',
+    numberMax : 5,
+    number: 5,
+    // path: "/assets/",
+    starType: "i",
     scoreName: "review[rating]"
   });
 
   $(".review-rating").raty({
+    numberMax : 5,
+    number: 5,
     readOnly: true,
     score: function() {
     return $(this).attr("data-score");
     },
-    starType: 'i'
+    // path: "/assets/"
+    starType: "i"
   });
 
   $('input.timepicker').timepicker({
