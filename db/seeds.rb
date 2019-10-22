@@ -187,7 +187,7 @@ puts "For each restaurant and for each food category 3 to 7 food dishes created.
 #restaurant reviews
 User.all.each do |user|
   Restaurant.all.each do |restaurant|
-    rand(1..9).times do
+    rand(2..4).times do
       Review.create(
         rating:                 Faker::Number.between(from: 1, to: 5),
         comment:                Faker::Food.description,
@@ -199,7 +199,7 @@ User.all.each do |user|
     end
   end
 end
-puts "For each user and for each restaurant 1 to 9 reviews created..."
+puts "For each user and for each restaurant 2 to 4 reviews created..."
 
 #menu-cards
 Restaurant.all.each do |restaurant|

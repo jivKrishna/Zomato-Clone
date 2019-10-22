@@ -32,3 +32,5 @@ yarn-debug.log*
 /.env
 #/config/authentication_details.yml
 /public/system
+public/assets
+public/system
