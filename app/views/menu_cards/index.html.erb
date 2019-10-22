@@ -1,4 +1,4 @@
-<% @page_title = "#{@restaurant.name} Menu Card" %>
+ <% @page_title = "#{@restaurant.name} Menu Card" %>
 
 <div class="container container-size my-4">
   <div class="row">
@@ -18,7 +18,7 @@
   </div>
   <div class="row text-center">
     <% @menu_cards.each do |menu_card| %>
-      <div class="col-md-3 bg-white container-border">
+      <div class="col-md-3 bg-white container-border my-2">
         <a href="<%= menu_card.image.url %>" data-lightbox="roadtrip" data-title="<%= menu_card.description %>">
           <%= image_tag menu_card.image.url, class: "img-fluid" %>
         </a>

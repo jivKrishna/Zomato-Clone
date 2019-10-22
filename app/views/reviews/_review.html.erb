@@ -23,7 +23,7 @@
       </h6>
       <p class="small">
         <% unless review.image.blank? %>
-          <%= image_tag review.image.url, class: "img-fluid float-left mr-3" %>
+          <%= image_tag review.image.url, class: "review-image float-left mr-3" %>
         <% end %>
         <%= review.comment %>
       </p>

@@ -12,7 +12,7 @@
         <%= will_paginate @placed_orders %>
       <% end %>
 
-      <% if @delivered_orders %>
+      <% if @delivered_orders.present? %>
         <h5 class="font-weight-bold text-primary">Last two delivered orders</h5>
         <%= render @delivered_orders %>
       <% end %>

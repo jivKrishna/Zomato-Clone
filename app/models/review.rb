@@ -8,7 +8,7 @@ class Review < ApplicationRecord
   validates :comment,   presence: true,   length: { minimum: 100 }
 
   has_attached_file :image, styles: { large: "300x760>", medium: "300x600>", thumb: "200x200#" },
-                    default_url: "https://placehold.it/300x30?text=Restaurant or Food Image"
+                    default_url: "food.jpg"
                     
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 end

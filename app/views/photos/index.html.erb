@@ -31,7 +31,7 @@
     <div class="col-md-8">
       <div class="row">
         <% @food_items.each do |food_item| %>
-          <div class="col-md-4">
+          <div class="col-md-4 my-2">
             <% unless food_item.image.blank? %>
               <a href="<%= food_item.image.url %>" data-lightbox="roadtrip" data-title="<%= food_item.name %>">
                 <%= image_tag food_item.image.url, class: "img-fluid" %>

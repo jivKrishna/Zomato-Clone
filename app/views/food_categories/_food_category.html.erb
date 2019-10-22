@@ -1,32 +1,34 @@
-<h5 class="font-weight-bold text-primary"><%= food_category.name %></h5>
-<table class="table">
-  <thead class="text-center">
-    <th scope="col">Item Name</th>
-    <th scope="col">Price</th>
-    <th scope="col">Order quantity</th>
-  </thead>
-  <tbody class="bg-white">
-    <% food_category.food_items.where(restaurant_id: params[:restaurant_id]).each do |food_item| %>
-      <tr>
-        <td>
-          <%= link_to restaurant_food_item_path(food_item.restaurant ,food_item), class: "text-dark" do %>
-            <% if food_item.veg? %>
-                        <%= image_tag "veg-icon.png", class: "veg-icon" %>
-            <% else %>
-                        <%= image_tag "nonveg-icon.png", class: "nonveg-icon" %>
+<% if food_category.food_items.present? %>
+  <h5 class="font-weight-bold text-primary"><%= food_category.name %></h5>
+  <table class="table">
+    <thead class="text-center">
+      <th scope="col">Item Name</th>
+      <th scope="col">Price</th>
+      <th scope="col">Order quantity</th>
+    </thead>
+    <tbody class="bg-white">
+      <% food_category.food_items.where(restaurant_id: params[:restaurant_id]).each do |food_item| %>
+        <tr>
+          <td>
+            <%= link_to restaurant_food_item_path(food_item.restaurant ,food_item), class: "text-dark" do %>
+              <% if food_item.veg? %>
+                          <%= image_tag "veg-icon.png", class: "veg-icon" %>
+              <% else %>
+                          <%= image_tag "nonveg-icon.png", class: "nonveg-icon" %>
+              <% end %>
+                       
+              <%= food_item.name %>
             <% end %>
-                     
-            <%= food_item.name %>
-          <% end %>
-        </td>
-        <td><%= number_to_currency( food_item.price ) %></td>
-        <td align="right">
-          <%= form_for( [ food_item.restaurant, food_item, current_order.order_items.build ] ) do  |f| %>
-            <%= f.number_field :quantity, min: 1, placeholder: "Enter quantity", class: "quantity-input" %>
-            <%= f.submit "Add to Cart", class: "btn btn-success" %>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+          </td>
+          <td><%= number_to_currency( food_item.price ) %></td>
+          <td align="right">
+            <%= form_for( [ food_item.restaurant, food_item, current_order.order_items.build ] ) do  |f| %>
+              <%= f.number_field :quantity, min: 1, placeholder: "Enter quantity", class: "quantity-input" %>
+              <%= f.submit "Add to Cart", class: "btn btn-success" %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

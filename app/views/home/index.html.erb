@@ -78,7 +78,7 @@
   </div>
   <%= will_paginate @restaurant_nearby %>
 
-  <%if @restaurant_nearby.blank? %>
+  <%if @restaurant_nearby.blank? && @kolkata_restaurants.present? %>
     <h5 class="text-secondary font-weight-bold">Restaurants in kolkata</h5>
     <div class="row">
       <%= render @kolkata_restaurants %> 
