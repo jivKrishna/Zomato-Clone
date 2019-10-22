@@ -48,7 +48,7 @@
     <div class="col-md-8">
       <div class="row">
         <% @reviews.each do |review| %>
-          <div class="col-md-4">
+          <div class="col-md-4 my-2">
             <% unless review.image.blank? %>
               <a href="<%= review.image.url %>" data-lightbox="roadtrip" data-title="<%= review.comment %>">
                 <%= image_tag review.image.url, class: "img-fluid" %>
