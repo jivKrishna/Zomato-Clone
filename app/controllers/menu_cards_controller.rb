@@ -4,7 +4,7 @@ class MenuCardsController < ApplicationController
   before_action :find_menu_card,  only: [ :edit, :update, :destroy ] 
 
   def index
-    @menu_cards = MenuCard.all
+    @menu_cards = @restaurant.menu_cards.all
   end
 
   def create
