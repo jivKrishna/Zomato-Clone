@@ -3,7 +3,7 @@ class CreateRestaurants < ActiveRecord::Migration[6.0]
     create_table :restaurants do |t|
       t.string      :name,                  null: false
       t.string      :city,                  null: false
-      t.attachment  :image
+      t.attachment  :image,                 null: false
       t.string      :email,                 null: false
       t.string      :phone_number,          null: false
       t.string      :secondary_phone_number

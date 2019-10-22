@@ -20,12 +20,12 @@ ActiveRecord::Schema.define(version: 2019_10_18_151752) do
 
   create_table "food_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
-    t.decimal "price", precision: 10, default: "0", null: false
+    t.decimal "price", precision: 10, default: "1", null: false
     t.integer "veg", default: 0, null: false
-    t.string "image_file_name"
-    t.string "image_content_type"
-    t.bigint "image_file_size"
-    t.datetime "image_updated_at"
+    t.string "image_file_name", null: false
+    t.string "image_content_type", null: false
+    t.bigint "image_file_size", null: false
+    t.datetime "image_updated_at", null: false
     t.bigint "food_category_id", null: false
     t.bigint "restaurant_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -81,10 +81,10 @@ ActiveRecord::Schema.define(version: 2019_10_18_151752) do
   create_table "restaurants", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "city", null: false
-    t.string "image_file_name"
-    t.string "image_content_type"
-    t.bigint "image_file_size"
-    t.datetime "image_updated_at"
+    t.string "image_file_name", null: false
+    t.string "image_content_type", null: false
+    t.bigint "image_file_size", null: false
+    t.datetime "image_updated_at", null: false
     t.string "email", null: false
     t.string "phone_number", null: false
     t.string "secondary_phone_number"

@@ -44,7 +44,7 @@ RestaurantCategory.all.each do |restaurant_category|
   rand(4..8).times do
     restaurant_category.restaurants.create(
       name:                   Faker::Restaurant.name,
-      # image:                  URI.parse(Faker::Placeholdit.image).open,
+      image:                  File.new("#{Rails.root}/app/assets/images/banner.jpg"),
       email:                  Faker::Internet.unique.email,
       city:                   Faker::Address.city,
       address:                Faker::Address.full_address,
@@ -59,7 +59,7 @@ RestaurantCategory.all.each do |restaurant_category|
 
     restaurant_category.restaurants.create(
       name:                   Faker::Restaurant.name,
-      # image:                  URI.parse(Faker::Placeholdit.image).open,
+      image:                  File.new("#{Rails.root}/app/assets/images/banner.jpg"),
       email:                  Faker::Internet.unique.email,
       city:                   "Serampore",
       address:                "Serampore, 712201",
@@ -74,7 +74,7 @@ RestaurantCategory.all.each do |restaurant_category|
 
     restaurant_category.restaurants.create(
       name:                   Faker::Restaurant.name,
-      # image:                  URI.parse(Faker::Placeholdit.image).open,
+      image:                  File.new("#{Rails.root}/app/assets/images/banner.jpg"),
       email:                  Faker::Internet.unique.email,
       city:                   "Kolkata",
       address:                "Kolkata, Newtown",
@@ -88,7 +88,7 @@ RestaurantCategory.all.each do |restaurant_category|
 
     restaurant_category.restaurants.create(
       name:                   Faker::Restaurant.name,
-      # image:                  URI.parse(Faker::Placeholdit.image).open,
+      image:                  File.new("#{Rails.root}/app/assets/images/banner.jpg"),
       email:                  Faker::Internet.unique.email,
       city:                   "Kolkata",
       address:                "Kolkata, Newtown",
@@ -102,7 +102,7 @@ RestaurantCategory.all.each do |restaurant_category|
 
     restaurant_category.restaurants.create(
       name:                   Faker::Restaurant.name,
-      # image:                  URI.parse(Faker::Placeholdit.image).open,
+      image:                  File.new("#{Rails.root}/app/assets/images/banner.jpg"),
       email:                  Faker::Internet.unique.email,
       city:                   "Kolkata",
       address:                "Kolkata, Rajarhat",
@@ -116,7 +116,7 @@ RestaurantCategory.all.each do |restaurant_category|
 
     restaurant_category.restaurants.create(
       name:                   Faker::Restaurant.name,
-      # image:                  URI.parse(Faker::Placeholdit.image).open,
+      image:                  File.new("#{Rails.root}/app/assets/images/banner.jpg"),
       email:                  Faker::Internet.unique.email,
       city:                   "Howrah",
       address:                "Howrah, Liluah",
@@ -173,7 +173,7 @@ Restaurant.all.each do |restaurant|
     rand(3..7).times do 
       FoodItem.create(
         name:                  Faker::Food.dish,
-        # image:                 URI.parse(Faker::Placeholdit.image).open,
+        image:                  File.new("#{Rails.root}/app/assets/images/food.jpg"),
         price:                 Faker::Number.decimal(l_digits: 1, r_digits: 2),
         veg:                   Faker::Number.between(from: 0, to: 2),
         food_category_id:      food_category.id,
@@ -191,7 +191,7 @@ User.all.each do |user|
       Review.create(
         rating:                 Faker::Number.between(from: 1, to: 5),
         comment:                Faker::Food.description,
-        # image:                  URI.parse(Faker::Placeholdit.image).open,
+        image:                  File.new("#{Rails.root}/app/assets/images/restaurant.jpg"),
         approve:                Faker::Number.between(from: 0, to: 1),
         user_id:                user.id,
         restaurant_id:          restaurant.id
@@ -200,5 +200,54 @@ User.all.each do |user|
   end
 end
 puts "For each user and for each restaurant 1 to 9 reviews created..."
+
+#menu-cards
+Restaurant.all.each do |restaurant|
+  restaurant.menu_cards.create(
+    image:                  File.new("#{Rails.root}/app/assets/images/menu1.jpg"),
+    description:              "Lorem ipsum is a pseudo-Latin text used in web design,
+                               typography, layout, and printing in place of English to 
+                               emphasise design elements over content. It's also called 
+                               placeholder (or filler) text. It's a convenient tool for 
+                               mock-ups."
+  )
+
+  restaurant.menu_cards.create(
+    image:                  File.new("#{Rails.root}/app/assets/images/menu2.jpg"),
+    description:              "Lorem ipsum is a pseudo-Latin text used in web design,
+                               typography, layout, and printing in place of English to 
+                               emphasise design elements over content. It's also called 
+                               placeholder (or filler) text. It's a convenient tool for 
+                               mock-ups."
+  )
+
+  restaurant.menu_cards.create(
+    image:                  File.new("#{Rails.root}/app/assets/images/menu3.jpg"),
+    description:              "Lorem ipsum is a pseudo-Latin text used in web design,
+                               typography, layout, and printing in place of English to 
+                               emphasise design elements over content. It's also called 
+                               placeholder (or filler) text. It's a convenient tool for 
+                               mock-ups."
+  )
+
+  restaurant.menu_cards.create(
+    image:                  File.new("#{Rails.root}/app/assets/images/menu4.jpg"),
+    description:              "Lorem ipsum is a pseudo-Latin text used in web design,
+                               typography, layout, and printing in place of English to 
+                               emphasise design elements over content. It's also called 
+                               placeholder (or filler) text. It's a convenient tool for 
+                               mock-ups."
+  )
+
+  restaurant.menu_cards.create(
+    image:                  File.new("#{Rails.root}/app/assets/images/menu5.jpg"),
+    description:              "Lorem ipsum is a pseudo-Latin text used in web design,
+                               typography, layout, and printing in place of English to 
+                               emphasise design elements over content. It's also called 
+                               placeholder (or filler) text. It's a convenient tool for 
+                               mock-ups."
+  )
+end
+puts "For each restaurant 5 menu cards created..."
 
 Restaurant.import
