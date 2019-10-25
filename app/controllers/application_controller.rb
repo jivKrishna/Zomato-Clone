@@ -43,14 +43,14 @@ class ApplicationController < ActionController::Base
           @current_order ||= current_user.orders.find_by(restaurant_id: params[:restaurant_id], status: 0)
 
           if @current_order.nil?
-            @current_order = current_user.orders.create(restaurant_id: params[:restaurant_id])
+            @current_order = current_user.orders.create(restaurant_id: params[:restaurant_id], latitude: 22.8, longitude: 88.38)
           end
 
           session[:order_id] = @current_order.id
         end
         return @current_order
       elsif session[:order_id].nil? && current_user
-        @current_order = current_user.orders.create(restaurant_id: params[:restaurant_id])
+        @current_order = current_user.orders.create(restaurant_id: params[:restaurant_id], latitude: 22.8, longitude: 88.38)
         session[:order_id] = @current_order.id
         return @current_order
       end

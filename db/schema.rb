@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_18_151752) do
+ActiveRecord::Schema.define(version: 2019_10_11_095722) do
 
   create_table "food_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -63,9 +63,9 @@ ActiveRecord::Schema.define(version: 2019_10_18_151752) do
     t.float "total_price", default: 0.0, null: false
     t.integer "status", default: 0, null: false
     t.datetime "placed_at"
-    t.string "address"
-    t.float "latitude"
-    t.float "longitude"
+    t.string "address", null: false
+    t.float "latitude", null: false
+    t.float "longitude", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["restaurant_id"], name: "index_orders_on_restaurant_id"
@@ -94,11 +94,11 @@ ActiveRecord::Schema.define(version: 2019_10_18_151752) do
     t.string "address", null: false
     t.boolean "serve_alcohal", null: false
     t.bigint "restaurant_category_id", null: false
-    t.float "latitude"
-    t.float "longitude"
+    t.float "latitude", null: false
+    t.float "longitude", null: false
+    t.float "distance"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.float "distance"
     t.index ["restaurant_category_id"], name: "index_restaurants_on_restaurant_category_id"
   end
 

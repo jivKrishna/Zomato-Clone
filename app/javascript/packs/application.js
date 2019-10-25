@@ -13,7 +13,6 @@ require("raty-js/lib/jquery.raty")
 require("jquery-timepicker/jquery.timepicker")
 require("bootstrap-datepicker/dist/js/bootstrap-datepicker.min")
 require("lightbox2/dist/js/lightbox.min.js")
-require("autocomplete_location")
 require("custom")
 require("@fortawesome/fontawesome-free/js/all.min")
 // Uncomment to copy all static images under ../images to the output folder and reference

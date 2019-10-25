@@ -2,8 +2,6 @@ class HomeController < ApplicationController
   before_action :set_auth
 
   def index
-    @user = User.new
-
     #search restaurant using elastic search nearest or given location
     @restaurant_nearby = Restaurant.search(( params[:q].present? ? params[:q] : "*" ), size: 1000)
                   .records.near(( params[:near].present? ? params[:near] : params[:location] ), 25)

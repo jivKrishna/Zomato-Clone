@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :authenticate_admin!, only: :delivered
-  before_action :find_restaurant, only: [ :place_order, :delivered ]
+  before_action :find_restaurant, only: [ :update, :delivered ]
 
   def index
     @placed_orders = current_user.orders.in_progress.paginate(page: params[:page], per_page: 2).order(placed_at: :desc)
@@ -28,7 +28,12 @@ class OrdersController < ApplicationController
     end
   end
 
-  def place_order
+  def edit 
+    @order = current_order
+  end
+
+  def update
+    current_order.update(order_params)
     if current_order.update(status: 1, placed_at: Time.now)
       session[:order_id] = nil
       redirect_back fallback_location: restaurant_orders_path, flash: { success: "Successfully placed order!" }
@@ -38,6 +43,10 @@ class OrdersController < ApplicationController
   end
 
   private
+    def order_params
+      params.require(:order).permit( :latitude, :longitude )
+    end
+
     def find_restaurant
       @restaurant = Restaurant.find(params[:restaurant_id])
     end

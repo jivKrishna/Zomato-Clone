@@ -13,8 +13,9 @@ class CreateRestaurants < ActiveRecord::Migration[6.0]
       t.string      :address,               null: false
       t.boolean     :serve_alcohal,         null: false
       t.belongs_to  :restaurant_category,   null: false
-      t.float       :latitude
-      t.float       :longitude
+      t.float       :latitude,              null: false
+      t.float       :longitude,             null: false
+      t.float       :distance
       
       t.timestamps
     end

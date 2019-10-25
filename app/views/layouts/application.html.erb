@@ -47,6 +47,8 @@
                 <%= link_to "Log Out", signout_path, method: :delete, class: "dropdown-item" %>
               </span>
             </div>
+          <% elsif !signed_in? && @page_title != "Zomato Clone" %>
+            <button type="button" class="btn text-white border-light" data-toggle="modal" data-target="#AccountModalID">SignIn</button>
           <% end %>
         </div>
       </nav>
@@ -59,3 +61,41 @@
     <%= yield %>
   </body>
 </html>
+
+<div class="modal fade my-5" id="AccountModalID" tabindex="-1" role="dialog" aria-labelledby="AccountModalLabelID" aria-hidden="true">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="AccountModalLabelID">Sign up or log in to Zomato-Clone</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="my-3">
+          <%= link_to "/auth/facebook", class: "btn form-control facebook" do %>
+            <i class="fab fa-facebook-f fa-2x text-white mx-3"></i>
+            <span class="text-white imp-link">Continue with Facebook</span>
+          <% end %>
+        </div>
+
+        <div class="my-3">
+          <%= link_to "/auth/google_oauth2", class: "btn form-control google" do %>
+            <span class="text-secondary imp-link">
+              <%= image_tag "google-icon.png", class: "mx-3 small-icon" %>Continue with Google
+            </span>
+          <% end %>
+        </div>
+
+        <div class="d-flex justify-space-between mt-5">
+          <button type="button" class="btn btn-danger form-control" data-toggle="modal" data-target="#loginModal">Log In</button>
+          <%= render "sessions/form" %>
+
+          <button type="button" class="btn btn-success form-control" data-toggle="modal" data-target="#signupModal">Sign Up</button>
+          <%= render "users/form" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  

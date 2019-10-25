@@ -83,6 +83,11 @@
           </div>
         <% end %>
       </div>
+
+      <div class="container-border bg-white p-3 mx-n3">
+        <p class="font-weight-bold"><%= @restaurant.address %></p>
+        <div id="restaurant_map"></div>
+      </div>
     </div>
   </div>
 </div>
@@ -123,3 +128,30 @@
     </div>
   </div>
 </div>
+
+<script>
+  function restaurantMap(){
+    var point = { lat: <%= number_with_precision(@restaurant.latitude, precision: 12) %>, lng: <%= number_with_precision(@restaurant.longitude, precision: 12) %> };
+    let infoWindow = new google.maps.InfoWindow;
+    let setContent = "<div class='font-weight-bold text-success text-center text-uppercase'><%= @restaurant.name %></div><div class='font-weight-bold text-danger'> <%= @restaurant.address %> </div>"
+    map = new google.maps.Map(document.getElementById("restaurant_map"), {
+          zoom: 16,
+          center: point,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        });
+
+        var marker = new google.maps.Marker({
+          position: point,
+          map: map
+        });
+
+        marker.addListener('click', function() {
+          infoWindow.setPosition(point);
+          infoWindow.setContent( setContent );
+          infoWindow.open(map);
+          map.setZoom(16);
+          map.setCenter(marker.getPosition());
+        });
+  }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= AUTH_DETAILS['GOOGLE_MAP_API_KEY'] %>&callback=restaurantMap" async defer></script>

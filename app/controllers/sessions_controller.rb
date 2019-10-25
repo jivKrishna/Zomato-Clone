@@ -3,9 +3,6 @@ class SessionsController < ApplicationController
 
   def create_from_socialmedia
     auth = request.env["omniauth.auth"]
-
-        p auth
-
     session[:omniauth] = auth.except("extra")
     @user = User.find_by(provider: auth["provider"], uid: auth["uid"])
 

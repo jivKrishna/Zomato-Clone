@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#map_address {
-  height: 150px;
-  width: 250px;
+#restaurant_map_marker, #restaurant_map {
+  height: 250px;
+  width: 100%;
 }

@@ -23,6 +23,8 @@ class RestaurantsController < ApplicationController
 
     #for creating new instance of review...
     @review = @restaurant.reviews.build
+
+    puts "#{@restaurant.latitude}, #{@restaurant.longitude}"
   end
 
   def new
@@ -64,7 +66,7 @@ class RestaurantsController < ApplicationController
 
     def restaurant_params
       params.require(:restaurant).permit( :name, :image, :restaurant_category_id, :phone_number,
-        :secondary_phone_number, :email, :city, :address, :serve_alcohal, :owner_email,
+        :secondary_phone_number, :email, :latitude, :longitude, :serve_alcohal, :owner_email,
         :owner_phone_number, :website
       )
     end

@@ -1,11 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
 #Admin
 User.create(
   name:                   "Krishna Pandit",
@@ -41,43 +33,12 @@ puts "5 to 8 restaurant categories created..."
 
 #For each restaurant categories 10 restaurants 
 RestaurantCategory.all.each do |restaurant_category|
-  rand(4..8).times do
     restaurant_category.restaurants.create(
       name:                   Faker::Restaurant.name,
       image:                  File.new("#{Rails.root}/app/assets/images/banner.jpg"),
       email:                  Faker::Internet.unique.email,
-      city:                   Faker::Address.city,
-      address:                Faker::Address.full_address,
-      phone_number:           Faker::PhoneNumber.cell_phone,
-      secondary_phone_number: Faker::PhoneNumber.cell_phone,
-      owner_email:            Faker::Internet.unique.email,
-      owner_phone_number:     Faker::PhoneNumber.cell_phone,
-      website:                Faker::Internet.domain_name,
-      serve_alcohal:          Faker::Boolean.boolean
-    )
-  end
-
-    restaurant_category.restaurants.create(
-      name:                   Faker::Restaurant.name,
-      image:                  File.new("#{Rails.root}/app/assets/images/banner.jpg"),
-      email:                  Faker::Internet.unique.email,
-      city:                   "Serampore",
-      address:                "Serampore, 712201",
-      phone_number:           Faker::PhoneNumber.cell_phone,
-      secondary_phone_number: Faker::PhoneNumber.cell_phone,
-      owner_email:            Faker::Internet.unique.email,
-      owner_phone_number:     Faker::PhoneNumber.cell_phone,
-      website:                Faker::Internet.domain_name,
-      serve_alcohal:          Faker::Boolean.boolean
-    )
-
-
-    restaurant_category.restaurants.create(
-      name:                   Faker::Restaurant.name,
-      image:                  File.new("#{Rails.root}/app/assets/images/banner.jpg"),
-      email:                  Faker::Internet.unique.email,
-      city:                   "Kolkata",
-      address:                "Kolkata, Newtown",
+      latitude:               22.5666781,
+      longitude:              88.3669781,
       phone_number:           Faker::PhoneNumber.cell_phone,
       secondary_phone_number: Faker::PhoneNumber.cell_phone,
       owner_email:            Faker::Internet.unique.email,
@@ -90,8 +51,23 @@ RestaurantCategory.all.each do |restaurant_category|
       name:                   Faker::Restaurant.name,
       image:                  File.new("#{Rails.root}/app/assets/images/banner.jpg"),
       email:                  Faker::Internet.unique.email,
-      city:                   "Kolkata",
-      address:                "Kolkata, Newtown",
+      latitude:               22.2726781,
+      longitude:              88.2639781,
+      phone_number:           Faker::PhoneNumber.cell_phone,
+      secondary_phone_number: Faker::PhoneNumber.cell_phone,
+      owner_email:            Faker::Internet.unique.email,
+      owner_phone_number:     Faker::PhoneNumber.cell_phone,
+      website:                Faker::Internet.domain_name,
+      serve_alcohal:          Faker::Boolean.boolean
+    )
+
+
+    restaurant_category.restaurants.create(
+      name:                   Faker::Restaurant.name,
+      image:                  File.new("#{Rails.root}/app/assets/images/banner.jpg"),
+      email:                  Faker::Internet.unique.email,
+      latitude:               22.726125,
+      longitude:              88.639145,
       phone_number:           Faker::PhoneNumber.cell_phone,
       secondary_phone_number: Faker::PhoneNumber.cell_phone,
       owner_email:            Faker::Internet.unique.email,
@@ -104,8 +80,8 @@ RestaurantCategory.all.each do |restaurant_category|
       name:                   Faker::Restaurant.name,
       image:                  File.new("#{Rails.root}/app/assets/images/banner.jpg"),
       email:                  Faker::Internet.unique.email,
-      city:                   "Kolkata",
-      address:                "Kolkata, Rajarhat",
+      latitude:               22.325726153,
+      longitude:              88.323639153,
       phone_number:           Faker::PhoneNumber.cell_phone,
       secondary_phone_number: Faker::PhoneNumber.cell_phone,
       owner_email:            Faker::Internet.unique.email,
@@ -118,8 +94,22 @@ RestaurantCategory.all.each do |restaurant_category|
       name:                   Faker::Restaurant.name,
       image:                  File.new("#{Rails.root}/app/assets/images/banner.jpg"),
       email:                  Faker::Internet.unique.email,
-      city:                   "Howrah",
-      address:                "Howrah, Liluah",
+      latitude:               22.57265748,
+      longitude:              88.36395748,
+      phone_number:           Faker::PhoneNumber.cell_phone,
+      secondary_phone_number: Faker::PhoneNumber.cell_phone,
+      owner_email:            Faker::Internet.unique.email,
+      owner_phone_number:     Faker::PhoneNumber.cell_phone,
+      website:                Faker::Internet.domain_name,
+      serve_alcohal:          Faker::Boolean.boolean
+    )
+
+    restaurant_category.restaurants.create(
+      name:                   Faker::Restaurant.name,
+      image:                  File.new("#{Rails.root}/app/assets/images/banner.jpg"),
+      email:                  Faker::Internet.unique.email,
+      latitude:               22.57263654,
+      longitude:              88.36393654,
       phone_number:           Faker::PhoneNumber.cell_phone,
       secondary_phone_number: Faker::PhoneNumber.cell_phone,
       owner_email:            Faker::Internet.unique.email,
@@ -128,7 +118,7 @@ RestaurantCategory.all.each do |restaurant_category|
       serve_alcohal:          Faker::Boolean.boolean
     )
 end
-puts "for each restaurant category 4 to 8 restaurants created..."
+puts "for each restaurant category 4 to 6 restaurants created..."
 puts "Near by Kolkata 5 restaurants created..."
 
 
@@ -239,15 +229,7 @@ Restaurant.all.each do |restaurant|
                                mock-ups."
   )
 
-  restaurant.menu_cards.create(
-    image:                  File.new("#{Rails.root}/app/assets/images/menu5.jpg"),
-    description:              "Lorem ipsum is a pseudo-Latin text used in web design,
-                               typography, layout, and printing in place of English to 
-                               emphasise design elements over content. It's also called 
-                               placeholder (or filler) text. It's a convenient tool for 
-                               mock-ups."
-  )
 end
-puts "For each restaurant 5 menu cards created..."
+puts "For each restaurant 4 menu cards created..."
 
 Restaurant.import
