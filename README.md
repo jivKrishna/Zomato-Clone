@@ -6,10 +6,10 @@ Zomato Clone is not actually clone of Zomato.com. It is slightly different.
   * Admin
   * Viewer / User
 
-## Admin:
+### Admin:
   Admin can access all the feature.
 
-## Viewer / User
+### Viewer / User
   * Can sign up using facebook, Google or Email.
   * Can sign in using facebook, Google or Email.
   * Can add mobile numbers or change profile pics, password etc.
@@ -18,7 +18,7 @@ Zomato Clone is not actually clone of Zomato.com. It is slightly different.
   * Can search nearby restaurant, restaurant category etc.
 
 ## Things you may want to cover:
-* Ruby version: 2.6.3
-* Rails version: 6.0.0
-* Elastic Search version: 7.x
-* Database: MySql version: 8.x
+#### Ruby version: 2.6.3
+#### Rails version: 6.0.0
+#### Elastic Search version: 7.x
+#### Database: MySql version: 8.x
