@@ -12,7 +12,79 @@
       <% end %>
     </div>
     <div class="col-md-8 bg-white container-border p-3 my-2">
-      <%= render "form" %>    </div>
+      <%= form_for([ @restaurant, @table ]) do |f| %>
+        <% if @table.errors.any? %>
+          <div class="form-group">
+            <% @table.errors.full_messages.each do |msg| %>
+              <p class="text-danger"><%= msg %></p>
+            <% end %>
+          </div>
+        <% end %>
+
+
+        <h5 class="font-weight-bold my-3">Please, select your booking details:</h5>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group required">
+              <%= f.label :booking_date, "select a date", class: "control-label text-uppercase" %>
+              <%= f.date_field :booking_date, placeholder: "select date", class: "form-control", required: true %>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group required">
+              <%= f.label :guest_number, "Number of guest", class: "control-label text-uppercase" %> <br/>
+              <%= f.select :guest_number, options_for_select( (1..20).to_a, 2 ), {}, class: "form-control", required: true %>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group required">
+              <%= f.label :booking_time, "Time", class: "control-label text-uppercase" %>
+              <%= f.text_field :booking_time, ignore_date: true, placeholder: "select time", class: "form-control timepicker", required: true %>
+            </div>
+          </div>
+        </div>
+
+
+        <h5 class="font-weight-bold my-3">Enter Guest details:</h5>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group required">
+              <%= f.label :guest_first_name, "First name", class: "control-label text-uppercase" %>
+              <%= f.text_field :guest_first_name, placeholder: "eg.- Zoe", class: "form-control", required: true %>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group required">
+              <%= f.label :guest_last_name, "Last name", class: "control-label text-uppercase" %>
+              <%= f.text_field :guest_last_name, placeholder: "eg.- Smith", class: "form-control", required: true %>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group required">
+              <%= f.label :guest_email, "Email" , class: "control-label text-uppercase" %>
+              <%= f.email_field :guest_email, placeholder: "eg.- zoe.smith@zomatoclone.com", class: "form-control", required: true %>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group required">
+              <%= f.label :guest_phone_number, "Phone number", class: "control-label text-uppercase" %>
+              <%= f.phone_field :guest_phone_number, placeholder: "eg.- 9999999999", class: "form-control", required: true %>
+            </div>
+          </div>
+        </div>
+
+        <%= link_to "Back", :back, class: "btn btn-secondary" %>
+        <div class="float-right">
+          <%= f.submit "Update Table",  class: "btn btn-primary" %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

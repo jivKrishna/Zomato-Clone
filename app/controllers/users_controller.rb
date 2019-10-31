@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   def create
     @user = User.find_by(email: params[:user][:email], provider: "email")
     unless @user.nil?
-      redirect_to root_path, flash: { warning: "You have successfully sign up!" }
+      redirect_to root_path, flash: { danger: "That Email already available!" }
     else
       @user = User.create(user_params)
       if @user.save

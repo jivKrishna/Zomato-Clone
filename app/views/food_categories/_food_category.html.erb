@@ -23,7 +23,7 @@
           <td><%= number_to_currency( food_item.price ) %></td>
           <td align="right">
             <%= form_for( [ food_item.restaurant, food_item, current_order.order_items.build ] ) do  |f| %>
-              <%= f.number_field :quantity, min: 1, placeholder: "Enter quantity", class: "quantity-input" %>
+              <%= f.number_field :quantity, min: 1, placeholder: "Enter quantity", class: "quantity-input", required: true %>
               <%= f.submit "Add to Cart", class: "btn btn-success" %>
             <% end %>
           </td>

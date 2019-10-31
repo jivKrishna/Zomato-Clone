@@ -10,21 +10,21 @@
 
     <div class="form-group required">
       <%= form.label :name, "RESTAURANT NAME", class: "control-label text-uppercase" %>
-      <%= form.text_field :name, placeholder: "Enter Restaurant name", class: "form-control" %>
+      <%= form.text_field :name, placeholder: "Enter Restaurant name", class: "form-control", required: true %>
     </div>
 
     <div class="row">
       <div class="col-md-6">
         <div class="form-group required">
           <%= form.label :restaurant_category_id, "RESTAURANT CATEGORY", class: "control-label text-uppercase" %>
-          <%= form.select :restaurant_category_id, options_for_select( @restaurant_category_options ), {}, class: "form-control" %>
+          <%= form.select :restaurant_category_id, options_for_select( @restaurant_category_options ), {}, class: "form-control", required: true %>
         </div>
       </div>
 
       <div class="col-md-6">
         <div class="form-group required">
           <%= form.label :image, "Upload image", class: "control-label text-uppercase" %>
-          <%= form.file_field :image, class: "form-control-file" %>
+          <%= form.file_field :image, class: "form-control-file", required: true %>
         </div>
       </div>
     </div>
@@ -33,7 +33,7 @@
       <div class="col-md-6">
         <div class="form-group required">
           <%= form.label :email, class: "text-uppercase control-label" %>
-          <%= form.text_field :email, placeholder: "Enter restaurant email", class: "form-control" %>
+          <%= form.text_field :email, placeholder: "Enter restaurant email", class: "form-control", required: true %>
         </div>
       </div>
     </div>
@@ -42,7 +42,7 @@
       <div class="col-md-6">
         <div class="form-group required">
           <%= form.label :phone_number, class: "control-label text-uppercase" %>
-          <%= form.text_field :phone_number, placeholder: "Restaurant phone number", class: "form-control" %>
+          <%= form.text_field :phone_number, placeholder: "Restaurant phone number", class: "form-control", required: true %>
         </div>
       </div>
       <div class="col-md-6">
@@ -75,13 +75,13 @@
       <div class="col-md-6">
         <div class="form-group required">
           <%= form.label :owner_phone_number, class: "control-label text-uppercase" %>
-          <%= form.text_field :owner_phone_number, placeholder: "Owner phone number", class: "form-control" %>
+          <%= form.text_field :owner_phone_number, placeholder: "Owner phone number", class: "form-control", required: true %>
         </div>
       </div>
       <div class="col-md-6">
         <div class="form-group required">
           <%= form.label :owner_email, class: "control-label text-uppercase" %>
-          <%= form.text_field :owner_email, placeholder: "Owner email", class: "form-control" %>
+          <%= form.text_field :owner_email, placeholder: "Owner email", class: "form-control", required: true %>
         </div>
       </div>
     </div>

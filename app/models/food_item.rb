@@ -5,7 +5,7 @@ class FoodItem < ApplicationRecord
 
   enum         veg: [ :veg, :egg, :non_veg ]
 
-  validates   :name,            presence: true,   length: { minimum: 3 }
+  validates   :name,                     presence: true,   length: { minimum: 3 }
   validates   :price,  :image,   :veg,   presence: true
 
   has_attached_file :image, styles: { large: "300x760>", medium: "300x600>", thumb: "200x200#" },

@@ -16,7 +16,7 @@ class Table < ApplicationRecord
             message: "only allows valid emails" }
 
   validates_format_of :guest_phone_number,  with: /\A(\d{10}|\(?\d{3}\)?[-.\s]\d{3}[-.\s]\d{4})\z/,
-                      message: "Only positive number without spaces are allowed"
+                      message: "Only positive number are allowed"
 
 
 

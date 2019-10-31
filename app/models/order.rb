@@ -8,6 +8,7 @@ class Order < ApplicationRecord
 
   enum        status: [ "pending", "in_progress", "delivered" ]
   before_save :update_total
+  
   validates   :total_price,   :status, :latitude, :longitude,   presence: true
 
   private

@@ -13,33 +13,33 @@
           </button>
         </div>
         <div class="modal-body">
-          <% if @restaurant.errors.any? %>
-            <% @restaurant.errors.full_messages.each do |message| %>
+          <% if @restaurant.food_items.build.errors.any? %>
+            <% @restaurant.food_items.build.errors.full_messages.each do |message| %>
               <p class="text-danger"><%= message %></p>
             <% end %>
           <% end %>
   
           <div class="form-group required">
             <%= form.label :name, class: "control-label" %>
-            <%= form.text_field :name, placeholder: "Enter name of food", class: "form-control" %>
+            <%= form.text_field :name, placeholder: "Enter name of food", class: "form-control", required: true %>
           </div>
 
           <div class="form-group required">
             <%= form.label :image, class: "control-label" %>
-            <%= form.file_field :image, placeholder: "Upload an image", class: "form-control-file" %>
+            <%= form.file_field :image, placeholder: "Upload an image", class: "form-control-file", required: true %>
           </div>
 
           <div class="row">
             <div class="col-md-6">
               <div class="form-group required">
                 <%= form.label :price, class: "control-label" %>
-                <%= form.text_field :price, placeholder: "Enter the price", class: "form-control" %>
+                <%= form.text_field :price, placeholder: "Enter the price", class: "form-control", required: true %>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group required">
                 <%= form.label :food_category_id, class: "control-label" %>
-                <%= form.select :food_category_id, options_for_select([["select", nil]] + FoodCategory.order(:name).pluck(:name, :id)), {}, class: "form-control" %>
+                <%= form.select :food_category_id, options_for_select([["select", nil]] + FoodCategory.order(:name).pluck(:name, :id)), {}, class: "form-control", required: true %>
               </div>
             </div>
           </div>

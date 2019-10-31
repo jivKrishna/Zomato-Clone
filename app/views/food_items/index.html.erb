@@ -73,7 +73,7 @@
                               </div>
                               <div class="modal-body">
                                 <div class="form-group required">
-                                  <%= f.number_field :quantity, min: 1, class: "quantity-input" %>
+                                  <%= f.number_field :quantity, min: 1, class: "quantity-input", required: true %>
                                 </div>
 
                                 <%= f.submit "Update", class: "btn btn-danger" %>
