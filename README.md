@@ -1,6 +1,6 @@
 # README
 
-##Zomato-Clone
+## Zomato-Clone
 Zomato-Clone is not actually clone of Zomato.com. It is slightly different.
 
 ### In this web app two types of users are available: 
