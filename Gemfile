@@ -31,8 +31,6 @@ gem 'omniauth-oauth2', '~> 1.4'
 gem 'omniauth-facebook', '~> 5.0'
 #google-oauth2 gem
 gem 'omniauth-google-oauth2', '~> 0.8.0'
-#github omniauth
-gem 'omniauth-github', '~> 1.3'
 #for integration google map api
 gem 'geocoder', '~> 1.5', '>= 1.5.1'
 #for image upload

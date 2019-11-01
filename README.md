@@ -24,10 +24,19 @@ Zomato-Clone is not actually clone of Zomato.com. It is slightly different.
   * Elastic Search version: 7.x
   * Database: MySql version: 8.x
 
+### Note:
+  * Before running rails server, please confirm that elasticsearch running, else you get some faraday connection errors.
+
 ### Third Parties packages:
   * Google Maps API
   * Geocoder gem
   * Google Omniauth Oauth2
   * Facebook Omniauth
+  * jquery timepicker
+  * jquery datepicker
+  * raty-js
   * elasticsearch-model
   * elasticsearch-rails
+  * Bootstrap
+  * jQuery
+  * lightbox2
