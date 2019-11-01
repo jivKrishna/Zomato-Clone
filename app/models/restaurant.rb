@@ -39,6 +39,9 @@ class Restaurant < ApplicationRecord
   validates_format_of :owner_phone_number, :phone_number, with: /\A(\d{10}|\(?\d{3}\)?[-.\s]\d{3}[-.\s]\d{4})\z/,
                       message: "Only positive number are allowed"
 
+  validates_format_of :secondary_phone_number, :phone_number, with: /\A(\d{10}|\(?\d{3}\)?[-.\s]\d{3}[-.\s]\d{4})\z/,
+                      message: "Only positive number are allowed", if: ->{ secondary_phone_number.present? }
+
   has_attached_file :image, styles: { large: "300x760>",  medium: "300x600>", thumb: "200x200#" },
                     default_url: "banner.jpg"
 
