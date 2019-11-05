@@ -11,7 +11,7 @@ User.create(
 puts "Admin created..."
 
 #10 Users
-10.times do 
+5.times do 
   User.create(
     name:                   Faker::Name.name,
     email:                  Faker::Internet.unique.email,
@@ -21,15 +21,15 @@ puts "Admin created..."
     phone_number:           Faker::PhoneNumber.cell_phone
   )
 end
-puts "10 Users created..."
+puts "5 Users created..."
 
 #10 restaurants category
-rand(5..8).times do 
+rand(4..6).times do 
   RestaurantCategory.create(
     name:                     Faker::Restaurant.type
   )
 end
-puts "5 to 8 restaurant categories created..."
+puts "4 to 6 restaurant categories created..."
 
 #For each restaurant categories 10 restaurants 
 RestaurantCategory.all.each do |restaurant_category|
@@ -103,23 +103,9 @@ RestaurantCategory.all.each do |restaurant_category|
       website:                Faker::Internet.domain_name,
       serve_alcohal:          Faker::Boolean.boolean
     )
-
-    restaurant_category.restaurants.create(
-      name:                   Faker::Restaurant.name,
-      image:                  File.new("#{Rails.root}/app/assets/images/banner.jpg"),
-      email:                  Faker::Internet.unique.email,
-      latitude:               22.57263654,
-      longitude:              88.36393654,
-      phone_number:           Faker::PhoneNumber.cell_phone,
-      secondary_phone_number: Faker::PhoneNumber.cell_phone,
-      owner_email:            Faker::Internet.unique.email,
-      owner_phone_number:     Faker::PhoneNumber.cell_phone,
-      website:                Faker::Internet.domain_name,
-      serve_alcohal:          Faker::Boolean.boolean
-    )
 end
 puts "for each restaurant category 4 to 6 restaurants created..."
-puts "Near by Kolkata 5 restaurants created..."
+puts "Near by Kolkata 4 restaurants created..."
 
 
 #Food Category
@@ -143,24 +129,12 @@ FoodCategory.create(
   name:                     "Ice Cream"
 )
 
-FoodCategory.create(
-  name:                     "Spicy"
-)
-
-FoodCategory.create(
-  name:                     "Fast food"
-)
-
-FoodCategory.create(
-  name:                     "Sweets"
-)
-
-puts "7 Food Categories created..."
+puts "5 Food Categories created..."
 
 #food items
 Restaurant.all.each do |restaurant| 
   FoodCategory.all.each do |food_category|
-    rand(3..7).times do 
+    rand(2..4).times do 
       FoodItem.create(
         name:                  Faker::Food.dish,
         image:                  File.new("#{Rails.root}/app/assets/images/food.jpg"),
@@ -172,12 +146,12 @@ Restaurant.all.each do |restaurant|
     end
   end
 end
-puts "For each restaurant and for each food category 3 to 7 food dishes created..."
+puts "For each restaurant and for each food category 2 to 4 food dishes created..."
 
 #restaurant reviews
 User.all.each do |user|
   Restaurant.all.each do |restaurant|
-    rand(2..4).times do
+    rand(1..2).times do
       Review.create(
         rating:                 Faker::Number.between(from: 1, to: 5),
         comment:                Faker::Food.description,
@@ -189,7 +163,7 @@ User.all.each do |user|
     end
   end
 end
-puts "For each user and for each restaurant 2 to 4 reviews created..."
+puts "For each user and for each restaurant 1 to 2 reviews created..."
 
 #menu-cards
 Restaurant.all.each do |restaurant|

@@ -12,6 +12,22 @@
 
 ActiveRecord::Schema.define(version: 2019_10_11_095722) do
 
+  create_table "booking_tables", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "restaurant_id", null: false
+    t.integer "guest_number", null: false
+    t.date "booking_date", null: false
+    t.time "booking_time", null: false
+    t.string "guest_first_name", null: false
+    t.string "guest_last_name", null: false
+    t.string "guest_email", null: false
+    t.string "guest_phone_number", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["restaurant_id"], name: "index_booking_tables_on_restaurant_id"
+    t.index ["user_id"], name: "index_booking_tables_on_user_id"
+  end
+
   create_table "food_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -118,22 +134,6 @@ ActiveRecord::Schema.define(version: 2019_10_11_095722) do
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
-  create_table "tables", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "restaurant_id", null: false
-    t.integer "guest_number", null: false
-    t.date "booking_date", null: false
-    t.time "booking_time", null: false
-    t.string "guest_first_name", null: false
-    t.string "guest_last_name", null: false
-    t.string "guest_email", null: false
-    t.string "guest_phone_number", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["restaurant_id"], name: "index_tables_on_restaurant_id"
-    t.index ["user_id"], name: "index_tables_on_user_id"
-  end
-
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.boolean "admin", default: false
     t.string "name", null: false
@@ -150,6 +150,8 @@ ActiveRecord::Schema.define(version: 2019_10_11_095722) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "booking_tables", "restaurants"
+  add_foreign_key "booking_tables", "users"
   add_foreign_key "food_items", "food_categories"
   add_foreign_key "food_items", "restaurants"
   add_foreign_key "menu_cards", "restaurants"
@@ -159,6 +161,4 @@ ActiveRecord::Schema.define(version: 2019_10_11_095722) do
   add_foreign_key "orders", "users"
   add_foreign_key "reviews", "restaurants"
   add_foreign_key "reviews", "users"
-  add_foreign_key "tables", "restaurants"
-  add_foreign_key "tables", "users"
 end

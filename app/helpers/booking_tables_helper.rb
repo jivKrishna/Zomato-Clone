@@ -1,0 +1,2 @@
+module BookingTablesHelper
+end

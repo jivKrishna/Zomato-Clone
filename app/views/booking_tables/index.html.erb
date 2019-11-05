@@ -2,15 +2,15 @@
 
 <div class="container container-size">
   <%= link_to "Go Back", :back, class: "btn btn-secondary my-4" %>
-  <%= link_to "Book Table Now", restaurants_path, class: "btn btn-primary my-4" %>
+  <%= link_to "Book booking_table Now", restaurants_path, class: "btn btn-primary my-4" %>
   <div class="row">
     <div class="col-md-8">
-      <% if @tables.count == 0 %>
+      <% if @booking_tables.count == 0 %>
         <p class="text-danger">You haven't book any restaurant till now!</p>
       <% else %>
-        <%= render @tables %>
+        <%= render @booking_tables %>
       <% end %>
-      <%= will_paginate @tables %>
+      <%= will_paginate @booking_tables %>
     </div>
   </div>
 </div>

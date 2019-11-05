@@ -1,7 +1,7 @@
-<%= form_for([ @restaurant, @table ]) do |f| %>
-  <% if @table.errors.any? %>
+<%= form_for([ @restaurant, @booking_table ]) do |f| %>
+  <% if @booking_table.errors.any? %>
     <div class="form-group">
-      <% @table.errors.full_messages.each do |msg| %>
+      <% @booking_table.errors.full_messages.each do |msg| %>
         <p class="text-danger"><%= msg %></p>
       <% end %>
     </div>
