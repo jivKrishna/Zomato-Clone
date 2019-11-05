@@ -4,7 +4,7 @@ class OrderItemsController < ApplicationController
   before_action :find_order_item, only: [:update, :destroy]
 
   def create
-    @order_item = current_order.order_items.create(order_item_params)
+    @order_item = current_order.order_items.build(order_item_params)
     @order_item.food_item_id = @food_item.id
 
     if @order_item.save

@@ -13,11 +13,10 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.find_by(email: params[:user][:email], provider: "email")
-    unless @user.nil?
+    unless User.find_by(email: params[:user][:email], provider: "email").nil?
       redirect_to root_path, flash: { danger: "That Email already available!" }
     else
-      @user = User.create(user_params)
+      @user = User.new(user_params)
       if @user.save
         session[:user_id] = @user.id        
         redirect_back fallback_location: root_path, flash: { success: "You have successfully sign up!" }
@@ -36,11 +35,12 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user.update(name: params[:user][:name]) if params[:user][:name].present?
-    @user.update(image: params[:user][:image]) if params[:user][:image].present?
-    @user.update(phone_number: params[:user][:phone_number]) if params[:user][:phone_number].present?
+    # @user.update(name: params[:user][:name]) if params[:user][:name].present?
+    # @user.update(image: params[:user][:image]) if params[:user][:image].present?
+    # @user.update(phone_number: params[:user][:phone_number]) if params[:user][:phone_number].present?
 
-    if @user.update(user_password_params) && @user.save
+
+    if @user.update(user_add_info_params)
       redirect_to @user, flash: { success: "You have successfully updated info!" }
     else
       render :edit, flash: { success: "Something wrong!" }
@@ -60,8 +60,8 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     end
 
-    def user_password_params
-      params.require(:user).permit(:password, :password_confirmation)
+    def user_add_info_params
+      params.require(:user).permit(:name, :phone_number, :image, :password, :password_confirmation)
     end
 
     def validation_errors

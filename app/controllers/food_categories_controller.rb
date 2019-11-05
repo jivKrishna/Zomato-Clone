@@ -8,7 +8,7 @@ class FoodCategoriesController < ApplicationController
   end
 
   def create
-    @food_category = FoodCategory.create(food_category_params)
+    @food_category = FoodCategory.new(food_category_params)
 
     if @food_category.save
       redirect_to food_categories_path, flash: { success: "A food category created!" }

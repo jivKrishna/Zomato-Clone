@@ -8,7 +8,7 @@ class RestaurantCategoriesController < ApplicationController
   end
 
   def create
-    @restaurant_category = RestaurantCategory.create(restaurant_category_params)
+    @restaurant_category = RestaurantCategory.new(restaurant_category_params)
 
     if @restaurant_category.save
       redirect_to restaurant_categories_path, flash: { success: "A restaurant category created!" }

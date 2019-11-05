@@ -8,7 +8,7 @@ class MenuCardsController < ApplicationController
   end
 
   def create
-    @menu_card = @restaurant.menu_cards.create(menu_card_params)
+    @menu_card = @restaurant.menu_cards.build(menu_card_params)
 
     if @menu_card.save
       redirect_back fallback_location: restaurant_menu_cards_path(@restaurant), flash: { success: "Menu added successfully!" }

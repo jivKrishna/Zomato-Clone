@@ -14,7 +14,7 @@ class FoodItemsController < ApplicationController
   end
 
   def create
-    @food_item = @restaurant.food_items.create(food_item_params)
+    @food_item = @restaurant.food_items.build(food_item_params)
 
     if @food_item.save
       redirect_back fallback_location: restaurant_food_items_path(@restaurant), flash: { success: "#{@food_item.name} is added successfully!" }

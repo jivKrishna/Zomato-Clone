@@ -20,13 +20,13 @@
   </div>
   <div class="row text-center">
     <% @menu_cards.each do |menu_card| %>
-      <div class="col-md-3 bg-white container-border my-2">
+      <div class="col-md-3 bg-white container-border my-2 py-2">
         <a href="<%= menu_card.image.url %>" data-lightbox="roadtrip" data-title="<%= menu_card.description %>">
           <%= image_tag menu_card.image.url, class: "img-fluid" %>
         </a>
 
-        <div class="btn-group">
-          <% if is_admin? %>
+        <% if is_admin? %>
+          <div class="btn-group my-2">
             <%= link_to edit_restaurant_menu_card_path(menu_card.restaurant, menu_card), title: "Edit", class: "btn btn-primary" do %>
               <i class="fas fa-edit"></i>
             <% end %>
@@ -34,8 +34,8 @@
             <%= link_to [menu_card.restaurant, menu_card], method: :delete, data: { confirm: "Are you sure?" }, title: "Delete", class: "btn btn-danger" do %>
               <i class="fas fa-trash-alt"></i>
             <% end %>
-          <% end %>
-        </div>
+          </div>
+        <% end %>
       </div>
     <% end %>
   </div>

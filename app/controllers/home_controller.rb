@@ -3,7 +3,7 @@ class HomeController < ApplicationController
 
   def index
     #search restaurant using elastic search nearest or given location
-    @restaurant_nearby = Restaurant.search(( params[:q].present? ? params[:q] : "*" ), size: 1000)
+    @restaurant_nearby = Restaurant.search(( params[:q].present? ? params[:q] : "*" ), size: 100)
                   .records.near(( params[:near].present? ? params[:near] : params[:location] ), 25)
                     .order(distance: :asc).paginate(page: params[:page], per_page: 6)
 
