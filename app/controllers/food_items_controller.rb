@@ -1,7 +1,7 @@
 class FoodItemsController < ApplicationController
   before_action :authenticate_admin!, only: :create
   before_action :authenticate_user!
-  before_action :find_restaurant, only: [ :create, :index, :destroy ]
+  before_action :find_restaurant, only: [ :create, :show, :index, :edit, :update, :destroy ]
   before_action :find_food_item,  only: [ :show, :edit, :update, :destroy ]
 
   def index
@@ -19,7 +19,7 @@ class FoodItemsController < ApplicationController
     if @food_item.save
       redirect_back fallback_location: restaurant_food_items_path(@restaurant), flash: { success: "#{@food_item.name} is added successfully!" }
     else
-      redirect_back fallback_location: restaurant_food_items_path(@restaurant), flash: { danger: "Something missed!" }
+      redirect_back fallback_location: restaurant_food_items_path(@restaurant), flash: { danger: validation_errors }
     end
   end
 
@@ -28,9 +28,9 @@ class FoodItemsController < ApplicationController
 
   def update
     if @food_item.update(food_item_params)
-      redirect_to restaurant_food_item_path(@food_item), flash: { success: "#{@food_item.name} is updated successfully!" }
+      redirect_back fallback_location: restaurant_food_items_path(@restaurant), flash: { success: "#{@food_item.name} is updated successfully!" }
     else
-      redirect_back fallback_location: restaurant_food_item_path(@food_item), flash: { danger: "Something missed!" }
+      redirect_back fallback_location: restaurant_food_item_path(@food_item), flash: { danger: validation_errors }
     end
   end
 
@@ -38,7 +38,7 @@ class FoodItemsController < ApplicationController
     if @food_item.destroy
       redirect_to restaurant_food_items_path(@restaurant)
     else
-      redirect_back fallback_location: restaurant_food_item_path(@food_item), flash: { danger: "Something wrong!" }
+      redirect_back fallback_location: restaurant_food_items_path(@restaurant), flash: { danger: validation_errors 
     end
   end
 
@@ -52,6 +52,10 @@ class FoodItemsController < ApplicationController
     end
 
     def find_food_item
-      @food_item = FoodItem.find(params[:id])
+      @food_item = @restaurant.food_items.find(params[:id])
+    end
+
+    def validation_errors
+      @food_item.errors.full_messages.join("<br>")
     end
 end

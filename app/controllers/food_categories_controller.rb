@@ -13,7 +13,7 @@ class FoodCategoriesController < ApplicationController
     if @food_category.save
       redirect_to food_categories_path, flash: { success: "A food category created!" }
     else
-      redirect_back fallback_location: food_categories_path, flash: { warning: "Something doing wrong!" }
+      redirect_back fallback_location: food_categories_path, flash: { danger: @food_category.errors.full_messages.join("<br>") }
     end
   end
 
@@ -21,7 +21,7 @@ class FoodCategoriesController < ApplicationController
     if @food_category.update(food_category_params)
       redirect_to food_categories_path, flash: { success: "A food category updated!" }
     else
-      redirect_back fallback_location: food_categories_path, flash: { warning: "Something doing wrong!" }
+      redirect_back fallback_location: food_categories_path, flash: { danger: @food_category.errors.full_messages.join("<br>") }
     end
   end
 
@@ -29,7 +29,7 @@ class FoodCategoriesController < ApplicationController
     if @food_category.destroy
       redirect_to food_categories_path, flash: { success: "A food category deleted!" }
     else
-      redirect_back fallback_location: food_categories_path, flash: { warning: "Something doing wrong!" }
+      redirect_back fallback_location: food_categories_path, flash: { danger: @food_category.errors.full_messages.join("<br>") }
     end
   end
 
