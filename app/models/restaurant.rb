@@ -2,7 +2,7 @@ class Restaurant < ApplicationRecord
   belongs_to :restaurant_category
   has_many :food_items, dependent: :destroy
   has_many :reviews,    dependent: :destroy
-  has_many :tables,     dependent: :destroy
+  has_many :booking_tables,     dependent: :destroy
   has_many :orders,     dependent: :destroy
   has_many :menu_cards, dependent: :destroy
 

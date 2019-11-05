@@ -23,7 +23,7 @@
 
         <div class="px-3 my-2">
           <%= link_to "Order Food Online", restaurant_food_items_path(@restaurant), class: "btn btn-success mt-2 mt-md-0" %>
-          <%= link_to "Book Table", new_restaurant_table_path(@restaurant), class: "btn btn-primary mt-2 mt-md-0" %>
+          <%= link_to "Book Table", new_restaurant_booking_table_path(@restaurant), class: "btn btn-primary mt-2 mt-md-0" %>
           <%= link_to "Menu Card", restaurant_menu_cards_path(@restaurant), class: "btn btn-secondary mt-2 mt-md-0" %>
           <%= link_to "Photos", restaurant_photos_path(@restaurant), class: "btn btn-warning mt-2 mt-md-0" %>
           <% if is_admin? %>

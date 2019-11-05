@@ -9,8 +9,8 @@ class BookingTable < ApplicationRecord
   before_save { self.guest_email = guest_email.downcase }
   before_save { self.booking_time = booking_time.strftime("%H:%M") }
 
-  validates :guest_number,       :booking_date,   :booking_time,   :guest_first_name,  :guest_last_name,
-            :guest_phone_number,  presence: true
+  validates :guest_first_name, :guest_last_name, presence: true, length: { minimum: 3 }
+  validates :guest_number,       :booking_date,   :booking_time,   :guest_phone_number,  presence: true
 
   validates :guest_email,   presence: true,   format: { with: VALID_EMAIL_REGEX,
             message: "only allows valid emails" }

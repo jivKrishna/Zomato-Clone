@@ -49,4 +49,9 @@ $(document).on('turbolinks:load', function(){
       $("#location").val([ position.coords.latitude, position.coords.longitude ]);
     });
   }
+
+  $("#locate").click(()=>{
+    $("#q").val("");
+    $("#near").val("");
+  });
 });

@@ -28,15 +28,17 @@ class BookingTablesController < ApplicationController
 
   def update
     if @booking_table.update(table_params)
-      redirect_back fallback_location: restaurant_booking_tables_path
+      redirect_to restaurant_booking_tables_path, flash: { success: "Table updated successfully!" }
     else
-      render :new
+      render :edit
     end
   end
 
   def destroy
     if @booking_table.destroy
-      redirect_to restaurant_booking_tables_path
+      redirect_to restaurant_booking_tables_path, flash: { success: "Table canceled successfully!" }
+    else
+      redirect_to restaurant_booking_tables_path, flash: { danger: @booking_table.errors.full_messages.join("<br>") }
     end
   end
 
@@ -51,6 +53,6 @@ class BookingTablesController < ApplicationController
     end
 
     def find_table
-      @booking_table = Table.find(params[:id])
+      @booking_table = BookingTable.find(params[:id])
     end
 end

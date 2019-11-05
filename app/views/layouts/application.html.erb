@@ -21,7 +21,7 @@
           <% if @page_title != "Zomato Clone" %>
             <%= form_tag root_path, class: "navbar-form d-flex form-size", role: "search", method: :get do |f| %>
               <div class="d-md-flex justify-space-between">
-                <%= button_tag name: nil, class: "btn btn-danger rounded-circle mx-1 px-2 border" do %>
+                <%= button_tag name: nil, id: "locate", class: "btn btn-danger rounded-circle mx-1 px-2 border" do %>
                   <i class="fas fa-location-arrow"></i>
                 <% end %>
                 <%= hidden_field_tag :location, params[:location] %>
@@ -43,7 +43,7 @@
                 <%= link_to "Profile", user_path(current_user), class: "dropdown-item" %>
                 <%= link_to "Add Info", edit_user_path(current_user), class: "dropdown-item" %> 
                 <%= link_to "My Orders", restaurant_orders_path(current_user.orders), class: "dropdown-item" %>                  
-                <%= link_to "My Bookings", restaurant_tables_path(current_user.tables), class: "dropdown-item" %>
+                <%= link_to "My Bookings", restaurant_booking_tables_path(current_user.booking_tables), class: "dropdown-item" %>
                 <%= link_to "Log Out", signout_path, method: :delete, class: "dropdown-item" %>
               </span>
             </div>
@@ -55,7 +55,7 @@
     </header>
 
     <% flash.each do |key, value| %>
-      <%= content_tag :div, value, class: "text-#{key} text-center" %>
+      <%= content_tag :div, value.html_safe, class: "text-#{key} text-center" %>
     <% end %>
     
     <%= yield %>
