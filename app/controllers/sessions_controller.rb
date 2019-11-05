@@ -34,7 +34,7 @@ class SessionsController < ApplicationController
         redirect_back fallback_location: root_path, flash: { success: "Signed In successfully!" }
       end
     else
-      redirect_back fallback_location: root_path, flash: { warning: "Invalid email/password" }
+      redirect_back fallback_location: root_path, flash: { danger: "Invalid email/password" }
     end
   end
 

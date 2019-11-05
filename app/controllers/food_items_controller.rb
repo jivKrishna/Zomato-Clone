@@ -38,7 +38,7 @@ class FoodItemsController < ApplicationController
     if @food_item.destroy
       redirect_to restaurant_food_items_path(@restaurant)
     else
-      redirect_back fallback_location: restaurant_food_items_path(@restaurant), flash: { danger: validation_errors 
+      redirect_back fallback_location: restaurant_food_items_path(@restaurant), flash: { danger: validation_errors }
     end
   end
 

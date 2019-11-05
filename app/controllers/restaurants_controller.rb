@@ -37,7 +37,6 @@ class RestaurantsController < ApplicationController
     if @restaurant.save
       redirect_to restaurant_path(@restaurant), flash: { success: "Successfully created restaurant info!" }
     else
-      flash[:danger] = "Something missed!"
       render :new
     end
   end
@@ -49,7 +48,6 @@ class RestaurantsController < ApplicationController
     if @restaurant.update(restaurant_params)
       redirect_to restaurant_path(@restaurant), flash: { success: "Successfully updated restaurant info!" }
     else
-      flash[:danger] = "Something missed!"
       render :edit
     end
   end
@@ -58,7 +56,7 @@ class RestaurantsController < ApplicationController
     if @restaurant.destroy
       redirect_back fallback_location: restaurants_path, flash: { success: "Successfully deleted restaurant info!" }
     else
-      redirect_back fallback_location: restaurant_path, flash: { danger: "Something missed!" }
+      redirect_back fallback_location: restaurant_path, flash: { danger: validation_errors }
     end
   end
 
@@ -77,5 +75,9 @@ class RestaurantsController < ApplicationController
 
     def restaurant_category_options  
       @restaurant_category_options = [["select", nil]] + RestaurantCategory.order(:name).pluck(:name, :id)
+    end
+
+    def validation_errors
+      @restaurant.errors.full_messages.join("<br>")
     end
 end
