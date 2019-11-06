@@ -35,11 +35,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    # @user.update(name: params[:user][:name]) if params[:user][:name].present?
-    # @user.update(image: params[:user][:image]) if params[:user][:image].present?
-    # @user.update(phone_number: params[:user][:phone_number]) if params[:user][:phone_number].present?
-
-
     if @user.update(user_add_info_params)
       redirect_to @user, flash: { success: "You have successfully updated info!" }
     else

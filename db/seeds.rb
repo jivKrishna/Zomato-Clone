@@ -33,12 +33,13 @@ puts "4 to 6 restaurant categories created..."
 
 #For each restaurant categories 10 restaurants 
 RestaurantCategory.all.each do |restaurant_category|
+  rand(1..2).times do
     restaurant_category.restaurants.create(
       name:                   Faker::Restaurant.name,
       image:                  File.new("#{Rails.root}/app/assets/images/banner.jpg"),
       email:                  Faker::Internet.unique.email,
-      latitude:               22.5666781,
-      longitude:              88.3669781,
+      latitude:               rand(22.325726153..22.5748512),
+      longitude:              rand(88.323639153..88.3845112),
       phone_number:           Faker::PhoneNumber.cell_phone,
       secondary_phone_number: Faker::PhoneNumber.cell_phone,
       owner_email:            Faker::Internet.unique.email,
@@ -46,75 +47,13 @@ RestaurantCategory.all.each do |restaurant_category|
       website:                Faker::Internet.domain_name,
       serve_alcohal:          Faker::Boolean.boolean
     )
-
-    restaurant_category.restaurants.create(
-      name:                   Faker::Restaurant.name,
-      image:                  File.new("#{Rails.root}/app/assets/images/banner.jpg"),
-      email:                  Faker::Internet.unique.email,
-      latitude:               22.2726781,
-      longitude:              88.2639781,
-      phone_number:           Faker::PhoneNumber.cell_phone,
-      secondary_phone_number: Faker::PhoneNumber.cell_phone,
-      owner_email:            Faker::Internet.unique.email,
-      owner_phone_number:     Faker::PhoneNumber.cell_phone,
-      website:                Faker::Internet.domain_name,
-      serve_alcohal:          Faker::Boolean.boolean
-    )
-
-
-    restaurant_category.restaurants.create(
-      name:                   Faker::Restaurant.name,
-      image:                  File.new("#{Rails.root}/app/assets/images/banner.jpg"),
-      email:                  Faker::Internet.unique.email,
-      latitude:               22.726125,
-      longitude:              88.639145,
-      phone_number:           Faker::PhoneNumber.cell_phone,
-      secondary_phone_number: Faker::PhoneNumber.cell_phone,
-      owner_email:            Faker::Internet.unique.email,
-      owner_phone_number:     Faker::PhoneNumber.cell_phone,
-      website:                Faker::Internet.domain_name,
-      serve_alcohal:          Faker::Boolean.boolean
-    )
-
-    restaurant_category.restaurants.create(
-      name:                   Faker::Restaurant.name,
-      image:                  File.new("#{Rails.root}/app/assets/images/banner.jpg"),
-      email:                  Faker::Internet.unique.email,
-      latitude:               22.325726153,
-      longitude:              88.323639153,
-      phone_number:           Faker::PhoneNumber.cell_phone,
-      secondary_phone_number: Faker::PhoneNumber.cell_phone,
-      owner_email:            Faker::Internet.unique.email,
-      owner_phone_number:     Faker::PhoneNumber.cell_phone,
-      website:                Faker::Internet.domain_name,
-      serve_alcohal:          Faker::Boolean.boolean
-    )
-
-    restaurant_category.restaurants.create(
-      name:                   Faker::Restaurant.name,
-      image:                  File.new("#{Rails.root}/app/assets/images/banner.jpg"),
-      email:                  Faker::Internet.unique.email,
-      latitude:               22.57265748,
-      longitude:              88.36395748,
-      phone_number:           Faker::PhoneNumber.cell_phone,
-      secondary_phone_number: Faker::PhoneNumber.cell_phone,
-      owner_email:            Faker::Internet.unique.email,
-      owner_phone_number:     Faker::PhoneNumber.cell_phone,
-      website:                Faker::Internet.domain_name,
-      serve_alcohal:          Faker::Boolean.boolean
-    )
+  end
 end
-puts "for each restaurant category 4 to 6 restaurants created..."
-puts "Near by Kolkata 4 restaurants created..."
-
+puts "for each restaurant category 1 to 2 restaurants created..."
 
 #Food Category
 FoodCategory.create(
   name:                     "Snacks"
-)
-
-FoodCategory.create(
-  name:                     "Cafe"
 )
 
 FoodCategory.create(
@@ -125,11 +64,7 @@ FoodCategory.create(
   name:                     "Ice Cream"
 )
 
-FoodCategory.create(
-  name:                     "Ice Cream"
-)
-
-puts "5 Food Categories created..."
+puts "3 Food Categories created..."
 
 #food items
 Restaurant.all.each do |restaurant| 
@@ -155,7 +90,7 @@ User.all.each do |user|
       Review.create(
         rating:                 Faker::Number.between(from: 1, to: 5),
         comment:                Faker::Food.description,
-        image:                  File.new("#{Rails.root}/app/assets/images/restaurant.jpg"),
+        # image:                  File.new("#{Rails.root}/app/assets/images/restaurant.jpg"),
         approve:                Faker::Number.between(from: 0, to: 1),
         user_id:                user.id,
         restaurant_id:          restaurant.id
@@ -185,25 +120,7 @@ Restaurant.all.each do |restaurant|
                                mock-ups."
   )
 
-  restaurant.menu_cards.create(
-    image:                  File.new("#{Rails.root}/app/assets/images/menu3.jpg"),
-    description:              "Lorem ipsum is a pseudo-Latin text used in web design,
-                               typography, layout, and printing in place of English to 
-                               emphasise design elements over content. It's also called 
-                               placeholder (or filler) text. It's a convenient tool for 
-                               mock-ups."
-  )
-
-  restaurant.menu_cards.create(
-    image:                  File.new("#{Rails.root}/app/assets/images/menu4.jpg"),
-    description:              "Lorem ipsum is a pseudo-Latin text used in web design,
-                               typography, layout, and printing in place of English to 
-                               emphasise design elements over content. It's also called 
-                               placeholder (or filler) text. It's a convenient tool for 
-                               mock-ups."
-  )
-
 end
-puts "For each restaurant 4 menu cards created..."
+puts "For each restaurant 2 menu cards created..."
 
 Restaurant.import
