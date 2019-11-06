@@ -16,6 +16,7 @@
 
 #### Admin:
   Admin can access all the feature.
+  
   ** Note: In seed file Admin user details:
            Email: krishna@gmail.com
            Password: 123456789
