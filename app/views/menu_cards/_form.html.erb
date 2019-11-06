@@ -1,9 +1,9 @@
-<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#addMenuCard">
+<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#addMenuCardImage">
   Add Menu Card
 </button>
 
 <%= form_for [@restaurant, @restaurant.menu_cards.build], html: { multipart: true } do |f| %>
-  <div class="modal fade" id="addMenuCard" tabindex="-1" role="dialog" aria-labelledby="addfoodLabel" aria-hidden="true">
+  <div class="modal fade" id="addMenuCardImage" tabindex="-1" role="dialog" aria-labelledby="addfoodLabel" aria-hidden="true">
     <div class="modal-dialog modal-md" role="document">
       <div class="modal-content">
         <div class="modal-header">

@@ -48,7 +48,7 @@
               </span>
             </div>
           <% elsif !signed_in? && @page_title != "Zomato Clone" %>
-            <button type="button" class="btn text-white border-light" data-toggle="modal" data-target="#AccountModalID">SignIn</button>
+            <button type="button" class="btn text-white border-light" data-toggle="modal" data-target="#AccountModalPage">SignIn</button>
           <% end %>
         </div>
       </nav>
@@ -62,7 +62,7 @@
   </body>
 </html>
 
-<div class="modal fade my-5" id="AccountModalID" tabindex="-1" role="dialog" aria-labelledby="AccountModalLabelID" aria-hidden="true">
+<div class="modal fade my-5" id="AccountModalPage" tabindex="-1" role="dialog" aria-labelledby="AccountModalLabelID" aria-hidden="true">
   <div class="modal-dialog modal-md" role="document">
     <div class="modal-content">
       <div class="modal-header">
