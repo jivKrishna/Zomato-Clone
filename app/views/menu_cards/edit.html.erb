@@ -6,11 +6,7 @@
       <div class="col-md-8 bg-white container-border my-4 py-3">
         <%= form_for [ @restaurant, @menu_card ], html: { multipart: true } do |f| %>
   
-          <% if @menu_card.errors.any? %>
-            <% @menu_card.errors.full_messages.each do |message| %>
-              <p class="text-danger"><%= message %></p>
-            <% end %>
-          <% end %>
+          <%= render "validation_errors/error", object: @menu_card %>
           
           <div class="form-group required">
             <%= f.label :image, "Upload Menu Card", class: "control-label" %>

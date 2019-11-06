@@ -1,0 +1,9 @@
+<% if object.errors.any? %>
+   <h5 class="text-secondary"><%= pluralize(object.errors.count, "error") %> prevented from saving! </h5>
+
+  <ul class="px-3">
+    <% object.errors.full_messages.each do |msg| %>
+      <li class="text-danger"> <%= msg %> </li>
+    <% end %>
+  </ul>
+<% end %>

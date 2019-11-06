@@ -13,11 +13,6 @@
           </button>
         </div>
         <div class="modal-body">
-          <% if @restaurant.food_items.build.errors.any? %>
-            <% @restaurant.food_items.build.errors.full_messages.each do |message| %>
-              <p class="text-danger"><%= message %></p>
-            <% end %>
-          <% end %>
   
           <div class="form-group required">
             <%= form.label :name, class: "control-label" %>

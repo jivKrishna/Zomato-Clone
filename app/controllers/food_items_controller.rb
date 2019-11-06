@@ -19,7 +19,7 @@ class FoodItemsController < ApplicationController
     if @food_item.save
       redirect_back fallback_location: restaurant_food_items_path(@restaurant), flash: { success: "#{@food_item.name} is added successfully!" }
     else
-      redirect_back fallback_location: restaurant_food_items_path(@restaurant), flash: { danger: validation_errors }
+      redirect_back fallback_location: restaurant_food_items_path(@restaurant), flash: { danger: validation_errors(@food_item) }
     end
   end
 
@@ -30,7 +30,7 @@ class FoodItemsController < ApplicationController
     if @food_item.update(food_item_params)
       redirect_back fallback_location: restaurant_food_items_path(@restaurant), flash: { success: "#{@food_item.name} is updated successfully!" }
     else
-      redirect_back fallback_location: restaurant_food_item_path(@food_item), flash: { danger: validation_errors }
+      redirect_back fallback_location: restaurant_food_item_path(@food_item), flash: { danger: validation_errors(@food_item) }
     end
   end
 
@@ -38,7 +38,7 @@ class FoodItemsController < ApplicationController
     if @food_item.destroy
       redirect_to restaurant_food_items_path(@restaurant)
     else
-      redirect_back fallback_location: restaurant_food_items_path(@restaurant), flash: { danger: validation_errors }
+      redirect_back fallback_location: restaurant_food_items_path(@restaurant), flash: { danger: validation_errors(@food_item) }
     end
   end
 
@@ -53,9 +53,5 @@ class FoodItemsController < ApplicationController
 
     def find_food_item
       @food_item = @restaurant.food_items.find(params[:id])
-    end
-
-    def validation_errors
-      @food_item.errors.full_messages.join("<br>")
     end
 end

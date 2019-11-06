@@ -2,11 +2,8 @@
   <h2 class="font-weight-bold mt-3">Add a restaurant</h2>
   <h5 class="font-weight-bold">Basic info</h5>
   <div class="basic-info bg-white my-4 py-4 px-3 container-border">
-    <% if @restaurant.errors.any? %>
-      <% @restaurant.errors.full_messages.each do |message| %>
-        <p class="text-danger"><%= message %></p>
-      <% end %>
-    <% end %>
+    
+    <%= render "validation_errors/error", object: @restaurant %>
 
     <div class="form-group required">
       <%= form.label :name, "RESTAURANT NAME", class: "control-label text-uppercase" %>

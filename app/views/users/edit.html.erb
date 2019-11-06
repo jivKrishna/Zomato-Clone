@@ -25,11 +25,7 @@
       <div class="container-border bg-white p-3 mx-n3" id="changeContainer">
         <%= form_for @user do |f| %>
 
-          <% if @user.errors.any? %>
-            <% @user.errors.full_messages.each do |message| %>
-              <p class="text-danger"><%= message %></p>
-            <% end %>
-          <% end %>
+          <%= render "validation_errors/error", object: @user %>
 
           <div id="name">
             <h5 class="font-weight-bold">Change Profile Name</h5>

@@ -13,13 +13,6 @@
             </button>
           </div>
           <div class="modal-body">
-            <% if @food_category.errors.any? %>
-              <div class="form-group">
-                <% @food_category.errors.full_messages.each do |msg| %>
-                  <p class="text-danger"><%= msg %></p>
-                <% end %>
-              </div>
-            <% end %>
             <div class="form-group required">
               <%= f.label :name, class: "control-label" %>
               <%= f.text_field :name, placeholder: "Enter Category name: ", class: "form-control category_name", required: true %>

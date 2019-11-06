@@ -1,12 +1,6 @@
 <%= form_for([@restaurant, @review], html: { multipart: true }) do |f| %>
   <div class="row">
-    <% if @review.errors.any? %>
-      <div class="form-group">
-        <% @review.errors.full_messages.each do |msg| %>
-          <p class="text-danger"><%= msg %></p>
-        <% end %>
-      </div>
-    <% end %>
+    <%= render "validation_errors/error", object: @review %>
     <div class="col-2 text-center">
       <%= image_tag current_user.image.url, class: "rounded-circle img-responsive icon" %>
     </div>
