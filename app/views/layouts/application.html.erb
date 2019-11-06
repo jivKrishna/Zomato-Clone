@@ -17,39 +17,33 @@
           <%= link_to "Zomato Clone", root_path, class: "font-weight-bold h4 text-white" %>
         </div>
 
-        <div class="d-md-flex justify-space-between">
-          <% if @page_title != "Zomato Clone" %>
-            <%= form_tag root_path, class: "navbar-form d-flex form-size", role: "search", method: :get do |f| %>
-              <div class="d-md-flex justify-space-between">
-                <%= button_tag name: nil, id: "locate", class: "btn btn-danger rounded-circle mx-1 px-2 border" do %>
-                  <i class="fas fa-location-arrow"></i>
-                <% end %>
-                <%= hidden_field_tag :location, params[:location] %>
-                <%= text_field_tag :near, params[:near], placeholder: "Enter location", class: "mx-1 form-control col-md-3" %>
-                <%= text_field_tag :q, params[:q], placeholder: "Search Restaurant by Category, food, city etc.", class: "mx-1 form-control col-md-6" %>
-                <%= submit_tag "search", class: "btn btn-danger border form-control mx-1", id: "search" %>
-              </div>
-            <% end %>
-          <% end %>
+        <div class="collapse navbar-collapse mx-3" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <%= link_to "Home", root_path, class: "nav-link text-white" %>
+            </li>
+            <li class="nav-item ml-4">
+              <%= link_to "Restaurants", restaurants_path, class: "nav-link text-white" %>
+            </li>
+            <li class="nav-item item dropdown ml-4">
+              <% if signed_in? %>
+                <a class="nav-link dropdown-toggle text-primary" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <%= image_tag current_user.image.url, class: "small-icon rounded-circle" %>
+                  <%= current_user.name.split.first %>
+                </a>
 
-          <% if signed_in? && @page_title != "Zomato Clone" %>
-            <div class="nav-item dropdown ml-4 my-2 ">
-              <a class="nav-link dropdown-toggle container-border my-n2 form-control text-primary" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <%= image_tag current_user.image.url, class: "small-icon rounded-circle" %>
-                <%= current_user.name.split.first %>
-              </a>
-
-              <span class="dropdown-menu my-3 ml-n3" aria-labelledby="navbarDropdown">
-                <%= link_to "Profile", user_path(current_user), class: "dropdown-item" %>
-                <%= link_to "Add Info", edit_user_path(current_user), class: "dropdown-item" %> 
-                <%= link_to "My Orders", restaurant_orders_path(current_user.orders), class: "dropdown-item" %>                  
-                <%= link_to "My Bookings", restaurant_booking_tables_path(current_user.booking_tables), class: "dropdown-item" %>
-                <%= link_to "Log Out", signout_path, method: :delete, class: "dropdown-item" %>
-              </span>
-            </div>
-          <% elsif !signed_in? && @page_title != "Zomato Clone" %>
-            <button type="button" class="btn text-white border-light" data-toggle="modal" data-target="#AccountModalPage">SignIn</button>
-          <% end %>
+                <div class="dropdown-menu my-3 ml-n4" aria-labelledby="navbarDropdown">
+                  <%= link_to "Profile", user_path(current_user), class: "dropdown-item" %>
+                  <%= link_to "Add Info", edit_user_path(current_user), class: "dropdown-item" %> 
+                  <%= link_to "My Orders", restaurant_orders_path(current_user.orders), class: "dropdown-item" %>                  
+                  <%= link_to "My Bookings", restaurant_booking_tables_path(current_user.booking_tables), class: "dropdown-item" %>
+                  <%= link_to "Log Out", signout_path, method: :delete, class: "dropdown-item" %>
+                </div>
+              <% else %>
+                <a class="nav-link dropdown-toggle bg-red text-white" href="#" data-toggle="modal" data-target="#AccountModalPage">Sign In or Sign Up</a>
+              <% end %>
+            </li>
+          </ul>
         </div>
       </nav>
     </header>
@@ -59,43 +53,42 @@
     <% end %>
     
     <%= yield %>
-  </body>
-</html>
 
-<div class="modal fade my-5" id="AccountModalPage" tabindex="-1" role="dialog" aria-labelledby="AccountModalLabelID" aria-hidden="true">
-  <div class="modal-dialog modal-md" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="AccountModalLabelID">Sign up or log in to Zomato-Clone</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="my-3">
-          <%= link_to "/auth/facebook", class: "btn form-control facebook" do %>
-            <i class="fab fa-facebook-f fa-2x text-white mx-3"></i>
-            <span class="text-white imp-link">Continue with Facebook</span>
-          <% end %>
-        </div>
+    <div class="modal fade my-5" id="AccountModalPage" tabindex="-1" role="dialog" aria-labelledby="AccountModalLabelID" aria-hidden="true">
+      <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="AccountModalLabelID">Sign up or log in to Zomato-Clone</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="my-3">
+              <%= link_to "/auth/facebook", class: "btn form-control facebook" do %>
+                <i class="fab fa-facebook-f fa-2x text-white mx-3"></i>
+                <span class="text-white imp-link">Continue with Facebook</span>
+              <% end %>
+            </div>
 
-        <div class="my-3">
-          <%= link_to "/auth/google_oauth2", class: "btn form-control google" do %>
-            <span class="text-secondary imp-link">
-              <%= image_tag "google-icon.png", class: "mx-3 small-icon" %>Continue with Google
-            </span>
-          <% end %>
-        </div>
+            <div class="my-3">
+              <%= link_to "/auth/google_oauth2", class: "btn form-control google" do %>
+                <span class="text-secondary imp-link">
+                  <%= image_tag "google-icon.png", class: "mx-3 small-icon" %>Continue with Google
+                </span>
+              <% end %>
+            </div>
 
-        <div class="d-flex justify-space-between mt-5">
-          <button type="button" class="btn btn-danger form-control" data-toggle="modal" data-target="#loginModal">Log In</button>
-          <%= render "sessions/form" %>
+            <div class="d-flex justify-space-between mt-5">
+              <button type="button" class="btn btn-danger form-control" data-toggle="modal" data-target="#loginModal">Sign In</button>
+              <%= render "sessions/form" %>
 
-          <button type="button" class="btn btn-success form-control" data-toggle="modal" data-target="#signupModal">Sign Up</button>
-          <%= render "users/form" %>
+              <button type="button" class="btn btn-success form-control" data-toggle="modal" data-target="#signupModal">Sign Up</button>
+              <%= render "users/form" %>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
-  
+  </body>
+</html>

@@ -142,6 +142,19 @@
   height: auto;
 }
 
+.item{
+  background-color: #fff;
+  border-radius: 3px;
+}
+
+.nav-item:hover, .nav-item .bg-red:hover{
+  border-radius: 3px;
+  background-color: #f00;
+  a.nav-link:hover{
+    color: #fff;
+  }
+}
+
 @media screen and (max-width: 768px){
   .form-size{
     width: auto;

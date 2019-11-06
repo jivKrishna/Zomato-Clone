@@ -1,27 +1,6 @@
 <% @page_title = "Zomato Clone" %>
 
 <div class="container-fluid banner">
-  <div class="container" id="user_info">
-    <div id="verify" class="float-right mt-2">
-      <% if signed_in? %>
-        <div class="dropdown">
-          <a class="nav-link dropdown-toggle bg-light container-border" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= image_tag current_user.image.url, class: "small-icon rounded-circle" %>
-            <%= current_user.name.split.first %>
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <%= link_to "Profile", user_path(current_user), class: "dropdown-item" %>
-            <%= link_to "Add Info", edit_user_path(current_user), class: "dropdown-item" %> 
-            <%= link_to "My Orders", restaurant_orders_path(current_user.orders), class: "dropdown-item" %>                  
-            <%= link_to "My Bookings", restaurant_booking_tables_path(current_user.booking_tables), class: "dropdown-item" %>
-            <%= link_to "Log Out", signout_path, method: :delete, class: "dropdown-item" %>
-          </div>
-        </div>
-      <% else %>
-        <button type="button" class="btn text-white border-light" data-toggle="modal" data-target="#AccountModal">Sign In or Create Account</button>
-      <% end %>
-    </div>
-  </div>
 </div>
 
 <div class="container container-size">
@@ -86,41 +65,3 @@
     <%= will_paginate @kolkata_restaurants %>
   <% end %>
 </div>
-
-<div class="modal fade my-5" id="AccountModal" tabindex="-1" role="dialog" aria-labelledby="AccountModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-md" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="AccountModalLabel">Sign up or log in to Zomato-Clone</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="my-3">
-          <%= link_to "auth/facebook", class: "popup btn form-control facebook" do %>
-            <i class="fab fa-facebook-f fa-2x text-white mx-3"></i>
-            <span class="text-white imp-link">Continue with Facebook</span>
-          <% end %>
-        </div>
-
-        <div class="my-3">
-          <%= link_to "auth/google_oauth2", class: "btn form-control google" do %>
-            <span class="text-secondary imp-link">
-              <%= image_tag "google-icon.png", class: "mx-3 small-icon" %>Continue with Google
-            </span>
-          <% end %>
-        </div>
-
-        <div class="d-flex justify-space-between mt-5">
-          <button type="button" class="btn btn-danger form-control" data-toggle="modal" data-target="#loginModal">Log In</button>
-          <%= render "sessions/form" %>
-
-          <button type="button" class="btn btn-success form-control" data-toggle="modal" data-target="#signupModal">Sign Up</button>
-          <%= render "users/form" %>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-  
