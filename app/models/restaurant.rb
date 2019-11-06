@@ -16,6 +16,7 @@ class Restaurant < ApplicationRecord
 
   def as_indexed_json(options={})
     self.as_json( 
+      only: [ :name, :city, :address, :website, :longitude, :latitude, :serve_alcohal ],
       include: {
         restaurant_category: { only: :name },
         food_items: { only: [ :name, :veg, :price] },
