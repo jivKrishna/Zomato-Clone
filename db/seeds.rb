@@ -33,7 +33,7 @@ puts "4 to 6 restaurant categories created..."
 
 #For each restaurant categories 10 restaurants 
 RestaurantCategory.all.each do |restaurant_category|
-  rand(1..2).times do
+  rand(3..4).times do
     restaurant_category.restaurants.create(
       name:                   Faker::Restaurant.name,
       image:                  File.new("#{Rails.root}/app/assets/images/banner.jpg"),
