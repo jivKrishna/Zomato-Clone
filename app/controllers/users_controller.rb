@@ -21,7 +21,7 @@ class UsersController < ApplicationController
         session[:user_id] = @user.id        
         redirect_back fallback_location: root_path, flash: { success: "You have successfully sign up!" }
       else
-        redirect_back fallback_location: root_path, flash: { danger: validation_errors }
+        redirect_back fallback_location: root_path, flash: { danger: validation_errors( @user ) }
       end
     end
   end
@@ -62,9 +62,5 @@ class UsersController < ApplicationController
 
     def user_add_info_params
       params.require(:user).permit(:name, :phone_number, :image, :password, :password_confirmation)
-    end
-
-    def validation_errors
-      @user.errors.full_messages.join("<br>")
     end
 end

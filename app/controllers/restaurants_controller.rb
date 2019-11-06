@@ -56,7 +56,7 @@ class RestaurantsController < ApplicationController
     if @restaurant.destroy
       redirect_back fallback_location: restaurants_path, flash: { success: "Successfully deleted restaurant info!" }
     else
-      redirect_back fallback_location: restaurant_path, flash: { danger: validation_errors }
+      redirect_back fallback_location: restaurant_path, flash: { danger: validation_errors( @restaurant ) }
     end
   end
 
@@ -75,9 +75,5 @@ class RestaurantsController < ApplicationController
 
     def restaurant_category_options  
       @restaurant_category_options = [["select", nil]] + RestaurantCategory.order(:name).pluck(:name, :id)
-    end
-
-    def validation_errors
-      @restaurant.errors.full_messages.join("<br>")
     end
 end

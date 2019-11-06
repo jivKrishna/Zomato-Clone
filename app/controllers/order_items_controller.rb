@@ -11,7 +11,7 @@ class OrderItemsController < ApplicationController
       current_order.save
       redirect_back fallback_location: restaurant_food_items_path( @food_item.restaurant, @food_item )
     else
-      redirect_back fallback_location: restaurant_food_items_path( @food_item.restaurant, @food_item ), flash: { danger: validation_errors }
+      redirect_back fallback_location: restaurant_food_items_path( @food_item.restaurant, @food_item ), flash: { danger: validation_errors(@order_item) }
     end  
   end
 
@@ -20,7 +20,7 @@ class OrderItemsController < ApplicationController
       current_order.save
       redirect_back fallback_location: restaurant_food_items_path( @food_item.restaurant, @food_item )
     else
-      redirect_back fallback_location: restaurant_food_items_path( @food_item.restaurant, @food_item ), flash: { danger: validation_errors }
+      redirect_back fallback_location: restaurant_food_items_path( @food_item.restaurant, @food_item ), flash: { danger: validation_errors(@order_item) }
     end
   end
 
@@ -29,7 +29,7 @@ class OrderItemsController < ApplicationController
       current_order.save
       redirect_back fallback_location: restaurant_food_items_path( @food_item.restaurant, @food_item )
     else
-      redirect_back fallback_location: restaurant_food_items_path( @food_item.restaurant, @food_item ), flash: { danger: validation_errors }
+      redirect_back fallback_location: restaurant_food_items_path( @food_item.restaurant, @food_item ), flash: { danger: validation_errors(@order_item) }
     end
   end
 
@@ -44,9 +44,5 @@ class OrderItemsController < ApplicationController
 
     def find_order_item
       @order_item = OrderItem.find(params[:id])
-    end
-
-    def validation_errors
-      @order_item.errors.full_messages.join("<br>")
     end
 end

@@ -13,7 +13,7 @@ class RestaurantCategoriesController < ApplicationController
     if @restaurant_category.save
       redirect_to restaurant_categories_path, flash: { success: "A restaurant category created!" }
     else
-      redirect_back fallback_location: restaurant_categories_path, flash: { danger: validation_errors }
+      redirect_back fallback_location: restaurant_categories_path, flash: { danger: validation_errors(@restaurant_category) }
     end
   end
 
@@ -21,7 +21,7 @@ class RestaurantCategoriesController < ApplicationController
     if @restaurant_category.update(restaurant_category_params)
       redirect_to restaurant_categories_path, flash: { success: "A restaurant category updated!" }
     else
-      redirect_back fallback_location: restaurant_categories_path, flash: { danger: validation_errors }
+      redirect_back fallback_location: restaurant_categories_path, flash: { danger: validation_errors(@restaurant_category) }
     end
   end
 
@@ -29,7 +29,7 @@ class RestaurantCategoriesController < ApplicationController
     if @restaurant_category.destroy
       redirect_to restaurant_categories_path, flash: { success: "A restaurant category deleted!" }
     else
-      redirect_back fallback_location: restaurant_categories_path, flash: { danger: validation_errors }
+      redirect_back fallback_location: restaurant_categories_path, flash: { danger: validation_errors(@restaurant_category) }
     end
   end
 
@@ -40,9 +40,5 @@ class RestaurantCategoriesController < ApplicationController
 
     def find_restaurant_category
       @restaurant_category = RestaurantCategory.find(params[:id])
-    end
-
-    def validation_errors
-      @restaurant_category.errors.full_messages.join("<br>")
     end
 end

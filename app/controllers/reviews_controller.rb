@@ -11,7 +11,7 @@ class ReviewsController < ApplicationController
     if @review.save
       redirect_to @restaurant, flash: { success: "You have commented!" }
     else
-      redirect_back fallback_location: @restaurant, flash: { danger: validation_errors }
+      redirect_back fallback_location: @restaurant, flash: { danger: validation_errors( @review ) }
     end
   end
 
@@ -30,7 +30,7 @@ class ReviewsController < ApplicationController
     if @review.destroy
       redirect_back fallback_location: @restaurant, flash: { success: "Successfully deleted!" }
     else
-      redirect_back fallback_location: @restaurant, flash: { danger: validation_errors }
+      redirect_back fallback_location: @restaurant, flash: { danger: validation_errors( @review ) }
     end
   end
 
@@ -38,7 +38,7 @@ class ReviewsController < ApplicationController
     if @review.update(approve: "approved")
       redirect_back fallback_location: @restaurant, flash: { success: "Successfully approved!" }
     else
-      redirect_back fallback_location: @restaurant, flash: { danger: validation_errors }
+      redirect_back fallback_location: @restaurant, flash: { danger: validation_errors( @review ) }
     end
   end
 
@@ -53,9 +53,5 @@ class ReviewsController < ApplicationController
 
     def review_params
       params.require(:review).permit(:rating, :comment, :image)
-    end
-
-    def validation_errors
-      @review.errors.full_messages.join("<br>")
     end
 end

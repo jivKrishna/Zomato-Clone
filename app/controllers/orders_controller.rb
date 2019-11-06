@@ -15,7 +15,7 @@ class OrdersController < ApplicationController
     if @order.update(status: 2)
       redirect_to restaurant_orders_path, flash: { success: "Your order is successfully delivered!" }
     else
-      redirect_back fallback_location: restaurant_orders_path, flash: { danger: validation_errors }
+      redirect_back fallback_location: restaurant_orders_path, flash: { danger: validation_errors(@order) }
     end
   end
 
@@ -24,7 +24,7 @@ class OrdersController < ApplicationController
     if @order.destroy
       redirect_to restaurant_orders_path, flash: { success: "Your order have been canceled successfully!" }
     else
-      redirect_back fallback_location: restaurant_orders_path, flash: { danger: validation_errors }
+      redirect_back fallback_location: restaurant_orders_path, flash: { danger: validation_errors(@order) }
     end
   end
 
@@ -38,7 +38,7 @@ class OrdersController < ApplicationController
       session[:order_id] = nil
       redirect_back fallback_location: restaurant_orders_path, flash: { success: "Successfully placed order!" }
     else
-      redirect_back fallback_location: restaurant_orders_path, flash: { danger: validation_errors }
+      redirect_back fallback_location: restaurant_orders_path, flash: { danger: validation_errors(@order) }
     end
   end
 
@@ -49,10 +49,6 @@ class OrdersController < ApplicationController
 
     def find_restaurant
       @restaurant = Restaurant.find(params[:restaurant_id])
-    end
-
-    def validation_errors
-      @order.errors.full_messages.join("<br>")
     end
 
 end
