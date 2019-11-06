@@ -1,5 +1,6 @@
 <%= form_for([ @restaurant, @booking_table ]) do |f| %>
   <% if @booking_table.errors.any? %>
+    <h5 class="text-danger">These errors prevented to save!</h5>
     <div class="form-group">
       <% @booking_table.errors.full_messages.each do |msg| %>
         <p class="text-danger"><%= msg %></p>

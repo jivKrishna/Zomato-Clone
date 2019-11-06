@@ -48,26 +48,26 @@
   <% if @restaurant_nearby.present? && params[:near].present? && params[:q].blank? %>
     <h6 class="font-weight-bold my-3 text-success">
       Restaurant near by 
-      <span class="text-danger"><%= params[:near] %></span>
+      <span class="text-primary"><%= params[:near] %></span>
     </h6>
   <% elsif @restaurant_nearby.present? && params[:near].present? && params[:q].present? %>
     <h6 class="font-weight-bold my-3 text-success">
       Restaurant near by 
-      <span class="text-danger"><%= params[:near] %></span> 
+      <span class="text-primary"><%= params[:near] %></span> 
       contains keyword 
-      <span class="text-danger"><%= params[:q] %></span>.
+      <span class="text-primary"><%= params[:q] %></span>.
     </h6>
   <% elsif @restaurant_nearby.present? && params[:near].blank? && params[:q].present? %>
     <h6 class="font-weight-bold my-3 text-success">
       Restaurant near by contains keyword 
-      <span class="text-danger"><%= params[:q] %></span>.
+      <span class="text-primary"><%= params[:q] %></span>.
     </h6>
   <% elsif @restaurant_nearby.blank? && params[:location].present? %>
     <h6 class="font-weight-bold my-3 text-danger">
       Not found restaurant near by 
-      <span class="text-success"><%= params[:near] %></span> 
+      <span class="text-primary"><%= params[:near] %></span> 
       contains keyword 
-      <span class="text-success"><%= params[:q] %></span>.
+      <span class="text-primary"><%= params[:q] %></span>.
     </h6>
   <% end %>
 
