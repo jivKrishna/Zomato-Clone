@@ -11,8 +11,8 @@
         <label>Your rating: </label>
       </div>
 
-      <div class="form-group">
-        <%= f.label :comment %>:
+      <div class="form-group required">
+        <%= f.label :comment, class: "control-label" %>
         <%= f.text_area :comment, rows: 5, placeholder: "Help other foodies by sharing your review of Hola!", class: "form-control", required: true %>
       </div>
 
