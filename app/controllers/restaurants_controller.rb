@@ -1,7 +1,6 @@
 class RestaurantsController < ApplicationController
   before_action :authenticate_admin!, except: [ :show, :index ]
   before_action :find_restaurant, only: [ :show, :edit, :update, :destroy ]
-  before_action :restaurant_category_options, only: [ :new, :create, :update, :edit ]
 
   def index
     @restaurants = Restaurant.paginate(page: params[:page], per_page: 6).order(updated_at: :desc)
@@ -69,9 +68,5 @@ class RestaurantsController < ApplicationController
 
     def find_restaurant
       @restaurant = Restaurant.find(params[:id])
-    end
-
-    def restaurant_category_options  
-      @restaurant_category_options = [["select", nil]] + RestaurantCategory.order(:name).pluck(:name, :id)
     end
 end
