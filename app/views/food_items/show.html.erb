@@ -49,9 +49,9 @@
             <%= f.text_field :name, placeholder: "Enter name of food", class: "form-control", required: true %>
           </div>
 
-          <div class="form-group required">
+          <div class="form-group">
             <%= f.label :image, class: "control-label" %>
-            <%= f.file_field :image, placeholder: "Upload an image", class: "form-control-file", required: true %>
+            <%= f.file_field :image, placeholder: "Upload an image", class: "form-control-file" %>
           </div>
 
           <div class="row">
@@ -64,7 +64,7 @@
             <div class="col-md-6">
               <div class="form-group required">
                 <%= f.label :food_category_id, class: "control-label" %>
-                <%= f.select :food_category_id, options_for_select([["select", nil]] + FoodCategory.order(:name).pluck(:name, :id)), {}, class: "form-control", required: true %>
+                <%= f.select :food_category_id, [["Select", nil]] + FoodCategory.all.pluck(:name, :id), {}, include_blank: true, class: "form-control" %>
               </div>
             </div>
           </div>

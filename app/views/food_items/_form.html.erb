@@ -21,7 +21,7 @@
 
           <div class="form-group required">
             <%= form.label :image, class: "control-label" %>
-            <%= form.file_field :image, placeholder: "Upload an image", class: "form-control-file" %>
+            <%= form.file_field :image, placeholder: "Upload an image", required: true, class: "form-control-file" %>
           </div>
 
           <div class="row">
@@ -34,7 +34,7 @@
             <div class="col-md-6">
               <div class="form-group required">
                 <%= form.label :food_category_id, class: "control-label" %>
-                <%= form.select :food_category_id, options_for_select([["select", nil]] + FoodCategory.order(:name).pluck(:name, :id)), {}, class: "form-control", required: true %>
+                <%= form.select :food_category_id, [["Select", nil]] + FoodCategory.all.pluck(:name, :id), {}, include_blank: true, class: "form-control" %>
               </div>
             </div>
           </div>

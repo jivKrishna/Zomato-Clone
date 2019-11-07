@@ -29,11 +29,7 @@
         <% end %>
         <%= review.comment %>
       </p>
-    </div>
-
-     <br>
-      <div class="float-left px-1">
-        
+      <div class="float-left mt-2">
         <% if review.user == current_user %>
           <%= link_to edit_restaurant_review_path( review.restaurant, review), class: "btn text-primary", title: "Edit" do %>
             <i class="fas fa-edit"></i>
@@ -52,8 +48,8 @@
           <% end %>
         <% end %>
       </div>
-
     </div>
+  </div>
 </div>
 
 

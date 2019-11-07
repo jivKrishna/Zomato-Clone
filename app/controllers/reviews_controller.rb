@@ -8,6 +8,10 @@ class ReviewsController < ApplicationController
     @review = @restaurant.reviews.build(review_params)
     @review.user_id = current_user.id
 
+    if is_admin?
+      @review.approve = 1             # Review by Admin is automatically approved!
+    end
+
     if @review.save
       redirect_to @restaurant, flash: { success: "You have commented!" }
     else

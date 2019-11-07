@@ -7,14 +7,13 @@
     </div>
 
     <div class="col-10">
-      <div id="rating_form" class="text-success" required>
+      <div id="rating_form" class="text-success" data-score = "<%= @review.rating %>" required>
         <label>Your rating: </label>
-        <%= f.hidden_field :rating, required: true %>
       </div>
 
       <div class="form-group">
         <%= f.label :comment %>:
-        <%= f.text_area :comment, rows: 5, placeholder: "Help other foodies by sharing your review of Hola! (minimum 100 characters!)", class: "form-control", required: true %>
+        <%= f.text_area :comment, rows: 5, placeholder: "Help other foodies by sharing your review of Hola!", class: "form-control", required: true %>
       </div>
 
       <div class="form-group">

@@ -113,7 +113,7 @@
   <div class="row">
     <div class="col-md-8" id="reviews">
 
-      <% if is_admin? && @reviews_not_approved.count != 0 %>
+      <% if is_admin? && @reviews_not_approved.present? %>
         <h4 class="text-danger mt-3">Reviews not approved yet?</h4>
         <%= render @reviews_not_approved %>
          <%= will_paginate @reviews_not_approved %>

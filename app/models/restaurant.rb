@@ -10,6 +10,8 @@ class Restaurant < ApplicationRecord
   after_validation :reverse_geocode
   after_validation :set_city
 
+  scope :order_by_name, ->{ order(:name) }
+
 #for implementing elastic serach
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
@@ -24,27 +26,21 @@ class Restaurant < ApplicationRecord
       }
     )
   end
-#---------------------------------
   
-  scope :order_by_name, ->{ order(:name) }
-
+#for validation
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   before_save { self.email = email.downcase }
   before_save { self.owner_email = owner_email.downcase }
 
   validates :name,                                presence: true, length: { minimum: 3 }
   validates :owner_phone_number, :phone_number,   presence: true, length: { minimum: 10 }
-  validates :email, :owner_email,                 presence: true, format: { with: VALID_EMAIL_REGEX,
-            message: "only allows valid emails" }
+  validates :email, :owner_email,                 presence: true, format: { with: VALID_EMAIL_REGEX }
             
-  validates_format_of :owner_phone_number, :phone_number, with: /\A(\d{10}|\(?\d{3}\)?[-.\s]\d{3}[-.\s]\d{4})\z/,
-                      message: "should be 10 digits long and satisfy Phone Number Format"
+  validates_format_of :owner_phone_number, :phone_number, with: /\A(\d{10}|\(?\d{3}\)?[-.\s]\d{3}[-.\s]\d{4})\z/
 
-  validates_format_of :secondary_phone_number, :phone_number, with: /\A(\d{10}|\(?\d{3}\)?[-.\s]\d{3}[-.\s]\d{4})\z/,
-                      message: "should be 10 digits long and satisfy Phone Number Format", if: ->{ secondary_phone_number.present? }
+  validates_format_of :secondary_phone_number, :phone_number, with: /\A(\d{10}|\(?\d{3}\)?[-.\s]\d{3}[-.\s]\d{4})\z/, if: ->{ secondary_phone_number.present? }
 
-  has_attached_file :image, styles: { large: "300x760>",  medium: "300x600>", thumb: "200x200#" },
-                    default_url: "banner.jpg"
+  has_attached_file :image, styles: { large: "300x760>",  medium: "300x600>", thumb: "200x200#" }, default_url: "banner.jpg"
 
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 

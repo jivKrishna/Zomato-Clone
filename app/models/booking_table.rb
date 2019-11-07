@@ -12,11 +12,9 @@ class BookingTable < ApplicationRecord
   validates :guest_first_name, :guest_last_name, presence: true, length: { minimum: 3 }
   validates :guest_number,       :booking_date,   :booking_time,   :guest_phone_number,  presence: true
 
-  validates :guest_email,   presence: true,   format: { with: VALID_EMAIL_REGEX,
-            message: "only allows valid emails" }
+  validates :guest_email,   presence: true,   format: { with: VALID_EMAIL_REGEX }
 
-  validates_format_of :guest_phone_number,  with: /\A(\d{10}|\(?\d{3}\)?[-.\s]\d{3}[-.\s]\d{4})\z/,
-                      message: "should be 10 digits long and satisfy Phone Number Format"
+  validates_format_of :guest_phone_number,  with: /\A(\d{10}|\(?\d{3}\)?[-.\s]\d{3}[-.\s]\d{4})\z/
 
 
 

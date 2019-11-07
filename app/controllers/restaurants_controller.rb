@@ -4,14 +4,14 @@ class RestaurantsController < ApplicationController
   before_action :restaurant_category_options, only: [ :new, :create, :update, :edit ]
 
   def index
-    @restaurants = Restaurant.paginate(page: params[:page], per_page: 6).order(created_at: :desc)
+    @restaurants = Restaurant.paginate(page: params[:page], per_page: 6).order(updated_at: :desc)
   end
 
   def show
     #approved reviews or current_user not approved reviews.
     if current_user.present?
        @reviews_approved = @restaurant.reviews.approved.or( @restaurant.reviews.not_approved
-    .where(user_id: current_user.id) ).paginate(page: params[:page], per_page: 3).order(created_at: :desc) 
+    .where(user_id: current_user.id) ).paginate(page: params[:page], per_page: 3).order(updated_at: :desc) 
     else
       @reviews_approved = @restaurant.reviews.approved.paginate(page: params[:page], per_page: 3).order(created_at: :desc) 
     end
@@ -23,8 +23,6 @@ class RestaurantsController < ApplicationController
 
     #for creating new instance of review...
     @review = @restaurant.reviews.build
-
-    puts "#{@restaurant.latitude}, #{@restaurant.longitude}"
   end
 
   def new

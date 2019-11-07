@@ -13,13 +13,6 @@
           </button>
         </div>
         <div class="modal-body">
-          <% if @restaurant.menu_cards.build.errors.any? %>
-            <div class="form-group">
-              <% @restaurant.menu_cards.build.errors.full_messages.each do |msg| %>
-                <p class="text-danger"><%= msg %></p>
-              <% end %>
-            </div>
-          <% end %>
 
           <div class="form-group required">
             <%= f.label :image, "Upload Menu Card", class: "control-label" %>
@@ -28,7 +21,7 @@
 
           <div class="form-group required">
             <%= f.label :description, class: "control-label" %>
-            <%= f.text_area :description, row: 5, placeholder: "Write some words about this menu card ( minimum 50 characters! )", class: "form-control", required: true %>
+            <%= f.text_area :description, row: 5, placeholder: "Write some words about this menu card", class: "form-control", required: true %>
           </div>
 
           <div class="form-group">
