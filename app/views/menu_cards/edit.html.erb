@@ -3,6 +3,20 @@
 <div class="container">
   <div class="container-size">
     <div class="row">
+      <div class="col-md-8 bg-white container-border my-4">
+        <%= link_to @restaurant, class: "nav-link" do %>
+          <div class="caption">
+            <small class="text-secondary"><%= @restaurant.restaurant_category.name %></small>
+            <h3 class="text-dark font-weight-bold"><%= @restaurant.name %></h3>
+            <small class="text-secondary"><%= @restaurant.address %></small>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <h4 class="font-weight-bold">Edit Menu Cards!</h4>
+
+    <div class="row">
       <div class="col-md-8 bg-white container-border my-4 py-3">
         <%= form_for [ @restaurant, @menu_card ], html: { multipart: true } do |f| %>
   
@@ -19,6 +33,7 @@
           </div>
 
           <div class="form-group">
+            <%= link_to "Back", restaurant_menu_cards_path(@restaurant), class: "btn btn-secondary" %>
             <%= f.submit "Update Menu Card", class: "btn btn-danger" %>
           </div>
         <% end %>

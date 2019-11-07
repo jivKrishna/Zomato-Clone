@@ -2,8 +2,19 @@
 
 <div class="container container-size">
   <div class="row">
+    <div class="col-md-8 bg-white container-border my-4">
+      <%= link_to @restaurant, class: "nav-link" do %>
+        <div class="caption">
+          <small class="text-secondary"><%= @restaurant.restaurant_category.name %></small>
+          <h3 class="text-dark font-weight-bold"><%= @restaurant.name %></h3>
+          <small class="text-secondary"><%= @restaurant.address %></small>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
     <div class="col-md-8 my-4">
-      <div class="bg-white container-border p-3">
+      <div class="bg-white container-border p-3 mx-n3">
         <%= render "form" %>
         <%= link_to "Cancel", @restaurant, class: "btn btn-secondary" %>
       </div>

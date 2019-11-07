@@ -1,10 +1,20 @@
 <% @page_title = "#{@food_item.name} info" %>
 
 <div class="container container-size my-4">
-  <%= link_to "Back", restaurant_food_items_path(@restaurant), class: "btn btn-secondary my-3 mx-3" %>
+  <div class="row">
+    <div class="col-md-8 bg-white container-border my-4">
+      <%= link_to @restaurant, class: "nav-link" do %>
+        <div class="caption">
+          <small class="text-secondary"><%= @restaurant.restaurant_category.name %></small>
+          <h3 class="text-dark font-weight-bold"><%= @restaurant.name %></h3>
+          <small class="text-secondary"><%= @restaurant.address %></small>
+        </div>
+      <% end %>
+    </div>
+  </div>
   <div class="row">
     <div class="col-md-4">
-      <div class="container-border bg-white p-3 ml-3">
+      <div class="container-border bg-white p-3 ml-n3">
         <%= image_tag @food_item.image.url, class: "img-responsive img-middle" %>
         <h5 class="font-weight-bold">
           <% if @food_item.veg? %>
@@ -29,6 +39,7 @@
       </div>
     </div>
   </div>
+  <%= link_to "Back", restaurant_food_items_path(@restaurant), class: "btn btn-secondary my-3" %>
 </div>
 
 
