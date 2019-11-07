@@ -33,13 +33,13 @@ puts "4 to 6 restaurant categories created..."
 
 #For each restaurant categories 10 restaurants 
 RestaurantCategory.all.each do |restaurant_category|
-  rand(3..4).times do
+  rand(2..4).times do
     restaurant_category.restaurants.create(
       name:                   Faker::Restaurant.name,
       image:                  File.new("#{Rails.root}/app/assets/images/banner.jpg"),
       email:                  Faker::Internet.unique.email,
-      latitude:               rand(22.545726153..22.5748512),
-      longitude:              rand(88.323639153..88.3745112),
+      latitude:               rand(22.545..22.574),
+      longitude:              rand(88.323..88.374),
       phone_number:           Faker::PhoneNumber.cell_phone,
       secondary_phone_number: Faker::PhoneNumber.cell_phone,
       owner_email:            Faker::Internet.unique.email,
@@ -49,7 +49,7 @@ RestaurantCategory.all.each do |restaurant_category|
     )
   end
 end
-puts "for each restaurant category 1 to 2 restaurants created..."
+puts "for each restaurant category 2 to 4 restaurants created..."
 
 #Food Category
 FoodCategory.create(
