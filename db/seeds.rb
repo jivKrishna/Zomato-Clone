@@ -104,20 +104,12 @@ puts "For each user and for each restaurant 1 to 2 reviews created..."
 Restaurant.all.each do |restaurant|
   restaurant.menu_cards.create(
     image:                  File.new("#{Rails.root}/app/assets/images/menu1.jpg"),
-    description:              "Lorem ipsum is a pseudo-Latin text used in web design,
-                               typography, layout, and printing in place of English to 
-                               emphasise design elements over content. It's also called 
-                               placeholder (or filler) text. It's a convenient tool for 
-                               mock-ups."
+    description:              "Lorem ipsum is a pseudo-Latin text used in web design."
   )
 
   restaurant.menu_cards.create(
     image:                  File.new("#{Rails.root}/app/assets/images/menu2.jpg"),
-    description:              "Lorem ipsum is a pseudo-Latin text used in web design,
-                               typography, layout, and printing in place of English to 
-                               emphasise design elements over content. It's also called 
-                               placeholder (or filler) text. It's a convenient tool for 
-                               mock-ups."
+    description:              "Lorem ipsum is a pseudo-Latin text used in web design."
   )
 
 end
