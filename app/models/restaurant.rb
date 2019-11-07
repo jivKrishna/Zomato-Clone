@@ -33,7 +33,7 @@ class Restaurant < ApplicationRecord
   before_save { self.owner_email = owner_email.downcase }
 
   validates :name,                                presence: true, length: { minimum: 3 }
-  validates :owner_phone_number, :phone_number,   presence: true, length: { minimum: 10 }
+  validates :owner_phone_number, :phone_number, :image,  presence: true
   validates :email, :owner_email,                 presence: true, format: { with: VALID_EMAIL_REGEX }
             
   validates_format_of :owner_phone_number, :phone_number, with: /\A(\d{10}|\(?\d{3}\)?[-.\s]\d{3}[-.\s]\d{4})\z/
