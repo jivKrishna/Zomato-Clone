@@ -16,23 +16,27 @@
         <div class="container">
           <%= link_to "Zomato Clone", root_path, class: "font-weight-bold h4 text-white" %>
         </div>
+        
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
         <div class="collapse navbar-collapse mx-3" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
+          <ul class="navbar-nav ml-auto text-center">
+            <li class="nav-item ml-md-4">
               <%= link_to "Home", root_path, class: "nav-link text-white" %>
             </li>
-            <li class="nav-item ml-4">
+            <li class="nav-item ml-md-4">
               <%= link_to "Restaurants", restaurants_path, class: "nav-link text-white" %>
             </li>
-            <li class="nav-item item dropdown ml-4">
+            <li class="nav-item item dropdown ml-md-4">
               <% if signed_in? %>
                 <a class="nav-link dropdown-toggle text-primary" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <%= image_tag current_user.image.url, class: "small-icon rounded-circle" %>
                   <%= current_user.name.split.first %>
                 </a>
 
-                <div class="dropdown-menu my-3 ml-n4" aria-labelledby="navbarDropdown">
+                <div class="dropdown-menu my-3 ml-md-n4" aria-labelledby="navbarDropdown">
                   <%= link_to "Profile", user_path(current_user), class: "dropdown-item" %>
                   <%= link_to "Add Info", edit_user_path(current_user), class: "dropdown-item" %> 
                   <%= link_to "My Orders", restaurant_orders_path(current_user.orders), class: "dropdown-item" %>                  
