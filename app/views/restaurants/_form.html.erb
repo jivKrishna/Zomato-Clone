@@ -30,7 +30,7 @@
       <div class="col-md-6">
         <div class="form-group required">
           <%= form.label :email, class: "text-uppercase control-label" %>
-          <%= form.text_field :email, placeholder: "Enter restaurant email", class: "form-control", required: true %>
+          <%= form.email_field :email, placeholder: "Enter restaurant email", class: "form-control", required: true %>
         </div>
       </div>
     </div>
@@ -78,7 +78,7 @@
       <div class="col-md-6">
         <div class="form-group required">
           <%= form.label :owner_email, class: "control-label text-uppercase" %>
-          <%= form.text_field :owner_email, placeholder: "Owner email", class: "form-control", required: true %>
+          <%= form.email_field :owner_email, placeholder: "Owner email", class: "form-control", required: true %>
         </div>
       </div>
     </div>
