@@ -1,4 +1,4 @@
-$(document).on('turbolinks:load', function(){
+$(document).on("turbolinks:load", function(){
   let btnText = "- See less fields";
   $("#more-less").click(function(){
     btnBeforeText = $("#more-less").text();
@@ -31,6 +31,7 @@ $(document).on('turbolinks:load', function(){
   });
 
   $(".review-rating").raty({
+    "reload": true,
     numberMax : 5,
     number: 5,
     readOnly: true,
@@ -52,4 +53,8 @@ $(document).on('turbolinks:load', function(){
       $("#location").val([ position.coords.latitude, position.coords.longitude ]);
     });
   }
+
+  $(window).on('popstate', function() {
+      location.reload(true);
+  });
 });
