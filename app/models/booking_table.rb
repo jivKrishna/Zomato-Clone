@@ -16,8 +16,6 @@ class BookingTable < ApplicationRecord
 
   validates_format_of :guest_phone_number,  with: /\A(\d{10}|\(?\d{3}\)?[-.\s]\d{3}[-.\s]\d{4})\z/
 
-
-
   private
     def format_book_time
       self.booking_time = booking_time.strftime("%H:%M")
