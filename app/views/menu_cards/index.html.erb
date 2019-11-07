@@ -21,7 +21,7 @@
   <div class="row text-center">
     <% @menu_cards.each do |menu_card| %>
       <div class="col-md-3 bg-white container-border my-2 py-2">
-        <a href="<%= menu_card.image.url %>" data-lightbox="roadtrip" data-title="<%= menu_card.description %>">
+        <a href="<%= menu_card.image.url %>" data-lightbox="roadtrip" data-title="<%= menu_card.description %>" class="example-image-link">
           <%= image_tag menu_card.image.url, class: "img-fluid" %>
         </a>
 
