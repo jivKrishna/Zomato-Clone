@@ -1,14 +1,8 @@
 <% @page_title = "#{@restaurant.name} photos" %>
 
 <div class="container container-size my-4">
-  <div class="col-md-8 container-border bg-white">
-    <%= link_to @restaurant, class: "nav-link" do %>
-      <div class="caption">
-        <small class="text-secondary"><%= @restaurant.restaurant_category.name %></small>
-        <h3 class="text-dark font-weight-bold"><%= @restaurant.name %></h3>
-        <small class="text-secondary"><%= @restaurant.address %></small>
-      </div>
-    <% end %>
+  <div class="col-md-8">
+    <%= render "restaurants/info" %>
   </div>
 
   <h5 class="font-weight-bold mt-4">Restaurant Images</h5>

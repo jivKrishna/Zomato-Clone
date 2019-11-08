@@ -2,14 +2,8 @@
 
 <div class="container container-size my-4">
   <div class="row">
-    <div class="col-md-8 bg-white container-border my-4">
-      <%= link_to @restaurant, class: "nav-link" do %>
-        <div class="caption">
-          <small class="text-secondary"><%= @restaurant.restaurant_category.name %></small>
-          <h3 class="text-dark font-weight-bold"><%= @restaurant.name %></h3>
-          <small class="text-secondary"><%= @restaurant.address %></small>
-        </div>
-      <% end %>
+    <div class="col-md-8 my-4">
+      <%= render "restaurants/info" %>
     </div>
   </div>
   <div class="row">

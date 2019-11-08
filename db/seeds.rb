@@ -84,7 +84,7 @@ end
 puts "For each restaurant and for each food category 2 to 4 food dishes created..."
 
 #restaurant reviews
-User.all.each do |user|
+User.where( admin: false ).each do |user|
   Restaurant.all.each do |restaurant|
     rand(1..2).times do
       Review.create(
