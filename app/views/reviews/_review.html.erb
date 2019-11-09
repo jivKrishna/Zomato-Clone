@@ -15,12 +15,13 @@
         <small class="text-danger float-right">Not approved yet</small>
       <% end %>
     </div>
-
+  </div>
+  <div class="row">
     <div class="px-3">
       <h6 class="font-weight-bold text-success small">
         <span class="review-rating" data-score = "<%= review.rating %>"></span>
       </h6>
-      <p class="small">
+      <p class="small word-break">
         <% unless review.image.blank? %>
           <a href="<%= review.image.url %>" data-lightbox="<%= review.id %>" data-title="<%= review.comment %>">
             <%= image_tag review.image.url, class: "review-image float-left mr-3" %>
