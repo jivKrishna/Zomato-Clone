@@ -24,8 +24,8 @@
 ### Things you may want to cover:
   * Ruby version: 2.6.3
   * Rails version: 6.0.0
-  * Elastic Search version: 7.x
-  * Database: MySql version: 8.x
+  * Elastic Search version: 7.4.2
+  * Database: MySql version: 8.0.18
 
 ### Note:
   * Before running rails server, please confirm that elasticsearch running, else you get some faraday connection errors.
@@ -43,3 +43,16 @@
   * Bootstrap
   * jQuery
   * lightbox2
+
+### Steps to run Zomato-Clone
+
+Go to "Elasticsearch/bin" directory then,
+1. Run "./elasticsearch"
+
+Go to "Zomato-Clone" cloned directory then,
+
+2. Run "yarn install --check-files" to to sync node-modules
+3. Run "bundle install"
+4. Run "rails db:create db:migrate"
+5. Run "rails db:seed"
+6. Run "rails s"
