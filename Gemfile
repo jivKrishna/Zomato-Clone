@@ -32,7 +32,7 @@ gem 'omniauth-facebook', '~> 5.0'
 #google-oauth2 gem
 gem 'omniauth-google-oauth2', '~> 0.8.0'
 #for integration google map api
-gem 'geocoder', '~> 1.5', '>= 1.5.1'
+gem 'geocoder', '~> 1.6'
 #for image upload
 gem 'paperclip'
 #for pagination
